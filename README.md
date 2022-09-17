@@ -3,7 +3,7 @@ Objektinis programų projektavimas
 
 ##  Žaidimo aprašymas
 
-  Žaidimas yra bokšto gynimo tipo, skirtas dviem žaidėjams. Žaidėjai turi savo bokštą, kurį turi apginti, bei gali pirkti įvairių tipų karius, kurie kovos su priešininko kariuomene. Žaidėjas, pirmasis prasibrovęs pro priešiniko kariuomenę ir nukovęs jo bokštą, laimi.  
+Žaidimas yra bokšto gynimo tipo, skirtas dviem žaidėjams. Žaidėjai turi savo bokštą, kurį turi apginti, bei gali pirkti įvairių tipų karius, kurie kovos su priešininko kariuomene. Žaidėjas, pirmasis prasibrovęs pro priešiniko kariuomenę ir nugriovęs jo bokštą, laimi.  
 
 ##  Funkciniai reikalavimai
 
@@ -18,3 +18,10 @@ Objektinis programų projektavimas
 - Jeigu priešais karį išnyksta priešas, karys pradeda eiti vėl link priešininko bokšto arba kario
 - Kai karys prieina priešininko bokštą, jis pradeda mušti priešininko bokštą
 - Jeigu karys trenkia bokštui - bokštas gauna žalos taškų
+- Bokšto gyvybėms nukritus iki 0 - žaidimas baigiamas
+- Nužudžius priešininko karį žaidėjas gauna pinigų kiekį, kuris priklauso nuo nužudyto priešininko kainos
+- Nesugriauto bokšto savininkas yra žaidimo nugalėtojas
+- Nužudžius priešininko karį žaidėjas gauna patirties taškų kiekį, kuris priklauso nuo nužudyto priešininko kainos
+- Žaidėjas žaidimo viršuje gali matyti savo turimą pinigų kiekį bei patirties taškų kiekį
+- Pasiekus tam tikrą patirties taškų kiekį žaidėjas gali paspausti mygtuką esantį šalia patirties taškų kiekio, kuris pakels žaidėjo lygį 
+
