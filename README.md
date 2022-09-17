@@ -5,7 +5,7 @@ Objektinis programų projektavimas
 
 Žaidimas yra bokšto gynimo tipo, skirtas dviem žaidėjams. Žaidėjai turi savo bokštą, kurį turi apginti, bei gali pirkti įvairių tipų karius, kurie kovos su priešininko kariuomene. Žaidėjas, pirmasis prasibrovęs pro priešiniko kariuomenę ir nukovęs jo bokštą, laimi. 
 
-  Funkciniai reikalavimai
+##  Funkciniai reikalavimai
 
 -Žaidėjas gali paspausti ant kario paveiksliuko ir taip sukurti karį
 
@@ -17,4 +17,8 @@ Objektinis programų projektavimas
 
 -Karys taip pat sustoja jei priešais jį stovi to paties žaidėjo sukurtas karys
 
+-Jeigu priešais karį stovi priešo sukurtas karys arba priešo bokštas - karys pradeda mušti objektą priešais save
 
+-Karys gavęs smūgį praranda dalį gyvybės taškų priklausomai nuo kokio priešininko gavo smūgį
+
+-Kario gyvybėms nukritus iki 0 - karys išnyksta
