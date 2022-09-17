@@ -1,4 +1,4 @@
-# OPP
+# OPP Bokštų dvikova
 Objektinis programų projektavimas
 
 ## Žaidimo technologijos
@@ -12,6 +12,10 @@ Komunikacija: SignalR
 ##  Žaidimo aprašymas
 
 Žaidimas yra bokšto gynimo tipo, skirtas dviem žaidėjams. Žaidėjai turi savo bokštą, kurį turi apginti, bei gali pirkti įvairių tipų karius, kurie kovos su priešininko kariuomene. Žaidėjas, pirmasis prasibrovęs pro priešiniko kariuomenę ir nugriovęs jo bokštą, laimi.  
+
+### Žaidimo grafinės sąsajos pavyzdys
+
+![](https://im.ge/i/11NdTJ)
 
 ## Reikalavimai
 ### Funkciniai
