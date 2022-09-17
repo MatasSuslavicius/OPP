@@ -4,7 +4,9 @@ Objektinis programų projektavimas
 ## Žaidimo technologijos
 
 Serverio dalis: C# su naujausiu .NET
+
 Vartotojo sąsaja: React karkasas su Typescript, CSS (SASS)
+
 Komunikacija: SignalR
 
 ##  Žaidimo aprašymas
