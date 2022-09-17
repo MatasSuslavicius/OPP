@@ -24,4 +24,5 @@ Objektinis programų projektavimas
 - Nužudžius priešininko karį žaidėjas gauna patirties taškų kiekį, kuris priklauso nuo nužudyto priešininko kainos
 - Žaidėjas žaidimo viršuje gali matyti savo turimą pinigų kiekį bei patirties taškų kiekį
 - Pasiekus tam tikrą patirties taškų kiekį žaidėjas gali paspausti mygtuką esantį šalia patirties taškų kiekio, kuris pakels žaidėjo lygį 
+- Žaidėjui pasiekus kitą lygį, jo bokštas atsinaujina ir jis gali pradėti gaminti naujus karius
 
