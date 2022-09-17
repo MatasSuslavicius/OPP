@@ -1,6 +1,12 @@
 # OPP
 Objektinis programų projektavimas
 
+## Žaidimo technologijos
+
+Serverio dalis: C# su naujausiu .NET
+Vartotojo sąsaja: React karkasas su Typescript, CSS (SASS)
+Komunikacija: SignalR
+
 ##  Žaidimo aprašymas
 
 Žaidimas yra bokšto gynimo tipo, skirtas dviem žaidėjams. Žaidėjai turi savo bokštą, kurį turi apginti, bei gali pirkti įvairių tipų karius, kurie kovos su priešininko kariuomene. Žaidėjas, pirmasis prasibrovęs pro priešiniko kariuomenę ir nugriovęs jo bokštą, laimi.  
