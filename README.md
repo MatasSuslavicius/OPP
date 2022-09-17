@@ -15,7 +15,7 @@ Komunikacija: SignalR
 
 ### Žaidimo grafinės sąsajos pavyzdys
 
-![](https://i.im.ge/2022/09/17/11P8gh.bokstai.jpg)
+![](https://i.im.ge/2022/09/17/11Pngf.bokstai2.jpg)
 
 ## Reikalavimai
 ### Funkciniai
