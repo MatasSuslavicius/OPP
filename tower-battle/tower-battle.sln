@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tower-battle", "tower-battle.csproj", "{4BFC79F0-0905-4D38-AF66-1F66E78F2339}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tower-battle", "tower-battle\tower-battle.csproj", "{09A1C42F-EB5B-46D7-BB58-77B17BF22E49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4BFC79F0-0905-4D38-AF66-1F66E78F2339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BFC79F0-0905-4D38-AF66-1F66E78F2339}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BFC79F0-0905-4D38-AF66-1F66E78F2339}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BFC79F0-0905-4D38-AF66-1F66E78F2339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09A1C42F-EB5B-46D7-BB58-77B17BF22E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09A1C42F-EB5B-46D7-BB58-77B17BF22E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09A1C42F-EB5B-46D7-BB58-77B17BF22E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09A1C42F-EB5B-46D7-BB58-77B17BF22E49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {CD60D911-106B-4DE4-AF33-EEFF6E041507}
+		SolutionGuid = {2818EB8A-4068-47D2-8A39-3A8278EB2CF9}
 	EndGlobalSection
 EndGlobal

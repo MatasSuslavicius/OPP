@@ -1,1 +1,2 @@
-start backend/tower-battle.sln
+@ECHO OFF
+start tower-battle/tower-battle.sln
