@@ -2,3 +2,4 @@
 /public/build
 reportWebVitals.ts
 react-app-env.d.ts
+tsconfig.json
