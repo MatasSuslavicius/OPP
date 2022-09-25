@@ -1,13 +1,14 @@
 import React, { useRef } from "react";
 import { GameState } from "../../contracts/contracts";
 import "./GameCanvas.css";
-import { drawUnits } from "./gameCanvasUtils";
+import { clearCanvas, drawUnits } from "./gameCanvasUtils";
 
 const GameCanvas = (gameState: GameState) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   if (canvasRef.current) {
     const context = canvasRef.current.getContext("2d");
+    clearCanvas(context!);
     drawUnits(context!, gameState.rightPlayerState.units, true);
     drawUnits(context!, gameState.leftPlayerState.units, false);
   }

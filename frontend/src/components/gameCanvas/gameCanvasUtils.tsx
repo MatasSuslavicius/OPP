@@ -1,4 +1,3 @@
-import { Ref } from "react";
 import { Unit } from "../../contracts/contracts";
 
 export const drawUnits = (
