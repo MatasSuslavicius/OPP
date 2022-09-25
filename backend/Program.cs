@@ -1,4 +1,5 @@
-using tower_battle.CommunicationHubs;
+using tower_battle.Hubs;
+using tower_battle.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSignalR();
+
+builder.Services.AddHostedService<GameManager>();
 
 builder.Services.AddCors(options =>
 {
@@ -38,6 +41,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapHub<MessageHub>("/message");
+app.MapHub<GameHub>("/game");
 
 app.Run();
