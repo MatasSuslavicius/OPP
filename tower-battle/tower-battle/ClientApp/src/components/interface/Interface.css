@@ -1,0 +1,9 @@
+.Background {
+    background-image: url('../../images/bokstai.jpg');
+    background-size: contain;
+    background-color: #9a7e44;
+    background-repeat: no-repeat;
+    height: 597px;
+    width: 1061px;
+    border: 2px solid black;
+}
