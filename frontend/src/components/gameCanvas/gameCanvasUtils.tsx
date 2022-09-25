@@ -9,7 +9,7 @@ export const drawUnits = (
   units.forEach((unit) => {
     ctx.beginPath();
     ctx.fillStyle = isRightPlayer ? "red" : "blue";
-    ctx.fillRect(unit.position.x, unit.position.y, 50, 50);
+    ctx.fillRect(unit.position.x, unit.position.y, unit.scale.x, unit.scale.y);
   });
 };
 
