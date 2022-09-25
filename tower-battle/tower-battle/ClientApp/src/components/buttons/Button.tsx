@@ -1,4 +1,4 @@
-import './Button.scss';
+import './Button.css';
 
 interface ButtonProps {
   onClick: () => void
