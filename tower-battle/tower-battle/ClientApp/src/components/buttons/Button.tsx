@@ -1,13 +1,13 @@
 import './Button.css';
 
 interface ButtonProps {
-  onClick: () => void
+  onClick?: () => void
 }
 
 export function Button(props: ButtonProps): JSX.Element {
   return (
-    <div className='button'>
-      <button onClick={props.onClick}/>
+    <div>
+      <button className='button' onClick={props.onClick}>Buy Unit1</button>
     </div>
   )
 }

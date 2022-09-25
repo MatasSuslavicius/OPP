@@ -1,8 +1,13 @@
 import './Interface.css'
-export function Interface(): JSX.Element {
+
+type InterfaceProps = {
+  children?: React.ReactNode;
+}
+
+export function Interface(props: InterfaceProps): JSX.Element {
   return (
     <div className='Background'>
-      
+      {props.children}
     </div>
   )
 }
