@@ -1,0 +1,10 @@
+.interface {
+    margin: auto;
+    width: 1024px;
+    padding-top: 40px;
+}
+
+.control-container {
+    padding: 20px 0px;
+    display: flex;
+}
