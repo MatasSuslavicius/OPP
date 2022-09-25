@@ -16,6 +16,19 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+builder.Services.AddSignalR();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ClientPermission", policy =>
+    {
+        policy.AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowAnyOrigin()
+            .AllowCredentials();
+    });
+});
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
