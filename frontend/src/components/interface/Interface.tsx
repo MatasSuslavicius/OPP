@@ -1,21 +1,18 @@
 import { useState } from "react";
+import { GameState } from "../../contracts/contracts";
 import { BuyButton } from "../buttons/BuyButton";
 import GameCanvas from "../gameCanvas/GameCanvas";
 import "./Interface.css";
 
-const Interface = () => {
-  const [test, setTest] = useState(0);
-
+const Interface = (gameState: GameState) => {
   return (
     <div>
       <div className="interface">
         <div className="control-container">
-          <BuyButton onClick={() => setTest(Math.random())} />
+          <BuyButton />
         </div>
         <div>
-          <GameCanvas
-            unitPositions={[{ position: { x: test, y: 50 }, isEnemy: false }]}
-          />
+          <GameCanvas {...gameState} />
         </div>
       </div>
     </div>

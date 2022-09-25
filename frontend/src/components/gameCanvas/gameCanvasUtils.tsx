@@ -1,14 +1,14 @@
 import { Ref } from "react";
+import { Unit } from "../../contracts/contracts";
 
-export interface Unit {
-  position: { x: number; y: number };
-  isEnemy: boolean;
-}
-
-export const drawUnits = (ctx: CanvasRenderingContext2D, units: Unit[]) => {
+export const drawUnits = (
+  ctx: CanvasRenderingContext2D,
+  units: Unit[],
+  isRightPlayer: boolean
+) => {
   units.forEach((unit) => {
     ctx.beginPath();
-    ctx.fillStyle = "red";
+    ctx.fillStyle = isRightPlayer ? "red" : "blue";
     ctx.fillRect(unit.position.x, unit.position.y, 50, 50);
   });
 };
