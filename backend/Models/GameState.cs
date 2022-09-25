@@ -8,6 +8,6 @@
 
     public class PlayerState
     {
-        public IReadOnlyCollection<Unit> Units { get; } = new List<Unit>();
+        public ICollection<Unit> Units { get; } = new List<Unit>();
     }
 }

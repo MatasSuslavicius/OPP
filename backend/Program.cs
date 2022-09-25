@@ -25,6 +25,8 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddSingleton<UnitService>();
+
 var app = builder.Build();
 
 
@@ -42,5 +44,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapHub<GameHub>("/game");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
