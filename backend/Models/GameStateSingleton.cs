@@ -6,13 +6,13 @@ namespace tower_battle.Models
     {
         private static readonly GameStateSingleton instance = new GameStateSingleton();
 
+        private GameStateSingleton() { }
+
         public static GameStateSingleton Instance
         {
-            get 
-            { 
-                return instance; 
-            }
+            get { return instance; }
         }
+
         public PlayerState RightPlayerState { get; } = new PlayerState();
         public PlayerState LeftPlayerState { get; } = new PlayerState();
     }

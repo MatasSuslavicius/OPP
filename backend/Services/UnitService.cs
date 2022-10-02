@@ -1,4 +1,6 @@
-﻿using tower_battle.Models;
+﻿using tower_battle.AbstractUnitFactory;
+using tower_battle.AbstractUnitFactory.Factories;
+using tower_battle.Models;
 
 namespace tower_battle.Services
 {
@@ -7,16 +9,10 @@ namespace tower_battle.Services
         public UnitService() { }
         public bool Create()
         {
-            GameStateSingleton.Instance.RightPlayerState.Units.Add(
-                new Unit { 
-                    Position = new Vector2 { X = 10, Y = 0 },
-                    Scale = new Vector2 { X = 0.5f, Y = 1f }
-                });
-            GameStateSingleton.Instance.LeftPlayerState.Units.Add
-                (new Unit { 
-                    Position = new Vector2 { X = -10, Y = 0 }, 
-                    Scale = new Vector2 { X = 0.5f, Y = 1f } 
-                });
+            ICreator ctr = new UnitFactory();
+            var levelFactory = ctr.GetUnitFactory(1);
+            GameStateSingleton.Instance.RightPlayerState.Units.Add(levelFactory.CreateMelee(false));
+            GameStateSingleton.Instance.LeftPlayerState.Units.Add(levelFactory.CreateMelee(true));
             return true;
         }
     }

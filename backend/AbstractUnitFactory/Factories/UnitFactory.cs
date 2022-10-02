@@ -7,9 +7,9 @@
             switch (level)
             {
                 case 1:
-                    return new Level1Factory();
+                    return new Level1();
                 case 2:
-                    return new Level2Factory();
+                    return new Level2();
                 default:
                     return null;
             }

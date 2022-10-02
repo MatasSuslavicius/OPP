@@ -8,7 +8,7 @@ namespace tower_battle.Controllers
     [ApiController]
     public class UnitController : ControllerBase
     {
-        UnitService m_unitService;
+        private readonly UnitService m_unitService;
         public UnitController(UnitService unitService)
         {
             m_unitService = unitService;
