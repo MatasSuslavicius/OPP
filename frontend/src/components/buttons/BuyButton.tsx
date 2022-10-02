@@ -1,14 +1,15 @@
 import "./Button.css";
 
 interface ButtonProps {
+  text: string;
   onClick: () => void;
 }
 
-export const BuyButton = (props: ButtonProps) => {
+export const Button = (props: ButtonProps) => {
   return (
     <div>
       <button className="button" onClick={props.onClick}>
-        Buy Units
+        {props.text}
       </button>
     </div>
   );

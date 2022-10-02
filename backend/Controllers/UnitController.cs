@@ -19,5 +19,25 @@ namespace tower_battle.Controllers
         {
             return Ok(m_unitService.Create());
         }
+
+        [HttpPost("LevelUp")]
+        public async Task<IActionResult> LevelUp()
+        {
+            return Ok(m_unitService.LevelUp());
+        }
+
+        [HttpPost("ClearUnits")]
+        public async Task<IActionResult> ClearUnits()
+        {
+            m_unitService.ClearUnits();
+            return Ok();
+        }
+
+        [HttpPost("ResetLevel")]
+        public async Task<IActionResult> ResetLevel()
+        {
+            m_unitService.ResetLevel();
+            return Ok();
+        }
     }
 }

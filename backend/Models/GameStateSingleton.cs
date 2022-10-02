@@ -15,6 +15,7 @@ namespace tower_battle.Models
 
         public PlayerState RightPlayerState { get; } = new PlayerState();
         public PlayerState LeftPlayerState { get; } = new PlayerState();
+        public int GameLevel { get; set; } = 1;
     }
 
     public class PlayerState
