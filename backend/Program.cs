@@ -16,7 +16,7 @@ builder.Services.AddHostedService<GameManager>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("ClientPermission", policy =>
+    options.AddPolicy("AllowOrigin", policy =>
     {
         policy.AllowAnyHeader()
             .AllowAnyMethod()

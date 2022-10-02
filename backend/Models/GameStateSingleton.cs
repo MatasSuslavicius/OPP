@@ -1,7 +1,17 @@
 ﻿namespace tower_battle.Models
 {
-    public class GameState
+    public sealed class GameStateSingleton
     {
+        private static readonly GameStateSingleton instance = new GameStateSingleton();
+
+        public static GameStateSingleton Instance
+        {
+            get 
+            { 
+                return instance; 
+            }
+        }
+
         public PlayerState RightPlayerState { get; } = new PlayerState();
         public PlayerState LeftPlayerState { get; } = new PlayerState();
     }

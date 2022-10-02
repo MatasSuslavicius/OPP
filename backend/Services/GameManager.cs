@@ -7,19 +7,17 @@ namespace tower_battle.Services
     public class GameManager : BackgroundService
     {
         private readonly IHubContext<GameHub> _hubContext;
-        public static GameState _state;
         public GameManager(IHubContext<GameHub> hubContext)
         {
             _hubContext = hubContext;
-            _state = new GameState();
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                _state.Loop();
+                GameStateSingleton.Instance.Loop();
 
-                await _hubContext.Clients.All.SendAsync("GameUpdated", _state);
+                await _hubContext.Clients.All.SendAsync("GameUpdated", GameStateSingleton.Instance);
 
                 await Task.Delay(1000);
             }

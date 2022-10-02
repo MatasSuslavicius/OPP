@@ -7,15 +7,15 @@ namespace tower_battle.Services
         public UnitService() { }
         public bool Create()
         {
-            GameManager._state.RightPlayerState.Units.Add(
+            GameStateSingleton.Instance.RightPlayerState.Units.Add(
                 new Unit { 
-                    Position = new Vector2 { X = 800, Y = 515 }, 
-                    Scale = new Vector2 { X = 20, Y = 40 } 
+                    Position = new Vector2 { X = 10, Y = 0 },
+                    Scale = new Vector2 { X = 0.5f, Y = 1f }
                 });
-            GameManager._state.LeftPlayerState.Units.Add
+            GameStateSingleton.Instance.LeftPlayerState.Units.Add
                 (new Unit { 
-                    Position = new Vector2 { X = 80, Y = 515 }, 
-                    Scale = new Vector2 { X = 20, Y = 40 } 
+                    Position = new Vector2 { X = -10, Y = 0 }, 
+                    Scale = new Vector2 { X = 0.5f, Y = 1f } 
                 });
             return true;
         }

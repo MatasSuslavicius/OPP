@@ -4,12 +4,12 @@ namespace tower_battle.Services
 {
     public static class GameLogic
     {
-        public static void Loop(this GameState state)
+        public static void Loop(this GameStateSingleton state)
         {
             UpdateUnitPositions(state);
         }
 
-        private static void UpdateUnitPositions(GameState state)
+        private static void UpdateUnitPositions(GameStateSingleton state)
         {
             foreach(var leftPlayerUnit in state.LeftPlayerState.Units)
             {
