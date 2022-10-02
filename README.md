@@ -3,9 +3,9 @@ Objektinis programų projektavimas
 
 ## Žaidimo technologijos
 
-Serverio dalis: C# su naujausiu .NET
+Serverio dalis: C# su .NET 6 ir ASP.NET Core
 
-Vartotojo sąsaja: React karkasas su Typescript, CSS (SASS)
+Vartotojo sąsaja: React karkasas su Typescript, CSS
 
 Komunikacija: SignalR
 
