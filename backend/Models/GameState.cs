@@ -1,4 +1,6 @@
-﻿namespace tower_battle.Models
+﻿using tower_battle.AbstractUnitFactory.Units;
+
+namespace tower_battle.Models
 {
     public class GameState
     {
