@@ -11,7 +11,6 @@
                 return instance; 
             }
         }
-
         public PlayerState RightPlayerState { get; } = new PlayerState();
         public PlayerState LeftPlayerState { get; } = new PlayerState();
     }

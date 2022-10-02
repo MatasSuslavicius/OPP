@@ -13,12 +13,12 @@ namespace tower_battle.Services
         {
             foreach(var leftPlayerUnit in state.LeftPlayerState.Units)
             {
-
+                leftPlayerUnit.Position.X += leftPlayerUnit.Speed * GameManager.UPDATE_TIME;
             }
 
             foreach (var rightPlayerUnit in state.RightPlayerState.Units)
             {
-
+                rightPlayerUnit.Position.X -= rightPlayerUnit.Speed * GameManager.UPDATE_TIME;
             }
         }
     }

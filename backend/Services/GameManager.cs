@@ -6,6 +6,8 @@ namespace tower_battle.Services
 {
     public class GameManager : BackgroundService
     {
+        public const float UPDATE_TIME = 0.01f;
+
         private readonly IHubContext<GameHub> _hubContext;
         public GameManager(IHubContext<GameHub> hubContext)
         {
@@ -19,7 +21,7 @@ namespace tower_battle.Services
 
                 await _hubContext.Clients.All.SendAsync("GameUpdated", GameStateSingleton.Instance);
 
-                await Task.Delay(1000);
+                await Task.Delay((int)(UPDATE_TIME * 1000f));
             }
         }
     }
