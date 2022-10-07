@@ -3,8 +3,8 @@ using tower_battle.Models;
 
 namespace tower_battle.AbstractUnitFactory.Units.Level2
 {
-    public class Level2FastMelee : FastMelee
+    public class Level2SlowMelee : SlowMelee
     {
-        public override Vector2 Scale { get; set; } = new() { X = 0.5f, Y = 1.5f };
+        public override Vector2 Scale { get; set; } = new() { X = 1f, Y = 0.75f };
     }
 }

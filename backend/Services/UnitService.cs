@@ -8,12 +8,26 @@ namespace tower_battle.Services
     public class UnitService
     {
         public UnitService() { }
-        public bool Create()
+        public bool Create(string type)
         {
             ICreator ctr = new UnitFactory();
             var levelFactory = ctr.GetUnitFactory(GameStateSingleton.Instance.GameLevel);
-            GameStateSingleton.Instance.RightPlayerState.Units.Add(levelFactory.CreateMelee(false));
-            GameStateSingleton.Instance.LeftPlayerState.Units.Add(levelFactory.CreateMelee(true));
+            if(type == "Normal")
+            {
+                GameStateSingleton.Instance.RightPlayerState.Units.Add(levelFactory.CreateNormalMelee(false));
+                GameStateSingleton.Instance.LeftPlayerState.Units.Add(levelFactory.CreateNormalMelee(true));
+            }
+            else if (type == "Fast")
+            {
+                GameStateSingleton.Instance.RightPlayerState.Units.Add(levelFactory.CreateFastMelee(false));
+                GameStateSingleton.Instance.LeftPlayerState.Units.Add(levelFactory.CreateFastMelee(true));
+            }
+            else
+            {
+                GameStateSingleton.Instance.RightPlayerState.Units.Add(levelFactory.CreateSlowMelee(false));
+                GameStateSingleton.Instance.LeftPlayerState.Units.Add(levelFactory.CreateSlowMelee(true));
+            }
+            
             return true;
         }
 
