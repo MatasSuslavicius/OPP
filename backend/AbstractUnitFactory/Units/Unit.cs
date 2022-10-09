@@ -3,7 +3,7 @@ using tower_battle.AbstractUnitFactory.Units.MovementStrategy;
 
 namespace tower_battle.AbstractUnitFactory.Units
 {
-    public abstract class Unit
+    public abstract class Unit : Observer.Observer
     {
         public float Speed { get; set; }
         public Vector2 Position { get; set; }
@@ -22,7 +22,9 @@ namespace tower_battle.AbstractUnitFactory.Units
             this.MoveStrategy = moveStrategy;
             this.MoveStrategy.MoveDifferently(unit);
         }
-
-
+        public override void UpdateUnits()
+        {
+            this.Scale.X *= 3;
+        }
     }
 }

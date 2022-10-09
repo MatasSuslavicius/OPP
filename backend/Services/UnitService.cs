@@ -2,37 +2,53 @@
 using tower_battle.AbstractUnitFactory.Factories;
 using tower_battle.AbstractUnitFactory.Units;
 using tower_battle.Models;
+using tower_battle.Observer;
 
 namespace tower_battle.Services
 {
     public class UnitService
     {
-        public UnitService() { }
+        private readonly UnitManager m_unitManager;
+
+        public UnitService()
+        {
+            m_unitManager = new UnitManager();
+        }
         public bool Create(string type)
         {
             ICreator ctr = new UnitFactory();
             var levelFactory = ctr.GetUnitFactory(GameStateSingleton.Instance.GameLevel);
-            if(type == "Normal")
+
+            Unit right;
+            Unit left;
+            switch (type)
             {
-                GameStateSingleton.Instance.RightPlayerState.Units.Add(levelFactory.CreateNormalMelee(false));
-                GameStateSingleton.Instance.LeftPlayerState.Units.Add(levelFactory.CreateNormalMelee(true));
+                case "Normal":
+                    right = levelFactory.CreateNormalMelee(false);
+                    left = levelFactory.CreateNormalMelee(true);
+                    break;
+                case "Fast":
+                    right = levelFactory.CreateFastMelee(false);
+                    left = levelFactory.CreateFastMelee(true);
+                    break;
+                default:
+                    right = levelFactory.CreateSlowMelee(false);
+                    left = levelFactory.CreateSlowMelee(true);
+                    break;
             }
-            else if (type == "Fast")
-            {
-                GameStateSingleton.Instance.RightPlayerState.Units.Add(levelFactory.CreateFastMelee(false));
-                GameStateSingleton.Instance.LeftPlayerState.Units.Add(levelFactory.CreateFastMelee(true));
-            }
-            else
-            {
-                GameStateSingleton.Instance.RightPlayerState.Units.Add(levelFactory.CreateSlowMelee(false));
-                GameStateSingleton.Instance.LeftPlayerState.Units.Add(levelFactory.CreateSlowMelee(true));
-            }
-            
+
+            GameStateSingleton.Instance.RightPlayerState.Units.Add(right);
+            GameStateSingleton.Instance.LeftPlayerState.Units.Add(left);
+
+            m_unitManager.Subscribe(right);
+            m_unitManager.Subscribe(left);
+
             return true;
         }
 
         public bool LevelUp()
         {
+            m_unitManager.LevelUp();
             if (GameStateSingleton.Instance.GameLevel >= 2)
             {
                 GameStateSingleton.Instance.GameLevel = 2; // Resetting to current max game level.

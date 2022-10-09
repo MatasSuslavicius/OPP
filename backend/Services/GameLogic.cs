@@ -12,11 +12,14 @@ namespace tower_battle.Services
 
         private static void UpdateUnitPositions(GameStateSingleton state)
         {
-            foreach(var leftPlayerUnit in state.LeftPlayerState.Units)
+            var newLeftUnits = new List<Unit>();
+            var newRightUnits = new List<Unit>();
+            foreach (var leftPlayerUnit in state.LeftPlayerState.Units)
             {
                 if(!IsUnitColliding(leftPlayerUnit, state))
                 {
                     leftPlayerUnit.Position.X += leftPlayerUnit.Speed * GameManager.UPDATE_TIME;
+                    newLeftUnits.Add(leftPlayerUnit);
                 }
             }
 
@@ -25,8 +28,12 @@ namespace tower_battle.Services
                 if (!IsUnitColliding(rightPlayerUnit, state))
                 {
                     rightPlayerUnit.Position.X -= rightPlayerUnit.Speed * GameManager.UPDATE_TIME;
+                    newRightUnits.Add(rightPlayerUnit);
                 }
             }
+
+            state.LeftPlayerState.Units = newLeftUnits;
+            state.RightPlayerState.Units = newRightUnits;
         } 
 
         private static bool IsUnitColliding(Unit unit, GameStateSingleton state)

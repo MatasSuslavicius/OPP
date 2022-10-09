@@ -20,6 +20,6 @@ namespace tower_battle.Models
 
     public class PlayerState
     {
-        public ICollection<Unit> Units { get; } = new List<Unit>();
+        public ICollection<Unit> Units { get; set; } = new List<Unit>();
     }
 }
