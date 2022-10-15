@@ -26,5 +26,6 @@ namespace tower_battle.AbstractUnitFactory.Units
         {
             this.Scale.X *= 3;
         }
+        
     }
 }
