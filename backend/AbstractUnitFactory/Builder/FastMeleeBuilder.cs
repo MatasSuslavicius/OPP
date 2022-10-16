@@ -17,7 +17,7 @@ namespace tower_battle.AbstractUnitFactory.Builder
 
         public override IBuilder AddHealth(int health)
         {
-            rawUnit.Health = health;
+            rawUnit.Health = 0.75*health;
             return this;
         }
 

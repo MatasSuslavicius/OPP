@@ -18,13 +18,13 @@ namespace tower_battle.AbstractUnitFactory.Builder
 
         public override IBuilder AddHealth(int health)
         {
-            rawUnit.Health = health;
+            rawUnit.Health = 1.5*health;
             return this;
         }
 
         public override IBuilder AddKillReward(int killReward)
         {
-            rawUnit.KillReward = killReward;
+            rawUnit.KillReward = 1.5*killReward;
             return this;
         }
         public override IBuilder AddMovement(MoveStrategy strategy)
