@@ -10,19 +10,19 @@ namespace tower_battle.AbstractUnitFactory.Builder
            
         }
 
-        public override IBuilder AddDamage(int damage)
+        public override IBuilder AddDamage(double damage)
         {
             rawUnit.Damage = damage;
             return this;
         }
 
-        public override IBuilder AddHealth(int health)
+        public override IBuilder AddHealth(double health)
         {
-            rawUnit.Health = health;
+            rawUnit.Health = new UnitHealth(health);
             return this;
         }
 
-        public override IBuilder AddKillReward(int killReward)
+        public override IBuilder AddKillReward(double killReward)
         {
             rawUnit.KillReward = killReward;
             return this;

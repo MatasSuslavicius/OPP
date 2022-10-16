@@ -12,10 +12,10 @@ namespace tower_battle.AbstractUnitFactory.Builder
         {
             this.rawUnit = rawUnit;
         }
-        public abstract IBuilder AddHealth(int health);
-        public abstract IBuilder AddDamage(int damage);
+        public abstract IBuilder AddHealth(double health);
+        public abstract IBuilder AddDamage(double damage);
         public abstract IBuilder AddMovement(MoveStrategy strategy);
-        public abstract IBuilder AddKillReward(int killReward);
+        public abstract IBuilder AddKillReward(double killReward);
         public Unit Build()
         {
             return rawUnit;

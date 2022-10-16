@@ -12,7 +12,21 @@ namespace tower_battle.AbstractUnitFactory.Factories
         {
             Unit unit = new Level1NormalMelee { Position = isLeft ? new Vector2() { X = -10, Y = 0 } : new Vector2() { X = 10, Y = 0 } };
             IBuilder builder = new NormalMeleeBuilder(unit);
-            return this.director.ConstructLevel1(builder, new Normal());
+            unit = this.director.ConstructLevel1(builder, new Normal());
+            /*
+            Unit testUnit = unit.CopyShallow();
+            System.Diagnostics.Debug.WriteLine(unit.GetHashCode());
+            System.Diagnostics.Debug.WriteLine(testUnit.GetHashCode());
+            System.Diagnostics.Debug.WriteLine(unit.Health.GetHashCode());
+            System.Diagnostics.Debug.WriteLine(testUnit.Health.GetHashCode());
+
+            Unit testDeepUnit = unit.CopyDeep();
+            System.Diagnostics.Debug.WriteLine(unit.GetHashCode());
+            System.Diagnostics.Debug.WriteLine(testDeepUnit.GetHashCode());
+            System.Diagnostics.Debug.WriteLine(unit.Health.GetHashCode());
+            System.Diagnostics.Debug.WriteLine(testDeepUnit.Health.GetHashCode());
+            */
+            return unit;
         }
         public override Unit CreateFastMelee(bool isLeft)
         {
