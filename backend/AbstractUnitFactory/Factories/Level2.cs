@@ -8,12 +8,11 @@ namespace tower_battle.AbstractUnitFactory.Factories
 {
     public class Level2 : AbstractUnitFactory
     {
-        Director director = new Director();
         public override Unit CreateNormalMelee(bool isLeft)
         {
             Unit unit = new Level2NormalMelee { Position = isLeft ? new Vector2() { X = -10, Y = 0 } : new Vector2() { X = 10, Y = 0 } };
             IBuilder builder = new NormalMeleeBuilder(unit);
-            return director.ConstructLevel2(builder, new Normal());
+            return this.director.ConstructLevel2(builder, new Normal());
         }
 
         public override Unit CreateFastMelee(bool isLeft)
