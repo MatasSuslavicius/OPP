@@ -16,16 +16,17 @@ builder.Services.AddHostedService<GameManager>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowOrigin", policy =>
+    options.AddPolicy("AllowLocalHost", policy =>
     {
         policy.AllowAnyHeader()
             .AllowAnyMethod()
-            .AllowAnyOrigin()
-            .AllowCredentials();
+            .AllowCredentials()
+            .WithOrigins("http://localhost:3000");
     });
 });
 
 builder.Services.AddSingleton<UnitService>();
+builder.Services.AddScoped<GameService>();
 
 var app = builder.Build();
 
@@ -42,6 +43,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowLocalHost");
 
 app.MapHub<GameHub>("/game");
 app.MapControllerRoute(

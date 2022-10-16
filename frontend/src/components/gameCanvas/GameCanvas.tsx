@@ -20,7 +20,7 @@ const GameCanvas = (gameState: GameState) => {
         className="background"
         alt="Backgound with trees"
       />
-      <canvas ref={canvasRef} width={1024} height={575} />
+      <canvas ref={canvasRef} width={1024} height={575} className="canvas" />
     </div>
   );
 };

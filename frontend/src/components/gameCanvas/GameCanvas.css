@@ -1,4 +1,9 @@
 .background {
-    z-index: -1;
     position: absolute;
+    z-index: 1;
+}
+
+.canvas {
+    position:relative;
+    z-index:20;
 }

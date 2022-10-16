@@ -1,3 +1,9 @@
+export enum PlayerType {
+  Left = 1,
+  Right = 2,
+  Spectator = 3,
+}
+
 export const INITIAL_GAME_STATE: GameState = {
   rightPlayerState: { units: [] },
   leftPlayerState: { units: [] },

@@ -4,7 +4,7 @@ namespace tower_battle.Models
 {
     public sealed class GameStateSingleton
     {
-        private static readonly GameStateSingleton instance = new GameStateSingleton();
+        private static readonly GameStateSingleton instance = new ();
 
         private GameStateSingleton() { }
 
@@ -13,6 +13,7 @@ namespace tower_battle.Models
             get { return instance; }
         }
 
+        public Dictionary<string, PlayerType> Connections { get; } = new ();
         public PlayerState RightPlayerState { get; } = new PlayerState();
         public PlayerState LeftPlayerState { get; } = new PlayerState();
         public int GameLevel { get; set; } = 1;

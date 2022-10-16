@@ -8,3 +8,20 @@
     padding: 20px 0px;
     display: flex;
 }
+
+.interface-container {
+    z-index: -2;
+    height: 100vh;
+}
+
+.player-type-1 {
+    background-color: lightblue;
+}
+
+.player-type-2 {
+    background-color: lightcoral;
+}
+
+.player-type-3 {
+    background-color: lightgrey;
+}
