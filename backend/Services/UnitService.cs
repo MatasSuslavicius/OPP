@@ -14,34 +14,38 @@ namespace tower_battle.Services
         {
             m_unitManager = new UnitManager();
         }
-        public bool Create(string type)
+        public bool Create(string unitType, PlayerType playerType)
         {
-            ICreator ctr = new UnitFactory();
-            var levelFactory = ctr.GetUnitFactory(GameStateSingleton.Instance.GameLevel);
+            ICreator factoryCreator = new UnitFactory();
+            var levelFactory = factoryCreator.GetUnitFactory(GameStateSingleton.Instance.GameLevel, playerType);
 
-            Unit right;
-            Unit left;
-            switch (type)
+            Unit unit;
+            switch (unitType)
             {
-                case "Normal":
-                    right = levelFactory.CreateNormalMelee(false);
-                    left = levelFactory.CreateNormalMelee(true);
+                case "normal":
+                    unit = levelFactory.CreateNormalMelee();
                     break;
-                case "Fast":
-                    right = levelFactory.CreateFastMelee(false);
-                    left = levelFactory.CreateFastMelee(true);
+                case "fast":
+                    unit = levelFactory.CreateFastMelee();
+                    break;
+                case "slow":
+                    unit = levelFactory.CreateSlowMelee();
                     break;
                 default:
-                    right = levelFactory.CreateSlowMelee(false);
-                    left = levelFactory.CreateSlowMelee(true);
-                    break;
+                    throw new Exception("Invalid unit type");
             }
 
-            GameStateSingleton.Instance.RightPlayerState.Units.Add(right);
-            GameStateSingleton.Instance.LeftPlayerState.Units.Add(left);
+            if (playerType == PlayerType.Left)
+            {
+                GameStateSingleton.Instance.LeftPlayerState.Units.Add(unit);
+            }
+            else if (playerType == PlayerType.Right)
+            {
+                GameStateSingleton.Instance.RightPlayerState.Units.Add(unit);
+            }
 
-            m_unitManager.Subscribe(right);
-            m_unitManager.Subscribe(left);
+
+            m_unitManager.Subscribe(unit);
 
             return true;
         }

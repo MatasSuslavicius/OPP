@@ -1,17 +1,19 @@
-﻿namespace tower_battle.AbstractUnitFactory.Factories
+﻿using tower_battle.Models;
+
+namespace tower_battle.AbstractUnitFactory.Factories
 {
     public class UnitFactory : ICreator
     {
-        public AbstractUnitFactory GetUnitFactory(int level)
+        public AbstractUnitFactory GetUnitFactory(int level, PlayerType playerType)
         {
             switch (level)
             {
                 case 1:
-                    return new Level1();
+                    return new Level1UnitFactory(playerType);
                 case 2:
-                    return new Level2();
+                    return new Level2UnitFactory(playerType);
                 default:
-                    return null;
+                    throw new Exception("Invalid level");
             }
         }
     }

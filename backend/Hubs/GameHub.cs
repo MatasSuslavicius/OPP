@@ -1,10 +1,16 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using tower_battle.Models;
+using tower_battle.Services;
 
 namespace tower_battle.Hubs
 {
     public class GameHub : Hub
     {
+        private readonly UnitService _unitService;
+        public GameHub(UnitService unitService)
+        {
+            _unitService = unitService;
+        }
         public override Task OnConnectedAsync()
         {
             PlayerType type = PlayerType.Spectator;
@@ -20,6 +26,11 @@ namespace tower_battle.Hubs
             
             GameStateSingleton.Instance.Connections.Add(Context.ConnectionId, type);
             return base.OnConnectedAsync();
+        }
+
+        public async Task BuyUnit(string unitType)
+        {
+            _unitService.Create(unitType, GameStateSingleton.Instance.Connections[Context.ConnectionId]);
         }
     }
 }

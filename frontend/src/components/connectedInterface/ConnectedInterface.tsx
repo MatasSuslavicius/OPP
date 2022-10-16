@@ -44,7 +44,17 @@ const ConnectedInterface = () => {
     joinGame();
   }, [connection?.connectionId]);
 
-  return <Interface gameState={gameState} playerType={playerType} />;
+  const handleBuyUnitClick = async (unitType: string) => {
+    connection?.invoke("BuyUnit", unitType);
+  };
+
+  return (
+    <Interface
+      gameState={gameState}
+      playerType={playerType}
+      onBuyUnitClick={handleBuyUnitClick}
+    />
+  );
 };
 
 export default ConnectedInterface;

@@ -13,22 +13,7 @@ namespace tower_battle.Controllers
         {
             m_unitService = unitService;
         }
-
-        [HttpPost("Normal")]
-        public async Task<IActionResult> CreateNormal()
-        {
-            return Ok(m_unitService.Create("Normal"));
-        }
-        [HttpPost("Fast")]
-        public async Task<IActionResult> CreateFast()
-        {
-            return Ok(m_unitService.Create("Fast"));
-        }
-        [HttpPost("Slow")]
-        public async Task<IActionResult> CreateSlow()
-        {
-            return Ok(m_unitService.Create("Slow"));
-        }
+        
 
         [HttpPost("LevelUp")]
         public async Task<IActionResult> LevelUp()

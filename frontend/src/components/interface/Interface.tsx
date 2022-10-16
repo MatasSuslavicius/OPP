@@ -7,18 +7,14 @@ import "./Interface.css";
 interface InterfaceProps {
   gameState: GameState;
   playerType: PlayerType;
+  onBuyUnitClick: (unitType: string) => void;
 }
 
-const Interface = ({ gameState, playerType }: InterfaceProps) => {
-  const normalUnitButtonAction = () => {
-    axios.post(`https://localhost:7125/api/Unit/Normal`);
-  };
-  const fastUnitButtonAction = () => {
-    axios.post(`https://localhost:7125/api/Unit/Fast`);
-  };
-  const slowUnitButtonAction = () => {
-    axios.post(`https://localhost:7125/api/Unit/Slow`);
-  };
+const Interface = ({
+  gameState,
+  playerType,
+  onBuyUnitClick,
+}: InterfaceProps) => {
   const levelButtonAction = () => {
     axios.post(`https://localhost:7125/api/Unit/LevelUp`);
   };
@@ -33,9 +29,18 @@ const Interface = ({ gameState, playerType }: InterfaceProps) => {
       <div className="interface">
         {(playerType === PlayerType.Spectator && <h2>Spectating</h2>) || (
           <div className="control-container">
-            <Button text="Buy Normal Unit" onClick={normalUnitButtonAction} />
-            <Button text="Buy Fast Unit" onClick={fastUnitButtonAction} />
-            <Button text="Buy Slow Unit" onClick={slowUnitButtonAction} />
+            <Button
+              text="Buy Normal Unit"
+              onClick={() => onBuyUnitClick("normal")}
+            />
+            <Button
+              text="Buy Fast Unit"
+              onClick={() => onBuyUnitClick("fast")}
+            />
+            <Button
+              text="Buy Slow Unit"
+              onClick={() => onBuyUnitClick("slow")}
+            />
             <Button text="Level Up" onClick={levelButtonAction} />
             <Button text="Clear Units" onClick={clearButtonAction} />
             <Button text="Reset Level" onClick={resetButtonAction} />
