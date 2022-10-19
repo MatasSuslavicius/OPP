@@ -6,6 +6,7 @@ import {
   INITIAL_GAME_STATE,
   PlayerType,
 } from "../../contracts/contracts";
+import { UrlManager } from "../../Utils/UrlManager";
 import Interface from "../interface/Interface";
 
 const ConnectedInterface = () => {
@@ -17,7 +18,7 @@ const ConnectedInterface = () => {
 
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
-      .withUrl("https://localhost:7125/game")
+      .withUrl(UrlManager.getGameStreamEndpoint())
       .build();
 
     newConnection.start();
@@ -33,7 +34,7 @@ const ConnectedInterface = () => {
     const joinGame = async () => {
       if (connection?.connectionId) {
         const response = await axios.get<PlayerType>(
-          "https://localhost:7125/api/game/player-type",
+          UrlManager.getPlayerTypeEndpoint(),
           { params: { connectionId: connection?.connectionId } }
         );
 

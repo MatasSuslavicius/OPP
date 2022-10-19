@@ -1,5 +1,6 @@
 import axios from "axios";
 import { GameState, PlayerType } from "../../contracts/contracts";
+import { UrlManager } from "../../Utils/UrlManager";
 import { Button } from "../buttons/BuyButton";
 import GameCanvas from "../gameCanvas/GameCanvas";
 import "./Interface.css";
@@ -16,13 +17,13 @@ const Interface = ({
   onBuyUnitClick,
 }: InterfaceProps) => {
   const levelButtonAction = () => {
-    axios.post(`https://localhost:7125/api/Unit/LevelUp`);
+    axios.post(UrlManager.getLevelUpEndpoint());
   };
   const clearButtonAction = () => {
-    axios.post(`https://localhost:7125/api/Unit/ClearUnits`);
+    axios.post(UrlManager.getClearUnitsEndpoint());
   };
   const resetButtonAction = () => {
-    axios.post(`https://localhost:7125/api/Unit/ResetLevel`);
+    axios.post(UrlManager.getResetLevelEndpoint());
   };
   return (
     <div className={`interface-container player-type-${playerType}`}>
