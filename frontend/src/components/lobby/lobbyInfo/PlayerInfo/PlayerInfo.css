@@ -1,0 +1,34 @@
+.PlayerInfo {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.PlayerName {
+    display: flex;
+    color: black;
+    font-size: 1.2rem;
+	font-weight: 700;
+	letter-spacing: 0.1rem;
+}
+
+.PlayerStatus {
+    display: flex;
+    justify-content: flex-end;
+    color: black;
+    flex-grow:1;
+    font-size: 1.2rem;
+	font-weight: 700;
+	letter-spacing: 0.1rem;
+}
+
+.on {
+    color: green;
+}
+
+.off {
+    color: crimson;
+}
+
+.isForVisitors {
+    margin-top: 60px;
+}
