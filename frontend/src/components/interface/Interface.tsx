@@ -9,12 +9,16 @@ interface InterfaceProps {
   gameState: GameState;
   playerType: PlayerType;
   onBuyUnitClick: (unitType: string) => void;
+  onBuyTurretClick: () => void;
+  onBuyTurretUpgradeClick: (turretType: string) => void;
 }
 
 const Interface = ({
   gameState,
   playerType,
   onBuyUnitClick,
+  onBuyTurretClick,
+  onBuyTurretUpgradeClick,
 }: InterfaceProps) => {
   const levelButtonAction = () => {
     axios.post(UrlManager.getLevelUpEndpoint());
@@ -45,6 +49,22 @@ const Interface = ({
             <Button text="Level Up" onClick={levelButtonAction} />
             <Button text="Clear Units" onClick={clearButtonAction} />
             <Button text="Reset Level" onClick={resetButtonAction} />
+            <Button 
+              text="Buy Turret" 
+              onClick={() => onBuyTurretClick()} 
+            />
+            <Button 
+              text="Upg. Turret Damage" 
+              onClick={() => onBuyTurretUpgradeClick("damage")} 
+            />
+            <Button 
+              text="Upg. Turret Range" 
+              onClick={() => onBuyTurretUpgradeClick("range")} 
+            />
+            <Button 
+              text="Upg. Turret Speed" 
+              onClick={() => onBuyTurretUpgradeClick("speed")} 
+            />
           </div>
         )}
 

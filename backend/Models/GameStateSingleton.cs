@@ -1,4 +1,6 @@
 ﻿using tower_battle.AbstractUnitFactory.Units;
+using tower_battle.Turrets;
+using tower_battle.Turrets.Decorator;
 
 namespace tower_battle.Models
 {
@@ -22,5 +24,6 @@ namespace tower_battle.Models
     public class PlayerState
     {
         public ICollection<Unit> Units { get; set; } = new List<Unit>();
+        public ITurret Turret { get; set; }
     }
 }

@@ -48,12 +48,22 @@ const ConnectedInterface = () => {
   const handleBuyUnitClick = async (unitType: string) => {
     connection?.invoke("BuyUnit", unitType);
   };
+  const handleBuyTurretClick = async () => {
+    connection?.invoke("BuyTurret");
+  };
+  const handleBuyTurretUpgradeClick = async (upgradeType: string) => {
+    connection?.invoke("BuyTurretUpgrade",upgradeType);
+  };
+
+
 
   return (
     <Interface
       gameState={gameState}
       playerType={playerType}
       onBuyUnitClick={handleBuyUnitClick}
+      onBuyTurretClick={handleBuyTurretClick}
+      onBuyTurretUpgradeClick={handleBuyTurretUpgradeClick}
     />
   );
 };

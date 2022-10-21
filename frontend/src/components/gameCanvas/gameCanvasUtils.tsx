@@ -1,4 +1,4 @@
-import { Unit, Vector2 } from "../../contracts/contracts";
+import { Unit, Vector2} from "../../contracts/contracts";
 
 export const drawUnits = (
   ctx: CanvasRenderingContext2D,

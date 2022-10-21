@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { GameState } from "../../contracts/contracts";
 import "./GameCanvas.css";
-import { clearCanvas, drawUnits } from "./gameCanvasUtils";
+import { clearCanvas, drawUnits} from "./gameCanvasUtils";
 
 const GameCanvas = (gameState: GameState) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);

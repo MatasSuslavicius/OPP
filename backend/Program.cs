@@ -26,6 +26,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddSingleton<UnitService>();
+builder.Services.AddSingleton<TurretService>();
 builder.Services.AddScoped<GameService>();
 
 var app = builder.Build();
