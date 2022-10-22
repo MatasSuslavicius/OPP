@@ -35,13 +35,13 @@ const drawHealthBar = (ctx: CanvasRenderingContext2D, unit: Unit) => {
   };
   const healthBarScale = { x: unitScale.x, y: 10 };
 
-  ctx.fillStyle = "red";
-  ctx.fillRect(
-    healtBarPosition.x - unitScale.x / 2,
-    healtBarPosition.y,
-    healthBarScale.x,
-    healthBarScale.y
-  );
+  // ctx.fillStyle = "red";
+  // ctx.fillRect(
+  //   healtBarPosition.x - unitScale.x / 2,
+  //   healtBarPosition.y,
+  //   healthBarScale.x,
+  //   healthBarScale.y
+  // );
 
   ctx.fillStyle = "green";
   ctx.fillRect(
