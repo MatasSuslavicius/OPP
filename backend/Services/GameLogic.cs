@@ -21,6 +21,11 @@ namespace tower_battle.Services
                     leftPlayerUnit.Position.X += leftPlayerUnit.Speed * GameManager.UPDATE_TIME;
                     newLeftUnits.Add(leftPlayerUnit);
                 }
+                else
+                {
+                    state.RightPlayerState.Experience += leftPlayerUnit.KillReward;
+                    state.RightPlayerState.Money += leftPlayerUnit.KillReward;
+                }
             }
 
             foreach (var rightPlayerUnit in state.RightPlayerState.Units)
@@ -29,6 +34,11 @@ namespace tower_battle.Services
                 {
                     rightPlayerUnit.Position.X -= rightPlayerUnit.Speed * GameManager.UPDATE_TIME;
                     newRightUnits.Add(rightPlayerUnit);
+                }
+                else
+                {
+                    state.LeftPlayerState.Experience += rightPlayerUnit.KillReward;
+                    state.LeftPlayerState.Money += rightPlayerUnit.KillReward;
                 }
             }
 

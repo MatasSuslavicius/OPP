@@ -71,6 +71,17 @@ const Interface = ({
         <div>
           <GameCanvas {...gameState} />
         </div>
+        {(playerType === PlayerType.Left &&
+          <div className="control-container">
+            <h3> Money</h3> <h3>{":  "}{gameState.leftPlayerState.money}</h3>
+            <h3> Experience</h3><h3>{":  "}{gameState.leftPlayerState.experience}</h3>
+          </div>
+        ) || (playerType === PlayerType.Right &&
+          <div className="control-container">
+            <h3> Money</h3> <h3>{":  "}{gameState.rightPlayerState.money}</h3>
+            <h3> Experience</h3><h3>{":  "}{gameState.rightPlayerState.experience}</h3>
+          </div>
+        )}
       </div>
     </div>
   );

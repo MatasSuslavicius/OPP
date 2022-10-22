@@ -22,9 +22,9 @@ namespace tower_battle.Services
             {
                 turret.Position = new Vector2 { X = -10, Y = 0 };
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turret;
-                //System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);    //PACHEKINT AR SUSIKURIA
-                //System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
-                //System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
+                System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);    //PACHEKINT AR SUSIKURIA
+                System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
+                System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
             }
             else if (playerType == PlayerType.Right)
             {
@@ -74,10 +74,9 @@ namespace tower_battle.Services
             if (playerType == PlayerType.Left)
             {
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turret;
-                //System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);   //PACHECKINIMUI UPGRADES
-                //System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
-                //System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
-                //System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Position.X);
+                System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);   //PACHECKINIMUI UPGRADES
+                System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
+                System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
             }
             else if (playerType == PlayerType.Right)
             {
