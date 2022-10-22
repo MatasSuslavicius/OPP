@@ -45,7 +45,6 @@ namespace tower_battle.Services
             {
                 if(unit != leftPlayerUnit && 
                     PositionRangesOverlap(
-                        unit.Position.X - (unit.Scale.X / 2),
                         unit.Position.X + (unit.Scale.X / 2),
                         leftPlayerUnit.Position.X - (leftPlayerUnit.Scale.X / 2),
                         leftPlayerUnit.Position.X + (leftPlayerUnit.Scale.X / 2)))
@@ -59,7 +58,6 @@ namespace tower_battle.Services
                 if (unit != rightPlayerUnit &&
                     PositionRangesOverlap(
                         unit.Position.X - (unit.Scale.X / 2),
-                        unit.Position.X + (unit.Scale.X / 2),
                         rightPlayerUnit.Position.X - (rightPlayerUnit.Scale.X / 2),
                         rightPlayerUnit.Position.X + (rightPlayerUnit.Scale.X / 2)))
                 {
@@ -70,9 +68,9 @@ namespace tower_battle.Services
             return false;
         }
 
-        private static bool PositionRangesOverlap(float aStart, float aEnd, float bStart, float bEnd)
+        private static bool PositionRangesOverlap(float aEnd, float bStart, float bEnd)
         {
-            return aStart < bEnd && bStart < aEnd;
+            return aEnd > bStart && aEnd < bEnd;
         }
     }
 }
