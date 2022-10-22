@@ -1,4 +1,4 @@
-import { Unit, Vector2} from "../../contracts/contracts";
+import { Unit, Vector2 } from "../../contracts/contracts";
 
 export const drawUnits = (
   ctx: CanvasRenderingContext2D,
@@ -12,15 +12,44 @@ export const drawUnits = (
 
 export const drawUnit = (
   ctx: CanvasRenderingContext2D,
-  units: Unit,
+  unit: Unit,
   isRightPlayer: boolean
 ) => {
   ctx.beginPath();
   ctx.fillStyle = isRightPlayer ? "red" : "blue";
-  const position = worldToScreenCoordinates(units.position);
-  const scale = worldToScreenScale(units.scale);
+  const position = worldToScreenCoordinates(unit.position);
+  const scale = worldToScreenScale(unit.scale);
 
   ctx.fillRect(position.x - scale.x / 2, position.y, scale.x, scale.y);
+
+  drawHealthBar(ctx, unit);
+};
+
+const drawHealthBar = (ctx: CanvasRenderingContext2D, unit: Unit) => {
+  ctx.beginPath();
+  const unitPosition = worldToScreenCoordinates(unit.position);
+  const unitScale = worldToScreenScale(unit.scale);
+  const healtBarPosition: Vector2 = {
+    x: unitPosition.x,
+    y: unitPosition.y - unit.scale.y - 20,
+  };
+  const healthBarScale = { x: unitScale.x, y: 10 };
+
+  ctx.fillStyle = "red";
+  ctx.fillRect(
+    healtBarPosition.x - unitScale.x / 2,
+    healtBarPosition.y,
+    healthBarScale.x,
+    healthBarScale.y
+  );
+
+  ctx.fillStyle = "green";
+  ctx.fillRect(
+    healtBarPosition.x - unitScale.x / 2,
+    healtBarPosition.y,
+    healthBarScale.x * (unit.health / unit.initialHealth),
+    healthBarScale.y
+  );
 };
 
 export const clearCanvas = (ctx: CanvasRenderingContext2D) => {
