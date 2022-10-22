@@ -22,6 +22,10 @@ namespace tower_battle.Services
                 else if (collidingWith == CollidingWith.RightPlayerUnit)
                 {
                     leftPlayerUnit.DealDamage(collidingUnit);
+                    if (collidingUnit.Health <= 0)
+                    {
+                        state.RightPlayerState.KillUnit(collidingUnit);
+                    }
                 }
             }
 
@@ -35,6 +39,10 @@ namespace tower_battle.Services
                 else if (collidingWith == CollidingWith.LeftPlayerUnit)
                 {
                     rightPlayerUnit.DealDamage(collidingUnit);
+                    if (collidingUnit.Health <= 0)
+                    {
+                        state.LeftPlayerState.KillUnit(collidingUnit);
+                    }
                 }
             }
         } 
