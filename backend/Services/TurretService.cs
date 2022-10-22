@@ -10,6 +10,7 @@ namespace tower_battle.Services
 {
     public class TurretService
     {
+        private int turretPrice = 500;
         public bool Create(PlayerType playerType)
         {
             if ((playerType == PlayerType.Left && GameStateSingleton.Instance.LeftPlayerState.Turret != null) ||
@@ -26,15 +27,15 @@ namespace tower_battle.Services
             {
                 turretInvoker.turret.Position = new Vector2 { X = -10, Y = 0 };
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turretInvoker.turret;
-                System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);    //PACHEKINT AR SUSIKURIA
-                System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
-                System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
+                GameStateSingleton.Instance.LeftPlayerState.Money -= turretPrice; 
             }
             else if (playerType == PlayerType.Right)
             {
                 turretInvoker.turret.Position = new Vector2 { X = 10, Y = 0 };
                 GameStateSingleton.Instance.RightPlayerState.Turret = turretInvoker.turret;
+                GameStateSingleton.Instance.RightPlayerState.Money -= turretPrice;
             }
+
             return true;
         }
         public bool Sell(PlayerType playerType)
@@ -51,12 +52,14 @@ namespace tower_battle.Services
                 turretInvoker.turret = GameStateSingleton.Instance.LeftPlayerState.Turret as Turret;
                 turretInvoker.UndoBuy();
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turretInvoker.turret;
+                GameStateSingleton.Instance.LeftPlayerState.Money += turretPrice*0.9;
             }
             else if (playerType == PlayerType.Right)
             {
                 turretInvoker.turret = GameStateSingleton.Instance.RightPlayerState.Turret as Turret;
                 turretInvoker.UndoBuy();
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turretInvoker.turret;
+                GameStateSingleton.Instance.LeftPlayerState.Money += turretPrice*0.9;
             }
             return true;
            
