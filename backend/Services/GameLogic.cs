@@ -14,12 +14,14 @@ namespace tower_battle.Services
         {
             foreach (var leftPlayerUnit in state.LeftPlayerState.Units)
             {
-                if(!IsUnitColliding(leftPlayerUnit, state))
+                var collidingWith = UnitColliding(leftPlayerUnit, state);
+                if(collidingWith == CollidingWith.NoOne)
                 {
                     leftPlayerUnit.Position.X += leftPlayerUnit.Speed * GameManager.UPDATE_TIME;
                 }
-                else
+                else if (collidingWith == CollidingWith.RightPlayerUnit)
                 {
+                    //damage
                     state.RightPlayerState.Experience += leftPlayerUnit.KillReward;
                     state.RightPlayerState.Money += leftPlayerUnit.KillReward;
                 }
@@ -27,19 +29,21 @@ namespace tower_battle.Services
 
             foreach (var rightPlayerUnit in state.RightPlayerState.Units)
             {
-                if (!IsUnitColliding(rightPlayerUnit, state))
+                var collidingWith = UnitColliding(rightPlayerUnit, state);
+                if (collidingWith == CollidingWith.NoOne)
                 {
                     rightPlayerUnit.Position.X -= rightPlayerUnit.Speed * GameManager.UPDATE_TIME;
                 }
-                else
+                else if (collidingWith == CollidingWith.LeftPlayerUnit)
                 {
+                    //damage
                     state.LeftPlayerState.Experience += rightPlayerUnit.KillReward;
                     state.LeftPlayerState.Money += rightPlayerUnit.KillReward;
                 }
             }
         } 
 
-        private static bool IsUnitColliding(Unit unit, GameStateSingleton state)
+        private static CollidingWith UnitColliding(Unit unit, GameStateSingleton state)
         {
             foreach(Unit leftPlayerUnit in state.LeftPlayerState.Units)
             {
@@ -49,7 +53,7 @@ namespace tower_battle.Services
                         leftPlayerUnit.Position.X - (leftPlayerUnit.Scale.X / 2),
                         leftPlayerUnit.Position.X + (leftPlayerUnit.Scale.X / 2)))
                 {
-                    return true;
+                    return CollidingWith.LeftPlayerUnit;
                 }
             }
 
@@ -61,11 +65,11 @@ namespace tower_battle.Services
                         rightPlayerUnit.Position.X - (rightPlayerUnit.Scale.X / 2),
                         rightPlayerUnit.Position.X + (rightPlayerUnit.Scale.X / 2)))
                 {
-                    return true;
+                    return CollidingWith.RightPlayerUnit;
                 }
             }
 
-            return false;
+            return CollidingWith.NoOne;
         }
 
         private static bool PositionRangesOverlap(float aEnd, float bStart, float bEnd)
