@@ -1,4 +1,4 @@
-import { Unit, Vector2 } from "../../contracts/contracts";
+import { Turret, Unit, Vector2 } from "../../contracts/contracts";
 
 export const drawUnits = (
   ctx: CanvasRenderingContext2D,
@@ -8,6 +8,24 @@ export const drawUnits = (
   units.forEach((unit) => {
     drawUnit(ctx, unit, isRightPlayer);
   });
+};
+
+export const drawTurret = (
+  ctx: CanvasRenderingContext2D,
+  turret: Turret | null,
+  isRightPlayer: boolean
+) => {
+  if (turret) {
+    ctx.fillStyle = isRightPlayer ? "red" : "blue";
+    const turretPosition = worldToScreenCoordinates(turret.position);
+    const turretScale: Vector2 = { x: 50, y: 50 };
+    ctx.fillRect(
+      turretPosition.x,
+      turretPosition.y,
+      turretScale.x,
+      turretScale.y
+    );
+  }
 };
 
 export const drawUnit = (
