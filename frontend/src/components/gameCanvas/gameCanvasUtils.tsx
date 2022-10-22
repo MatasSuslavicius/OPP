@@ -1,7 +1,5 @@
 import { Unit, Vector2 } from "../../contracts/contracts";
 
-const unitPadding = 10;
-
 export const drawUnits = (
   ctx: CanvasRenderingContext2D,
   units: Unit[],
@@ -22,12 +20,7 @@ export const drawUnit = (
   const position = worldToScreenCoordinates(unit.position);
   const scale = worldToScreenScale(unit.scale);
 
-  ctx.fillRect(
-    position.x - scale.x / 2,
-    position.y,
-    scale.x - unitPadding,
-    scale.y
-  );
+  ctx.fillRect(position.x - scale.x / 2, position.y, scale.x, scale.y);
 
   drawHealthBar(ctx, unit);
 };
