@@ -3,6 +3,7 @@ using tower_battle.AbstractUnitFactory.Factories;
 using tower_battle.AbstractUnitFactory.Units;
 using tower_battle.Models;
 using tower_battle.Turrets;
+using tower_battle.Turrets.Command;
 using tower_battle.Turrets.Decorator;
 
 namespace tower_battle.Services
@@ -16,23 +17,51 @@ namespace tower_battle.Services
             {
                 return false;
             }
-            Turret turret = new Turret();
+           
+            TurretInvoker turretInvoker = new TurretInvoker();
+            turretInvoker.Buy();
             
+
             if (playerType == PlayerType.Left)
             {
-                turret.Position = new Vector2 { X = -10, Y = 0 };
-                GameStateSingleton.Instance.LeftPlayerState.Turret = turret;
+                turretInvoker.turret.Position = new Vector2 { X = -10, Y = 0 };
+                GameStateSingleton.Instance.LeftPlayerState.Turret = turretInvoker.turret;
                 System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);    //PACHEKINT AR SUSIKURIA
                 System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
                 System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
             }
             else if (playerType == PlayerType.Right)
             {
-                turret.Position = new Vector2 { X = 10, Y = 0 };
-                GameStateSingleton.Instance.RightPlayerState.Turret = turret;
+                turretInvoker.turret.Position = new Vector2 { X = 10, Y = 0 };
+                GameStateSingleton.Instance.RightPlayerState.Turret = turretInvoker.turret;
             }
             return true;
         }
+        public bool Sell(PlayerType playerType)
+        {
+            if ((playerType == PlayerType.Left && GameStateSingleton.Instance.LeftPlayerState.Turret == null) ||
+                (playerType == PlayerType.Right && GameStateSingleton.Instance.RightPlayerState.Turret == null))
+            {
+                return false;
+            }
+            TurretInvoker turretInvoker = new TurretInvoker();
+            
+            if (playerType == PlayerType.Left)
+            {
+                turretInvoker.turret = GameStateSingleton.Instance.LeftPlayerState.Turret as Turret;
+                turretInvoker.UndoBuy();
+                GameStateSingleton.Instance.LeftPlayerState.Turret = turretInvoker.turret;
+            }
+            else if (playerType == PlayerType.Right)
+            {
+                turretInvoker.turret = GameStateSingleton.Instance.RightPlayerState.Turret as Turret;
+                turretInvoker.UndoBuy();
+                GameStateSingleton.Instance.LeftPlayerState.Turret = turretInvoker.turret;
+            }
+            return true;
+           
+        }
+      
         public bool Upgrade(string upgradeType, PlayerType playerType)
         {
             if ((playerType == PlayerType.Left && GameStateSingleton.Instance.LeftPlayerState.Turret == null) ||
