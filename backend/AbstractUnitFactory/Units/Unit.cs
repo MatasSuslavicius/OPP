@@ -30,5 +30,9 @@ namespace tower_battle.AbstractUnitFactory.Units
             this.Scale.X *= 3;
         }
         
+        public void DealDamage(Unit unit)
+        {
+            unit.Health -= this.Damage;
+        }
     }
 }
