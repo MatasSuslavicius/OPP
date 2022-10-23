@@ -34,7 +34,7 @@ export function Lobby(props: LobbyProps): JSX.Element {
     useEffect(() => {
         async function join() {
             setLoading(true);
-            await axios.post(UrlManager.getJoinGameEndpoint(userId));
+            await axios.post(UrlManager.getJoinGameEndpoint(getUserId()));
             setLoading(false);
         };
 

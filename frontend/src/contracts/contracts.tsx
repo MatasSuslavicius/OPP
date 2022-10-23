@@ -40,3 +40,15 @@ export interface Vector2 {
   x: number;
   y: number;
 }
+
+export interface LobbyState {
+  firstPlayerOnline: boolean;
+  secondPlayerOnline: boolean;
+  visitorCount: Number;
+}
+
+export const INITIAL_LOBBY_STATE: LobbyState = {
+  firstPlayerOnline: false,
+  secondPlayerOnline: false,
+  visitorCount: 0,
+}

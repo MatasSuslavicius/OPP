@@ -20,6 +20,7 @@ namespace tower_battle.Services
                 GameStateSingleton.Instance.Loop();
 
                 await _hubContext.Clients.All.SendAsync("GameUpdated", GameStateSingleton.Instance);
+                await _hubContext.Clients.All.SendAsync("LobbyUpdated", LobbyInfo.Instance);
 
                 await Task.Delay((int)(UPDATE_TIME * 1000f));
             }
