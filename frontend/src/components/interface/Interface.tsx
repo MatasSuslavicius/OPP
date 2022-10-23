@@ -11,6 +11,7 @@ interface InterfaceProps {
   onBuyUnitClick: (unitType: string) => void;
   onBuyTurretClick: () => void;
   onBuyTurretUpgradeClick: (turretType: string) => void;
+  onSellTurretClick: () => void;
 }
 
 const Interface = ({
@@ -19,6 +20,7 @@ const Interface = ({
   onBuyUnitClick,
   onBuyTurretClick,
   onBuyTurretUpgradeClick,
+  onSellTurretClick,
 }: InterfaceProps) => {
   const levelButtonAction = () => {
     axios.post(UrlManager.getLevelUpEndpoint());
@@ -52,6 +54,10 @@ const Interface = ({
             <Button 
               text="Buy Turret" 
               onClick={() => onBuyTurretClick()} 
+            />
+            <Button 
+              text="Sell Turret" 
+              onClick={() => onSellTurretClick()} 
             />
             <Button 
               text="Upg. Turret Damage" 

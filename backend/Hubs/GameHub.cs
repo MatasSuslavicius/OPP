@@ -26,5 +26,9 @@ namespace tower_battle.Hubs
         {
             _turretService.Upgrade(upgradeType, GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
         }
+        public async Task SellTurret()
+        {
+            _turretService.Sell(GameStateSingleton.Instance.Connections[Context.ConnectionId]);
+        }
     }
 }

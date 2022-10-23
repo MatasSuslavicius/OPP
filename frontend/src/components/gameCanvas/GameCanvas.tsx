@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { GameState } from "../../contracts/contracts";
 import "./GameCanvas.css";
-import { clearCanvas, drawUnits} from "./gameCanvasUtils";
+import { clearCanvas, drawTurret, drawUnits } from "./gameCanvasUtils";
 
 const GameCanvas = (gameState: GameState) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -11,6 +11,8 @@ const GameCanvas = (gameState: GameState) => {
     clearCanvas(context!);
     drawUnits(context!, gameState.rightPlayerState.units, true);
     drawUnits(context!, gameState.leftPlayerState.units, false);
+    drawTurret(context!, gameState.rightPlayerState.turret, true);
+    drawTurret(context!, gameState.leftPlayerState.turret, false);
   }
 
   return (

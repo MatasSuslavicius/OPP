@@ -12,52 +12,52 @@ namespace tower_battle.Services
 
         private static void UpdateUnitPositions(GameStateSingleton state)
         {
-            var newLeftUnits = new List<Unit>();
-            var newRightUnits = new List<Unit>();
             foreach (var leftPlayerUnit in state.LeftPlayerState.Units)
             {
-                if(!IsUnitColliding(leftPlayerUnit, state))
+                var (collidingWith, collidingUnit) = UnitColliding(leftPlayerUnit, state);
+                if(collidingWith == CollidingWith.NoOne)
                 {
                     leftPlayerUnit.Position.X += leftPlayerUnit.Speed * GameManager.UPDATE_TIME;
-                    newLeftUnits.Add(leftPlayerUnit);
                 }
-                else
+                else if (collidingWith == CollidingWith.RightPlayerUnit)
                 {
-                    state.RightPlayerState.Experience += leftPlayerUnit.KillReward;
-                    state.RightPlayerState.Money += leftPlayerUnit.KillReward;
+                    leftPlayerUnit.DealDamage(collidingUnit);
+                    if (collidingUnit.Health <= 0)
+                    {
+                        state.RightPlayerState.KillUnit(collidingUnit);
+                    }
                 }
             }
 
             foreach (var rightPlayerUnit in state.RightPlayerState.Units)
             {
-                if (!IsUnitColliding(rightPlayerUnit, state))
+                var (collidingWith, collidingUnit) = UnitColliding(rightPlayerUnit, state);
+                if (collidingWith == CollidingWith.NoOne)
                 {
                     rightPlayerUnit.Position.X -= rightPlayerUnit.Speed * GameManager.UPDATE_TIME;
-                    newRightUnits.Add(rightPlayerUnit);
                 }
-                else
+                else if (collidingWith == CollidingWith.LeftPlayerUnit)
                 {
-                    state.LeftPlayerState.Experience += rightPlayerUnit.KillReward;
-                    state.LeftPlayerState.Money += rightPlayerUnit.KillReward;
+                    rightPlayerUnit.DealDamage(collidingUnit);
+                    if (collidingUnit.Health <= 0)
+                    {
+                        state.LeftPlayerState.KillUnit(collidingUnit);
+                    }
                 }
             }
-
-            state.LeftPlayerState.Units = newLeftUnits;
-            state.RightPlayerState.Units = newRightUnits;
         } 
 
-        private static bool IsUnitColliding(Unit unit, GameStateSingleton state)
+        private static (CollidingWith, Unit?) UnitColliding(Unit unit, GameStateSingleton state)
         {
             foreach(Unit leftPlayerUnit in state.LeftPlayerState.Units)
             {
                 if(unit != leftPlayerUnit && 
                     PositionRangesOverlap(
-                        unit.Position.X - (unit.Scale.X / 2),
                         unit.Position.X + (unit.Scale.X / 2),
                         leftPlayerUnit.Position.X - (leftPlayerUnit.Scale.X / 2),
                         leftPlayerUnit.Position.X + (leftPlayerUnit.Scale.X / 2)))
                 {
-                    return true;
+                    return (CollidingWith.LeftPlayerUnit, leftPlayerUnit);
                 }
             }
 
@@ -66,20 +66,19 @@ namespace tower_battle.Services
                 if (unit != rightPlayerUnit &&
                     PositionRangesOverlap(
                         unit.Position.X - (unit.Scale.X / 2),
-                        unit.Position.X + (unit.Scale.X / 2),
                         rightPlayerUnit.Position.X - (rightPlayerUnit.Scale.X / 2),
                         rightPlayerUnit.Position.X + (rightPlayerUnit.Scale.X / 2)))
                 {
-                    return true;
+                    return (CollidingWith.RightPlayerUnit, rightPlayerUnit);
                 }
             }
 
-            return false;
+            return (CollidingWith.NoOne, null);
         }
 
-        private static bool PositionRangesOverlap(float aStart, float aEnd, float bStart, float bEnd)
+        private static bool PositionRangesOverlap(float aEnd, float bStart, float bEnd)
         {
-            return aStart < bEnd && bStart < aEnd;
+            return aEnd > bStart && aEnd < bEnd;
         }
     }
 }

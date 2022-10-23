@@ -27,5 +27,12 @@ namespace tower_battle.Models
         public ITurret Turret { get; set; }
         public double Money { get; set; } = 500;
         public double Experience { get; set; } = 0;
+
+        public void KillUnit(Unit unit)
+        {
+            Units.Remove(unit);
+            Money += unit.KillReward;
+            Experience += unit.KillReward;
+        }
     }
 }

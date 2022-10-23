@@ -13,12 +13,13 @@ namespace tower_battle.AbstractUnitFactory.Builder
         public override IBuilder AddDamage(int damage)
         {
             rawUnit.Damage = damage;
-           return this;
+            return this;
         }
 
         public override IBuilder AddHealth(int health)
         {
-            rawUnit.Health = 1.5*health;
+            rawUnit.InitialHealth = 1.5 * health;
+            rawUnit.Health = 1.5 * health;
             return this;
         }
 
