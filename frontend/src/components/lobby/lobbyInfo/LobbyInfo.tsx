@@ -14,7 +14,7 @@ export function LobbyInfo(): JSX.Element {
             />
             <PlayerInfo
                 playerName="Spectators" 
-                playerStatus={5}
+                playerStatus={0}
                 isForVisitors={true}
             />
         </div>

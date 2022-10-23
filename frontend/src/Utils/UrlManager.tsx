@@ -1,15 +1,25 @@
+import { PlayerType } from "../contracts/contracts";
+
 export abstract class UrlManager {
     private static _serverUrl: string = "https://localhost:7125";
 
     /** Game controller endpoints */
-    private static _GameController: string = `${ UrlManager._serverUrl }/game`;
+    private static _GameController: string = `${ UrlManager._serverUrl }/api/Game/`;
 
     public static getGameStreamEndpoint(){
-        return `${UrlManager._GameController}`;
+        return `${ UrlManager._serverUrl }/game`;
     }
 
-    public static getPlayerTypeEndpoint(){
-        return `${UrlManager._serverUrl}/api/game/player-type`;
+    public static getJoinGameEndpoint(userId: String){
+        return `${UrlManager._GameController}Join?userId=${ userId }`;
+    }
+
+    public static getPlayerTypeEndpoint(userId: String){
+        return `${UrlManager._GameController}PlayerType?userId=${ userId }`;
+    }
+
+    public static getSetPlayerTypeEndpoint(userId: String, playerType: PlayerType) {
+        return `${UrlManager._GameController}PlayerType?userId=${ userId }&type=${ playerType }`;
     }
 
     /** Unit controller endpoints. */

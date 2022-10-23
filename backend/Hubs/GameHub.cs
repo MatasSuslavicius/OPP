@@ -13,33 +13,18 @@ namespace tower_battle.Hubs
             _unitService = unitService;
             _turretService = turretService;
         }
-        public override Task OnConnectedAsync()
-        {
-            PlayerType type = PlayerType.Spectator;
-            if (GameStateSingleton.Instance.Connections.Count == 0)
-            {
-                type = PlayerType.Left;
-            }
-            else if (GameStateSingleton.Instance.Connections.Count == 1)
-            {
-                type = PlayerType.Right;
-            }
-            
-            GameStateSingleton.Instance.Connections.Add(Context.ConnectionId, type);
-            return base.OnConnectedAsync();
-        }
 
         public async Task BuyUnit(string unitType)
         {
-            _unitService.Create(unitType, GameStateSingleton.Instance.Connections[Context.ConnectionId]);
+            _unitService.Create(unitType, GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
         }
         public async Task BuyTurret()
         {
-            _turretService.Create(GameStateSingleton.Instance.Connections[Context.ConnectionId]);
+            _turretService.Create(GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
         }
         public async Task BuyTurretUpgrade(string upgradeType)
         {
-            _turretService.Upgrade(upgradeType, GameStateSingleton.Instance.Connections[Context.ConnectionId]);
+            _turretService.Upgrade(upgradeType, GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
         }
     }
 }

@@ -1,4 +1,5 @@
 export enum PlayerType {
+  Default,
   Left = 1,
   Right = 2,
   Spectator = 3,

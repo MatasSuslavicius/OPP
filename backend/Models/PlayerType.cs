@@ -2,5 +2,8 @@
 
 public enum PlayerType
 {
-    Left = 1, Right = 2, Spectator = 3
+    Default = 0,
+    Left = 1, 
+    Right = 2, 
+    Spectator = 3,
 }

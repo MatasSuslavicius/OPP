@@ -1,24 +1,32 @@
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {
-  GameState,
-  INITIAL_GAME_STATE,
-  PlayerType,
-} from "../../contracts/contracts";
+import { GameState, INITIAL_GAME_STATE, PlayerType } from "../../contracts/contracts";
 import { UrlManager } from "../../Utils/UrlManager";
 import Interface from "../interface/Interface";
+import Cookies from 'universal-cookie';
 
 const ConnectedInterface = () => {
+  const cookies = new Cookies();
   const [connection, setConnection] = useState<HubConnection>();
   const [gameState, setGameState] = useState<GameState>(INITIAL_GAME_STATE);
-  const [playerType, setPlayerType] = useState<PlayerType>(
-    PlayerType.Spectator
-  );
+  const [userId, setUserId] = useState<String>(cookies.get('UserId'));
+  const [playerType, setPlayerType] = useState<PlayerType>(PlayerType.Default);
+
+  const getUserId = (): String => {
+    if (!userId || userId.length === 0) {
+      let tempId = crypto.randomUUID();
+      setUserId(tempId);
+      cookies.set('UserId', tempId, { path: '/' });
+      return tempId;
+    }
+
+    return userId;
+  }
 
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
-      .withUrl(UrlManager.getGameStreamEndpoint())
+      .withUrl(UrlManager.getGameStreamEndpoint() + `?UserId=${getUserId()}`)
       .build();
 
     newConnection.start();
@@ -33,11 +41,7 @@ const ConnectedInterface = () => {
   useEffect(() => {
     const joinGame = async () => {
       if (connection?.connectionId) {
-        const response = await axios.get<PlayerType>(
-          UrlManager.getPlayerTypeEndpoint(),
-          { params: { connectionId: connection?.connectionId } }
-        );
-
+        const response = await axios.get<PlayerType>(UrlManager.getPlayerTypeEndpoint(userId));
         setPlayerType(response.data);
       }
     };
@@ -52,7 +56,7 @@ const ConnectedInterface = () => {
     connection?.invoke("BuyTurret");
   };
   const handleBuyTurretUpgradeClick = async (upgradeType: string) => {
-    connection?.invoke("BuyTurretUpgrade",upgradeType);
+    connection?.invoke("BuyTurretUpgrade", upgradeType);
   };
 
 

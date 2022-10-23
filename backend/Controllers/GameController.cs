@@ -15,9 +15,23 @@ public class GameController : ControllerBase
         _gameService = gameService;
     }
     
-    [HttpGet("player-type")]
-    public async Task<IActionResult> JoinGame([FromQuery] string connectionId)
+    [HttpGet("PlayerType")]
+    public async Task<IActionResult> PlayerType([FromQuery] string userId)
     {
-        return Ok(_gameService.GetPlayerType(connectionId));
+        return Ok(_gameService.GetPlayerType(userId));
+    }
+
+    [HttpPost("PlayerType")]
+    public async Task<IActionResult> PlayerType([FromQuery] string userId, [FromQuery]  PlayerType type)
+    {
+        _gameService.SetPlayerType(userId, type);
+        return Ok();
+    }
+
+    [HttpPost("Join")]
+    public async Task<IActionResult> Join([FromQuery] string userId)
+    {
+        var role = _gameService.JoinGame(userId);
+        return Ok(role);
     }
 }

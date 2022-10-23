@@ -126,3 +126,8 @@
 .btn-slice:hover:before{
 	width: 130%;
 }
+
+.btn-disabled {
+  background-color: grey;
+  transition: none;
+}
