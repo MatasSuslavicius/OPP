@@ -11,6 +11,7 @@ namespace tower_battle.Services
     public class TurretService
     {
         private int turretPrice = 500;
+        private int upgradePrice = 200;
         public bool Create(PlayerType playerType)
         {
             if ((playerType == PlayerType.Left && GameStateSingleton.Instance.LeftPlayerState.Turret != null) ||
@@ -25,12 +26,20 @@ namespace tower_battle.Services
 
             if (playerType == PlayerType.Left)
             {
+                if (GameStateSingleton.Instance.LeftPlayerState.Money < turretPrice)
+                {
+                    return false;
+                }
                 turretInvoker.turret.Position = new Vector2 { X = -9, Y = 0 };
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turretInvoker.turret;
                 GameStateSingleton.Instance.LeftPlayerState.Money -= turretPrice; 
             }
             else if (playerType == PlayerType.Right)
             {
+                if (GameStateSingleton.Instance.RightPlayerState.Money < turretPrice)
+                {
+                    return false;
+                }
                 turretInvoker.turret.Position = new Vector2 { X = 8, Y = 0 };
                 GameStateSingleton.Instance.RightPlayerState.Turret = turretInvoker.turret;
                 GameStateSingleton.Instance.RightPlayerState.Money -= turretPrice;
@@ -105,14 +114,24 @@ namespace tower_battle.Services
             }
             if (playerType == PlayerType.Left)
             {
+                if (GameStateSingleton.Instance.LeftPlayerState.Money < upgradePrice)
+                {
+                    return false;
+                }
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turret;
+                GameStateSingleton.Instance.LeftPlayerState.Money -= upgradePrice;
                 System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);   //PACHECKINIMUI UPGRADES
                 System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
                 System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
             }
             else if (playerType == PlayerType.Right)
             {
+                if (GameStateSingleton.Instance.RightPlayerState.Money < upgradePrice)
+                {
+                    return false;
+                }
                 GameStateSingleton.Instance.RightPlayerState.Turret = turret;
+                GameStateSingleton.Instance.RightPlayerState.Money -= upgradePrice;
             }
 
             return true;

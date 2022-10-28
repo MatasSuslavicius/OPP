@@ -16,23 +16,14 @@ namespace tower_battle.Services
         }
         public bool Create(string unitType, PlayerType playerType)
         {
+            
             if (playerType == PlayerType.Left)
             {
-                var lastCreated = System.DateTime.Now - GameStateSingleton.Instance.LeftPlayerState.LastBuy;
-                if (lastCreated.TotalMilliseconds < 750)
-                {
-                    return false;
-                }
-                GameStateSingleton.Instance.LeftPlayerState.LastBuy = System.DateTime.Now;
+                if ((System.DateTime.Now - GameStateSingleton.Instance.LeftPlayerState.LastBuy).TotalMilliseconds < 750) return false;
             }
             else if (playerType == PlayerType.Right)
             {
-                var lastCreated = System.DateTime.Now - GameStateSingleton.Instance.RightPlayerState.LastBuy;
-                if (lastCreated.TotalMilliseconds < 750)
-                {
-                    return false;
-                }
-                GameStateSingleton.Instance.RightPlayerState.LastBuy = System.DateTime.Now;
+                if ((System.DateTime.Now - GameStateSingleton.Instance.RightPlayerState.LastBuy).TotalMilliseconds < 750) return false;
             }
             
             ICreator factoryCreator = new UnitFactory();
@@ -55,11 +46,23 @@ namespace tower_battle.Services
 
             if (playerType == PlayerType.Left)
             {
+                if (GameStateSingleton.Instance.LeftPlayerState.Money < unit.Cost)
+                {
+                    return false;
+                }
                 GameStateSingleton.Instance.LeftPlayerState.Units.Add(unit);
+                GameStateSingleton.Instance.LeftPlayerState.Money -= unit.Cost;
+                GameStateSingleton.Instance.LeftPlayerState.LastBuy = System.DateTime.Now;
             }
             else if (playerType == PlayerType.Right)
             {
+                if (GameStateSingleton.Instance.RightPlayerState.Money < unit.Cost)
+                {
+                    return false;
+                }
                 GameStateSingleton.Instance.RightPlayerState.Units.Add(unit);
+                GameStateSingleton.Instance.RightPlayerState.Money -= unit.Cost;
+                GameStateSingleton.Instance.RightPlayerState.LastBuy = System.DateTime.Now;
             }
 
 

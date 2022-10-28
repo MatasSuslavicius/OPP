@@ -16,6 +16,7 @@ namespace tower_battle.AbstractUnitFactory.Builder
         public abstract IBuilder AddDamage(int damage);
         public abstract IBuilder AddMovement(MoveStrategy strategy);
         public abstract IBuilder AddKillReward(int killReward);
+        public abstract IBuilder AddCost(double cost);
         public Unit Build()
         {
             return rawUnit;

@@ -10,6 +10,12 @@ namespace tower_battle.AbstractUnitFactory.Builder
            
         }
 
+        public override IBuilder AddCost(double cost)
+        {
+            rawUnit.Cost = cost;
+            return this;
+        }
+
         public override IBuilder AddDamage(int damage)
         {
             rawUnit.Damage = damage;

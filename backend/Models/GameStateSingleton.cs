@@ -25,7 +25,7 @@ namespace tower_battle.Models
     {
         public ICollection<Unit> Units { get; set; } = new List<Unit>();
         public ITurret Turret { get; set; }
-        public double Money { get; set; } = 500;
+        public double Money { get; set; } = 700;
         public double Experience { get; set; } = 0;
         public DateTime LastBuy { get; set; } = System.DateTime.Now;
 
