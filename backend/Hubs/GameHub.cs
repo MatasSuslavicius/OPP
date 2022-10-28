@@ -28,7 +28,7 @@ namespace tower_battle.Hubs
         }
         public async Task SellTurret()
         {
-            _turretService.Sell(GameStateSingleton.Instance.Connections[Context.ConnectionId]);
+            _turretService.Sell(GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
         }
     }
 }

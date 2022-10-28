@@ -21,7 +21,7 @@ export const drawTurret = (
     const turretScale: Vector2 = { x: 50, y: 50 };
     ctx.fillRect(
       turretPosition.x,
-      turretPosition.y,
+      210,
       turretScale.x,
       turretScale.y
     );

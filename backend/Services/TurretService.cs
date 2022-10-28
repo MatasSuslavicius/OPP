@@ -25,13 +25,13 @@ namespace tower_battle.Services
 
             if (playerType == PlayerType.Left)
             {
-                turretInvoker.turret.Position = new Vector2 { X = -10, Y = 0 };
+                turretInvoker.turret.Position = new Vector2 { X = -9, Y = 0 };
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turretInvoker.turret;
                 GameStateSingleton.Instance.LeftPlayerState.Money -= turretPrice; 
             }
             else if (playerType == PlayerType.Right)
             {
-                turretInvoker.turret.Position = new Vector2 { X = 10, Y = 0 };
+                turretInvoker.turret.Position = new Vector2 { X = 8, Y = 0 };
                 GameStateSingleton.Instance.RightPlayerState.Turret = turretInvoker.turret;
                 GameStateSingleton.Instance.RightPlayerState.Money -= turretPrice;
             }
