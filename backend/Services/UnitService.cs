@@ -16,9 +16,27 @@ namespace tower_battle.Services
         }
         public bool Create(string unitType, PlayerType playerType)
         {
+            if (playerType == PlayerType.Left)
+            {
+                var lastCreated = System.DateTime.Now - GameStateSingleton.Instance.LeftPlayerState.LastBuy;
+                if (lastCreated.TotalMilliseconds < 750)
+                {
+                    return false;
+                }
+                GameStateSingleton.Instance.LeftPlayerState.LastBuy = System.DateTime.Now;
+            }
+            else if (playerType == PlayerType.Right)
+            {
+                var lastCreated = System.DateTime.Now - GameStateSingleton.Instance.RightPlayerState.LastBuy;
+                if (lastCreated.TotalMilliseconds < 750)
+                {
+                    return false;
+                }
+                GameStateSingleton.Instance.RightPlayerState.LastBuy = System.DateTime.Now;
+            }
+            
             ICreator factoryCreator = new UnitFactory();
             var levelFactory = factoryCreator.GetUnitFactory(GameStateSingleton.Instance.GameLevel, playerType);
-
             Unit unit;
             switch (unitType)
             {
