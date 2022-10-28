@@ -9,27 +9,27 @@ namespace tower_battle.Hubs
         private readonly UnitService _unitService;
         private readonly TurretService _turretService;
 
-        public HubFacade(UnitService unitService, TurretService turretService)
+        public HubFacade()
         {
-            _unitService = unitService;
-            _turretService = turretService;
+            _unitService = new UnitService();
+            _turretService = new TurretService();
         }
 
-        public void BuyUnit(string unitType)
+        public void BuyUnit(string unitType, PlayerType playerType)
         {
-            _unitService.Create(unitType, GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
+            _unitService.Create(unitType, playerType);
         }
-        public void BuyTurret()
+        public void BuyTurret(PlayerType playerType)
         {
-            _turretService.Create(GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
+            _turretService.Create(playerType);
         }
-        public void BuyTurretUpgrade(string upgradeType)
+        public void BuyTurretUpgrade(string upgradeType, PlayerType playerType)
         {
-            _turretService.Upgrade(upgradeType, GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
+            _turretService.Upgrade(upgradeType, playerType);
         }
-        public void SellTurret()
+        public void SellTurret(PlayerType playerType)
         {
-            _turretService.Sell(GameStateSingleton.Instance.Connections[Context.ConnectionId]);
+            _turretService.Sell(playerType);
         }
     }
 }

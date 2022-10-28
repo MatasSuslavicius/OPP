@@ -6,29 +6,27 @@ namespace tower_battle.Hubs
 {
     public class GameHub : Hub
     {
-        private readonly UnitService _unitService;
-        private readonly TurretService _turretService;
-        public GameHub(UnitService unitService, TurretService turretService)
+        HubFacade hubFacade;
+        public GameHub()
         {
-            _unitService = unitService;
-            _turretService = turretService;
+            hubFacade = new HubFacade();
         }
 
         public async Task BuyUnit(string unitType)
         {
-            _unitService.Create(unitType, GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
+            hubFacade.BuyUnit(unitType, GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
         }
         public async Task BuyTurret()
         {
-            _turretService.Create(GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
+            hubFacade.BuyTurret(GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
         }
         public async Task BuyTurretUpgrade(string upgradeType)
         {
-            _turretService.Upgrade(upgradeType, GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
+            hubFacade.BuyTurretUpgrade(upgradeType, GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
         }
         public async Task SellTurret()
         {
-            _turretService.Sell(GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
+            hubFacade.SellTurret(GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
         }
     }
 }

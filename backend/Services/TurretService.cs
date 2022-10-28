@@ -58,8 +58,8 @@ namespace tower_battle.Services
             {
                 turretInvoker.turret = GameStateSingleton.Instance.RightPlayerState.Turret as Turret;
                 turretInvoker.UndoBuy();
-                GameStateSingleton.Instance.LeftPlayerState.Turret = turretInvoker.turret;
-                GameStateSingleton.Instance.LeftPlayerState.Money += turretPrice*0.9;
+                GameStateSingleton.Instance.RightPlayerState.Turret = turretInvoker.turret;
+                GameStateSingleton.Instance.RightPlayerState.Money += turretPrice*0.9;
             }
             return true;
            
