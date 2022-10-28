@@ -4,7 +4,7 @@ using tower_battle.Services;
 
 namespace tower_battle.Hubs
 {
-    public class HubFacade : Hub
+    public class HubFacade
     {
         private readonly UnitService _unitService;
         private readonly TurretService _turretService;
