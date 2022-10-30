@@ -34,6 +34,7 @@ export interface Unit {
   scale: Vector2;
   initialHealth: number;
   health: number;
+  type: string;
 }
 
 export interface Vector2 {

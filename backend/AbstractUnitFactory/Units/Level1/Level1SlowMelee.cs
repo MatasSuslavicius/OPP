@@ -5,6 +5,6 @@ namespace tower_battle.AbstractUnitFactory.Units.Level1
 {
     public class Level1SlowMelee : SlowMelee
     {
-        public override Vector2 Scale { get; set; } = new() { X = 1f, Y = 0.75f };
+        public override Vector2 Scale { get; set; } = new() { X = 1.5f, Y = 0.75f };
     }
 }

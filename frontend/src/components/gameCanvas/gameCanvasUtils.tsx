@@ -38,10 +38,46 @@ export const drawUnit = (
   const position = worldToScreenCoordinates(unit.position);
   const scale = worldToScreenScale(unit.scale);
 
-  ctx.fillRect(position.x - scale.x / 2, position.y, scale.x, scale.y);
+  const image = new Image();
+  image.src = getImageSource(unit.type, isRightPlayer);
+
+  ctx.drawImage(
+    image,
+    position.x - scale.x / 2,
+    unit.type === "fast" ? position.y - 23 : position.y,
+    scale.x, scale.y
+  );
 
   drawHealthBar(ctx, unit);
 };
+
+const getImageSource = (unitType: string, isRightPlayer: boolean): string => {
+  if (!isRightPlayer) {
+    switch (unitType) {
+      case "slow":
+        return "images/SlowUnit.svg";
+
+      case "normal":
+        return "images/NormalUnit.svg";
+
+      case "fast":
+        return "images/FastUnit.svg";
+    }
+  }
+  else {
+    switch (unitType) {
+      case "slow":
+        return "images/SlowUnit2.svg";
+
+      case "normal":
+        return "images/NormalUnit2.svg";
+
+      case "fast":
+        return "images/FastUnit2.svg";
+    }
+  }
+  return "";
+}
 
 const drawHealthBar = (ctx: CanvasRenderingContext2D, unit: Unit) => {
   ctx.beginPath();
