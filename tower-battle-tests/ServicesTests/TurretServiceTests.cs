@@ -39,6 +39,8 @@ namespace tower_battle_tests.ServicesTests
             Assert.Equal(20, GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);
             Assert.Equal(1,GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
             Assert.Equal(50, GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
+            Assert.Equal(-9, GameStateSingleton.Instance.LeftPlayerState.Turret.Position.X);
+            Assert.Equal(0, GameStateSingleton.Instance.LeftPlayerState.Turret.Position.Y);
         }
         [Fact]
         public void SellTurretAndTurretDoesNotExistsTest()
