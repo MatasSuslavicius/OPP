@@ -15,7 +15,7 @@ namespace tower_battle.AbstractUnitFactory
             }
             else if (playerType == PlayerType.Right)
             {
-                SpawnPosition = new Vector2() {X = 10, Y = 0};
+                SpawnPosition = new Vector2 {X = 10, Y = 0};
             }
         }
         

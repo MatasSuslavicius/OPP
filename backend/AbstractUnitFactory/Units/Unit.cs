@@ -15,6 +15,9 @@ namespace tower_battle.AbstractUnitFactory.Units
 
         public double KillReward { get; set; } //TODO: Change type to GoldReward/XPReward ?
         public double Damage { get; set; }
+
+        public string Type { get; set; }
+
         public MoveStrategy MoveStrategy;
         public MoveStrategy GetMoveStrategy ()
         {
