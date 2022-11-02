@@ -69,7 +69,7 @@ namespace tower_battle.Services
         {
             if (isRightPlayer)
             {
-                if(GameStateSingleton.Instance.RightPlayerLevel < 2)
+                if(GameStateSingleton.Instance.RightPlayerState.Experience >= 2000 && GameStateSingleton.Instance.RightPlayerLevel < 2)
                 {
                     GameStateSingleton.Instance.RightPlayerLevel++;
                     GameStateSingleton.Instance.UnitManager.LevelUp(isRightPlayer);
@@ -80,7 +80,7 @@ namespace tower_battle.Services
             }
             else
             {
-                if (GameStateSingleton.Instance.LeftPlayerLevel < 2)
+                if (GameStateSingleton.Instance.LeftPlayerState.Experience >= 2000 &&  GameStateSingleton.Instance.LeftPlayerLevel < 2)
                 {
                     GameStateSingleton.Instance.LeftPlayerLevel++;
                     GameStateSingleton.Instance.UnitManager.LevelUp(isRightPlayer);
