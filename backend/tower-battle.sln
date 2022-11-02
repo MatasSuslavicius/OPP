@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tower-battle", "tower-battle.csproj", "{4BFC79F0-0905-4D38-AF66-1F66E78F2339}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tower-battle-tests", "..\tower-battle-tests\tower-battle-tests.csproj", "{8A7D814F-1236-45E6-A1F8-BB279E27A19D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tower-battle-tests", "tower-battle-tests\tower-battle-tests.csproj", "{9FB8EDDD-6E6B-4E71-AC67-8659495D2275}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{4BFC79F0-0905-4D38-AF66-1F66E78F2339}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BFC79F0-0905-4D38-AF66-1F66E78F2339}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BFC79F0-0905-4D38-AF66-1F66E78F2339}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A7D814F-1236-45E6-A1F8-BB279E27A19D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A7D814F-1236-45E6-A1F8-BB279E27A19D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A7D814F-1236-45E6-A1F8-BB279E27A19D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A7D814F-1236-45E6-A1F8-BB279E27A19D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FB8EDDD-6E6B-4E71-AC67-8659495D2275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FB8EDDD-6E6B-4E71-AC67-8659495D2275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FB8EDDD-6E6B-4E71-AC67-8659495D2275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FB8EDDD-6E6B-4E71-AC67-8659495D2275}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

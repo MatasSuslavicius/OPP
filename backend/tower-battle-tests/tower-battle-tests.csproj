@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\backend\tower-battle.csproj" />
+    <ProjectReference Include="..\tower-battle.csproj" />
   </ItemGroup>
 
 </Project>

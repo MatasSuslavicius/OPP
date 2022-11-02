@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="tower-battle-tests\**" />
+    <Content Remove="tower-battle-tests\**" />
+    <EmbeddedResource Remove="tower-battle-tests\**" />
+    <None Remove="tower-battle-tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
