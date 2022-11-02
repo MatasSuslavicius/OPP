@@ -455,17 +455,17 @@ $RECYCLE.BIN/
 
 
 # TowerBattle tests
-tower-battle-tests/[Dd]ebug/
-tower-battle-tests/[Dd]ebugPublic/
-tower-battle-tests/[Rr]elease/
-tower-battle-tests/[Rr]eleases/
-tower-battle-tests/x64/
-tower-battle-tests/x86/
-tower-battle-tests/[Ww][Ii][Nn]32/
-tower-battle-tests/[Aa][Rr][Mm]/
-tower-battle-tests/[Aa][Rr][Mm]64/
-tower-battle-tests/bld/
-tower-battle-tests/[Bb]in/
-tower-battle-tests/[Oo]bj/
-tower-battle-tests/[Ll]og/
-tower-battle-tests/[Ll]ogs/
+tower-battle-tests/[Dd]ebug/*
+tower-battle-tests/[Dd]ebugPublic/*
+tower-battle-tests/[Rr]elease/*
+tower-battle-tests/[Rr]eleases/*
+tower-battle-tests/x64/*
+tower-battle-tests/x86/*
+tower-battle-tests/[Ww][Ii][Nn]32/*
+tower-battle-tests/[Aa][Rr][Mm]/*
+tower-battle-tests/[Aa][Rr][Mm]64/*
+tower-battle-tests/bld/*
+tower-battle-tests/[Bb]in/*
+tower-battle-tests/[Oo]bj/*
+tower-battle-tests/[Ll]og/*
+tower-battle-tests/[Ll]ogs/*
