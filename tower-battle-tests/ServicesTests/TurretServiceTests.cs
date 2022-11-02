@@ -19,6 +19,10 @@ namespace tower_battle_tests.ServicesTests
             GameStateSingleton.Instance.LeftPlayerState.Money = 400;
 
             Assert.False(_turretService.Create(PlayerType.Left));
+
+            GameStateSingleton.Instance.RightPlayerState.Money = 400;
+
+            Assert.False(_turretService.Create(PlayerType.Right));
         }
         [Fact]
         public void BuyTurretAndTurretAlreadyExistsTest()
@@ -55,6 +59,10 @@ namespace tower_battle_tests.ServicesTests
             GameStateSingleton.Instance.RightPlayerState.Money = 500;
             Assert.True(_turretService.Create(PlayerType.Right));
             Assert.True(_turretService.Sell(PlayerType.Right));
+
+            GameStateSingleton.Instance.LeftPlayerState.Money = 500;
+            Assert.True(_turretService.Create(PlayerType.Left));
+            Assert.True(_turretService.Sell(PlayerType.Left));
         }
         [Fact]
         public void MoneyGainOnSellTest()
@@ -73,6 +81,12 @@ namespace tower_battle_tests.ServicesTests
             GameStateSingleton.Instance.RightPlayerState.Money = 100;
 
             Assert.False(_turretService.Upgrade("damage", PlayerType.Right));
+
+            GameStateSingleton.Instance.LeftPlayerState.Money = 500;
+            _turretService.Create(PlayerType.Left);
+            GameStateSingleton.Instance.LeftPlayerState.Money = 100;
+
+            Assert.False(_turretService.Upgrade("damage", PlayerType.Left));
         }
         [Fact]
         public void BuyTurretUpgradeTurretDoesNotExistTest()
@@ -81,6 +95,11 @@ namespace tower_battle_tests.ServicesTests
             GameStateSingleton.Instance.RightPlayerState.Money = 200;
 
             Assert.False(_turretService.Upgrade("damage", PlayerType.Right));
+
+            GameStateSingleton.Instance.LeftPlayerState.Turret = null;
+            GameStateSingleton.Instance.LeftPlayerState.Money = 200;
+
+            Assert.False(_turretService.Upgrade("damage", PlayerType.Left));
         }
         [Fact]
         public void BuyTurretUpgradeAndEnoughMoneyAndTurretExistsTest()
@@ -88,11 +107,44 @@ namespace tower_battle_tests.ServicesTests
             GameStateSingleton.Instance.RightPlayerState.Turret = null;
             GameStateSingleton.Instance.RightPlayerState.Money = 500;
             _turretService.Create(PlayerType.Right);
-            GameStateSingleton.Instance.RightPlayerState.Money = 200;
+            GameStateSingleton.Instance.RightPlayerState.Money = 600;
             Assert.True(_turretService.Upgrade("damage", PlayerType.Right));
-            Assert.Equal(30,GameStateSingleton.Instance.RightPlayerState.Turret.Damage);
-            Assert.Equal(1, GameStateSingleton.Instance.RightPlayerState.Turret.Speed);
-            Assert.Equal(50, GameStateSingleton.Instance.RightPlayerState.Turret.Range);
+            Assert.True(_turretService.Upgrade("range", PlayerType.Right));
+            Assert.True(_turretService.Upgrade("speed", PlayerType.Right));
+            Assert.Equal(30, GameStateSingleton.Instance.RightPlayerState.Turret.Damage);
+            Assert.Equal(11, GameStateSingleton.Instance.RightPlayerState.Turret.Speed);
+            Assert.Equal(60, GameStateSingleton.Instance.RightPlayerState.Turret.Range);
+
+
+            GameStateSingleton.Instance.LeftPlayerState.Turret = null;
+            GameStateSingleton.Instance.LeftPlayerState.Money = 500;
+            _turretService.Create(PlayerType.Left);
+            GameStateSingleton.Instance.LeftPlayerState.Money = 600;
+            Assert.True(_turretService.Upgrade("damage", PlayerType.Left));
+            Assert.Equal(30, GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);
+            Assert.Equal(1, GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
+            Assert.Equal(50, GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
+        }
+        [Fact]
+        public void BuyTurretUpgradeWithNotExistingTypeTest()
+        {
+            GameStateSingleton.Instance.RightPlayerState.Turret = null;
+            GameStateSingleton.Instance.RightPlayerState.Money = 500;
+            _turretService.Create(PlayerType.Right);
+            GameStateSingleton.Instance.RightPlayerState.Money = 600;
+            Action act = () => _turretService.Upgrade("notExisting", PlayerType.Right);
+            Exception exception = Assert.Throws<Exception>(act);
+            Assert.Equal("Invalid upgrade type", exception.Message);
+        }
+        [Fact]
+        public void ClearTurretTest()
+        {
+            GameStateSingleton.Instance.RightPlayerState.Turret = null;
+            GameStateSingleton.Instance.RightPlayerState.Money = 500;
+            _turretService.Create(PlayerType.Right);
+            _turretService.ClearTower();
+            Assert.Equal(null, GameStateSingleton.Instance.RightPlayerState.Turret);
+            Assert.Equal(null, GameStateSingleton.Instance.LeftPlayerState.Turret);
         }
     }
 }
