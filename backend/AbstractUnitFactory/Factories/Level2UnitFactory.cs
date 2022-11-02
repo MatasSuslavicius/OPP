@@ -11,20 +11,20 @@ namespace tower_battle.AbstractUnitFactory.Factories
         public Level2UnitFactory(PlayerType playerType): base(playerType) { }
         public override Unit CreateNormalMelee()
         {
-            Unit unit = new Level2NormalMelee { Position = SpawnPosition, Type = "normal" };
+            Unit unit = new Level2NormalMelee { Position = SpawnPosition, Type = "normal2" };
             IBuilder builder = new NormalMeleeBuilder(unit);
             return this.Director.ConstructLevel2(builder, new Normal());
         }
 
         public override Unit CreateFastMelee()
         {
-            Unit unit = new Level2FastMelee { Position = SpawnPosition, Type = "fast" };
+            Unit unit = new Level2FastMelee { Position = SpawnPosition, Type = "fast2" };
             IBuilder builder = new FastMeleeBuilder(unit);
             return this.Director.ConstructLevel2(builder, new Fast());
         }
         public override Unit CreateSlowMelee()
         {
-            Unit unit = new Level2SlowMelee { Position = SpawnPosition, Type = "slow" };
+            Unit unit = new Level2SlowMelee { Position = SpawnPosition, Type = "slow2" };
             IBuilder builder = new SlowMeleeBuilder(unit);
             return this.Director.ConstructLevel2(builder, new Slow());
         }

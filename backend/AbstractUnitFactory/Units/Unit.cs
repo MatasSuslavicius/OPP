@@ -30,7 +30,7 @@ namespace tower_battle.AbstractUnitFactory.Units
         }
         public override void UpdateUnits()
         {
-            this.Scale.X *= 3;
+            this.Type = "LevelUpUnit";
         }
         
         public void DealDamage(Unit unit)

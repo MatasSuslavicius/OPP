@@ -13,7 +13,7 @@
             Observers = observers;
         }
 
-        public abstract void LevelUp();
+        public abstract void LevelUp(bool isRightPlayer);
         public abstract void Subscribe(Observer observer);
         public abstract void Unsubscribe(Observer observer);
     }

@@ -23,7 +23,12 @@ const Interface = ({
   onSellTurretClick,
 }: InterfaceProps) => {
   const levelButtonAction = () => {
-    axios.post(UrlManager.getLevelUpEndpoint());
+    axios({
+      method: 'post',
+      url: UrlManager.getLevelUpEndpoint(), 
+      data: {
+        isRightPlayer: playerType === PlayerType.Right,
+      }});
   };
   const clearButtonAction = () => {
     axios.post(UrlManager.getClearUnitsEndpoint());

@@ -1,4 +1,5 @@
 ﻿using tower_battle.AbstractUnitFactory.Units;
+using tower_battle.Observer;
 using tower_battle.Turrets;
 using tower_battle.Turrets.Decorator;
 
@@ -18,7 +19,9 @@ namespace tower_battle.Models
         public Dictionary<string, PlayerType> Connections { get; } = new ();
         public PlayerState RightPlayerState { get; } = new PlayerState();
         public PlayerState LeftPlayerState { get; } = new PlayerState();
-        public int GameLevel { get; set; } = 1;
+        public UnitManager UnitManager { get; } = new UnitManager ();
+        public int RightPlayerLevel { get; set; } = 1;
+        public int LeftPlayerLevel { get; set; } = 1;
     }
 
     public class PlayerState

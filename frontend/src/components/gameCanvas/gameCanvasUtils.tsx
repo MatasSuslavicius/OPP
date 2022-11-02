@@ -45,7 +45,8 @@ export const drawUnit = (
     image,
     position.x - scale.x / 2,
     unit.type === "fast" ? position.y - 23 : position.y,
-    scale.x, scale.y
+    scale.x,
+    scale.y,
   );
 
   drawHealthBar(ctx, unit);
@@ -55,25 +56,37 @@ const getImageSource = (unitType: string, isRightPlayer: boolean): string => {
   if (!isRightPlayer) {
     switch (unitType) {
       case "slow":
-        return "images/SlowUnit.svg";
-
+        return "images/Level1Units/SlowUnit.svg";
       case "normal":
-        return "images/NormalUnit.svg";
-
+        return "images/Level1Units/NormalUnit.svg";
       case "fast":
-        return "images/FastUnit.svg";
+        return "images/Level1Units/FastUnit.svg";
+      case "slow2":
+        return "images/Level2Units/SlowUnit.svg";
+      case "normal2":
+        return "images/Level2Units/NormalUnit.svg";
+      case "fast2":
+        return "images/Level2Units/FastUnit.svg";
+      case "LevelUpUnit":
+        return "images/LevelUpUnit.svg";
     }
   }
   else {
     switch (unitType) {
       case "slow":
-        return "images/SlowUnit2.svg";
-
+        return "images/Level1Units/SlowUnit2.svg";
       case "normal":
-        return "images/NormalUnit2.svg";
-
+        return "images/Level1Units/NormalUnit2.svg";
       case "fast":
-        return "images/FastUnit2.svg";
+        return "images/Level1Units/FastUnit2.svg";
+      case "slow2":
+        return "images/Level2Units/SlowUnit.svg";
+      case "normal2":
+        return "images/Level2Units/NormalUnit.svg";
+      case "fast2":
+        return "images/Level2Units/FastUnit.svg";
+      case "LevelUpUnit":
+        return "images/LevelUpUnit.svg";
     }
   }
   return "";

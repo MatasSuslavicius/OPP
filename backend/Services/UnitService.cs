@@ -8,12 +8,7 @@ namespace tower_battle.Services
 {
     public class UnitService
     {
-        private readonly UnitManager m_unitManager;
-
-        public UnitService()
-        {
-            m_unitManager = new UnitManager();
-        }
+        public UnitService() { }
         public bool Create(string unitType, PlayerType playerType)
         {
             
@@ -27,7 +22,7 @@ namespace tower_battle.Services
             }
             
             ICreator factoryCreator = new UnitFactory();
-            var levelFactory = factoryCreator.GetUnitFactory(GameStateSingleton.Instance.GameLevel, playerType);
+            var levelFactory = factoryCreator.GetUnitFactory(playerType == PlayerType.Left ? GameStateSingleton.Instance.LeftPlayerLevel : GameStateSingleton.Instance.RightPlayerLevel, playerType);
             Unit unit;
             switch (unitType)
             {
@@ -44,6 +39,7 @@ namespace tower_battle.Services
                     throw new Exception("Invalid unit type");
             }
 
+            unit.isRightPlayer = playerType == PlayerType.Right;
             if (playerType == PlayerType.Left)
             {
                 if (GameStateSingleton.Instance.LeftPlayerState.Money < unit.Cost)
@@ -65,24 +61,33 @@ namespace tower_battle.Services
                 GameStateSingleton.Instance.RightPlayerState.LastBuy = System.DateTime.Now;
             }
 
-
-            m_unitManager.Subscribe(unit);
-
+            GameStateSingleton.Instance.UnitManager.Subscribe(unit);
             return true;
         }
 
-        public bool LevelUp()
+        public bool LevelUp(bool isRightPlayer)
         {
-            m_unitManager.LevelUp();
-            if (GameStateSingleton.Instance.GameLevel >= 2)
+            if (isRightPlayer)
             {
-                GameStateSingleton.Instance.GameLevel = 2; // Resetting to current max game level.
+                if(GameStateSingleton.Instance.RightPlayerLevel < 2)
+                {
+                    GameStateSingleton.Instance.RightPlayerLevel++;
+                    GameStateSingleton.Instance.UnitManager.LevelUp(isRightPlayer);
+                    return true;
+                }
+
                 return false;
             }
             else
             {
-                GameStateSingleton.Instance.GameLevel++;
-                return true;
+                if (GameStateSingleton.Instance.LeftPlayerLevel < 2)
+                {
+                    GameStateSingleton.Instance.LeftPlayerLevel++;
+                    GameStateSingleton.Instance.UnitManager.LevelUp(isRightPlayer);
+                    return true;
+                }
+
+                return false;
             }
         }
 
@@ -94,7 +99,8 @@ namespace tower_battle.Services
 
         public void ResetLevel()
         {
-            GameStateSingleton.Instance.GameLevel = 1;
+            GameStateSingleton.Instance.LeftPlayerLevel = 1;
+            GameStateSingleton.Instance.RightPlayerLevel = 1;
         }
     }
 }

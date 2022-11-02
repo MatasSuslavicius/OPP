@@ -3,9 +3,10 @@
     public class UnitManager : Subject
     {
         public UnitManager() : base() { }
-        public override void LevelUp()
+        public override void LevelUp(bool isRightPlayer)
         {
-            foreach (var obs in Observers)
+            var list = Observers.Where(x => x.isRightPlayer == isRightPlayer);
+            foreach (var obs in list)
             {
                 obs.UpdateUnits();
             }
