@@ -22,7 +22,7 @@ namespace tower_battle.Services
             }
             
             ICreator factoryCreator = new UnitFactory();
-            var levelFactory = factoryCreator.GetUnitFactory(playerType == PlayerType.Left ? GameStateSingleton.Instance.LeftPlayerLevel : GameStateSingleton.Instance.RightPlayerLevel, playerType);
+            var levelFactory = factoryCreator.GetUnitFactory(playerType == PlayerType.Left ? GameStateSingleton.Instance.LeftPlayerState.Level : GameStateSingleton.Instance.RightPlayerState.Level, playerType);
             Unit unit;
             switch (unitType)
             {
@@ -69,9 +69,9 @@ namespace tower_battle.Services
         {
             if (isRightPlayer)
             {
-                if(GameStateSingleton.Instance.RightPlayerState.Experience >= 2000 && GameStateSingleton.Instance.RightPlayerLevel < 2)
+                if(/*GameStateSingleton.Instance.RightPlayerState.Experience >= 400 &&*/ GameStateSingleton.Instance.RightPlayerState.Level < 2)
                 {
-                    GameStateSingleton.Instance.RightPlayerLevel++;
+                    GameStateSingleton.Instance.RightPlayerState.Level++;
                     GameStateSingleton.Instance.UnitManager.LevelUp(isRightPlayer);
                     return true;
                 }
@@ -80,9 +80,9 @@ namespace tower_battle.Services
             }
             else
             {
-                if (GameStateSingleton.Instance.LeftPlayerState.Experience >= 2000 &&  GameStateSingleton.Instance.LeftPlayerLevel < 2)
+                if (/*GameStateSingleton.Instance.LeftPlayerState.Experience >= 400 && */ GameStateSingleton.Instance.LeftPlayerState.Level < 2)
                 {
-                    GameStateSingleton.Instance.LeftPlayerLevel++;
+                    GameStateSingleton.Instance.LeftPlayerState.Level++;
                     GameStateSingleton.Instance.UnitManager.LevelUp(isRightPlayer);
                     return true;
                 }
@@ -99,8 +99,8 @@ namespace tower_battle.Services
 
         public void ResetLevel()
         {
-            GameStateSingleton.Instance.LeftPlayerLevel = 1;
-            GameStateSingleton.Instance.RightPlayerLevel = 1;
+            GameStateSingleton.Instance.LeftPlayerState.Level = 1;
+            GameStateSingleton.Instance.RightPlayerState.Level = 1;
         }
     }
 }

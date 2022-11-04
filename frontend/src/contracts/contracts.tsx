@@ -6,13 +6,15 @@ export enum PlayerType {
 }
 
 export const INITIAL_GAME_STATE: GameState = {
-  rightPlayerState: { units: [], money: 500, experience: 0, turret: null },
-  leftPlayerState: { units: [], money: 500, experience: 0, turret: null },
+  rightPlayerState: { units: [], money: 500, experience: 0, turret: null, level: 1 },
+  leftPlayerState: { units: [], money: 500, experience: 0, turret: null, level: 1 },
+  isLeveledUp: false
 };
 
 export interface GameState {
   rightPlayerState: PlayerState;
   leftPlayerState: PlayerState;
+  isLeveledUp: boolean;
 }
 
 export interface PlayerState {
@@ -20,6 +22,7 @@ export interface PlayerState {
   money: number;
   experience: number;
   turret: Turret | null;
+  level: number;
 }
 
 export interface Turret {

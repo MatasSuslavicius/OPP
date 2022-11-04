@@ -25,10 +25,11 @@ const Interface = ({
   const levelButtonAction = () => {
     axios({
       method: 'post',
-      url: UrlManager.getLevelUpEndpoint(), 
+      url: UrlManager.getLevelUpEndpoint(),
       data: {
         isRightPlayer: playerType === PlayerType.Right,
-      }});
+      }
+    });
   };
   const clearButtonAction = () => {
     axios.post(UrlManager.getClearUnitsEndpoint());
@@ -56,25 +57,25 @@ const Interface = ({
             <Button text="Level Up" onClick={levelButtonAction} />
             <Button text="Clear Units" onClick={clearButtonAction} />
             <Button text="Reset Level" onClick={resetButtonAction} />
-            <Button 
-              text="Buy Turret" 
-              onClick={() => onBuyTurretClick()} 
+            <Button
+              text="Buy Turret"
+              onClick={() => onBuyTurretClick()}
             />
-            <Button 
-              text="Sell Turret" 
-              onClick={() => onSellTurretClick()} 
+            <Button
+              text="Sell Turret"
+              onClick={() => onSellTurretClick()}
             />
-            <Button 
-              text="Upg. Turret Damage" 
-              onClick={() => onBuyTurretUpgradeClick("damage")} 
+            <Button
+              text="Upg. Turret Damage"
+              onClick={() => onBuyTurretUpgradeClick("damage")}
             />
-            <Button 
-              text="Upg. Turret Range" 
-              onClick={() => onBuyTurretUpgradeClick("range")} 
+            <Button
+              text="Upg. Turret Range"
+              onClick={() => onBuyTurretUpgradeClick("range")}
             />
-            <Button 
-              text="Upg. Turret Speed" 
-              onClick={() => onBuyTurretUpgradeClick("speed")} 
+            <Button
+              text="Upg. Turret Speed"
+              onClick={() => onBuyTurretUpgradeClick("speed")}
             />
           </div>
         )}
@@ -92,7 +93,7 @@ const Interface = ({
             <h3> Money</h3> <h3>{":  "}{gameState.rightPlayerState.money}</h3>
             <h3> Experience</h3><h3>{":  "}{gameState.rightPlayerState.experience}</h3>
           </div>
-        )}
+          )}
       </div>
     </div>
   );
