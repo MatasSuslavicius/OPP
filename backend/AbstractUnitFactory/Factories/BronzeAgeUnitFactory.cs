@@ -12,7 +12,7 @@ namespace tower_battle.AbstractUnitFactory.Factories
         public override Unit CreateSoldier()
         {
             IUnitTypeBuilder unitTypeBuilder = new SoldierUnitTypeBuilder(new SoldierType());
-            var unitType = Director.ConstructStoneAgeUnitType(unitTypeBuilder, new NormalMovementStrategy());
+            var unitType = Director.ConstructBronzeAgeUnitType(unitTypeBuilder, new NormalMovementStrategy());
             
             Unit unit = new BronzeAgeUnit { Position = SpawnPosition, UnitType = unitType };
 
@@ -22,7 +22,7 @@ namespace tower_battle.AbstractUnitFactory.Factories
         public override Unit CreateScout()
         {
             IUnitTypeBuilder unitTypeBuilder = new ScoutUnitTypeBuilder(new ScoutType());
-            var unitType = Director.ConstructStoneAgeUnitType(unitTypeBuilder, new FastMovementStrategy());
+            var unitType = Director.ConstructBronzeAgeUnitType(unitTypeBuilder, new FastMovementStrategy());
             
             Unit unit = new BronzeAgeUnit { Position = SpawnPosition, UnitType = unitType };
 
@@ -31,7 +31,7 @@ namespace tower_battle.AbstractUnitFactory.Factories
         public override Unit CreateTank()
         {
             IUnitTypeBuilder unitTypeBuilder = new TankUnitTypeBuilder(new TankType());
-            var unitType = Director.ConstructStoneAgeUnitType(unitTypeBuilder, new SlowMovementStrategy());
+            var unitType = Director.ConstructBronzeAgeUnitType(unitTypeBuilder, new SlowMovementStrategy());
             
             Unit unit = new BronzeAgeUnit { Position = SpawnPosition, UnitType = unitType };
 

@@ -16,7 +16,7 @@ namespace tower_battle_tests.UnitsTests
             
             Unit unit = new StoneAgeUnit{ UnitType = unitType };
 
-            Assert.Equal(1.5f, unit.UnitType.MovementStrategy.Speed);
+            Assert.Equal(1f, unit.UnitType.MovementStrategy.Speed, 5);
         }
         [Fact]
         public void TestNormalMovement()
@@ -26,7 +26,7 @@ namespace tower_battle_tests.UnitsTests
 
             Unit unit = new StoneAgeUnit{ UnitType = unitType };
             
-            Assert.Equal(3f, unit.UnitType.MovementStrategy.Speed);
+            Assert.Equal(2f, unit.UnitType.MovementStrategy.Speed, 5);
         }
         [Fact]
         public void TestFastMovement()
@@ -36,7 +36,7 @@ namespace tower_battle_tests.UnitsTests
 
             Unit unit = new StoneAgeUnit{ UnitType = unitType };
             
-            Assert.Equal(3f, unit.UnitType.MovementStrategy.Speed);
+            Assert.Equal(2.5f, unit.UnitType.MovementStrategy.Speed, 5);
         }
 
     }
