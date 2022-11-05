@@ -16,9 +16,9 @@ namespace tower_battle_tests.TurretTests
         {
             turretInvoker = new TurretInvoker();
             turretInvoker.Buy();
-            Assert.Equal(20, turretInvoker.turret.Damage);
+            Assert.Equal(0.5, turretInvoker.turret.Damage);
             Assert.Equal(1, turretInvoker.turret.Speed);
-            Assert.Equal(50, turretInvoker.turret.Range);
+            Assert.Equal(5, turretInvoker.turret.Range);
         }
     }
 }

@@ -21,9 +21,9 @@ namespace tower_battle_tests.TurretTests
             damageUpgrade.UpgradeTurret();
             turret = damageUpgrade.Get() as Turret;
 
-            Assert.Equal(30, turret.Damage);
+            Assert.Equal(10.5, turret.Damage);
             Assert.Equal(1, turret.Speed);
-            Assert.Equal(50, turret.Range);
+            Assert.Equal(5, turret.Range);
         }
         [Fact]
         public void TurretRangeUpgradeTest()
@@ -34,9 +34,9 @@ namespace tower_battle_tests.TurretTests
             rangeUpgrade.UpgradeTurret();
             turret = rangeUpgrade.Get() as Turret;
 
-            Assert.Equal(20, turret.Damage);
+            Assert.Equal(0.5, turret.Damage);
             Assert.Equal(1, turret.Speed);
-            Assert.Equal(60, turret.Range);
+            Assert.Equal(15, turret.Range);
         }
         [Fact]
         public void TurretSpeedUpgradeTest()
@@ -47,9 +47,9 @@ namespace tower_battle_tests.TurretTests
             speedUpgrade.UpgradeTurret();
             turret = speedUpgrade.Get() as Turret;
 
-            Assert.Equal(20, turret.Damage);
+            Assert.Equal(0.5, turret.Damage);
             Assert.Equal(11, turret.Speed);
-            Assert.Equal(50, turret.Range);
+            Assert.Equal(5, turret.Range);
         }
         [Fact]
         public void TurretDoubleDamageUpgradeTest()
@@ -61,9 +61,9 @@ namespace tower_battle_tests.TurretTests
             damageUpgrade.UpgradeTurret();
             turret = damageUpgrade.Get() as Turret;
 
-            Assert.Equal(40, turret.Damage);
+            Assert.Equal(20.5, turret.Damage);
             Assert.Equal(1, turret.Speed);
-            Assert.Equal(50, turret.Range);
+            Assert.Equal(5, turret.Range);
         }
     }
 }

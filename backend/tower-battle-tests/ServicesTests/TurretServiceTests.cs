@@ -40,9 +40,9 @@ namespace tower_battle_tests.ServicesTests
             GameStateSingleton.Instance.LeftPlayerState.Money = 500;
 
             Assert.True(_turretService.Create(PlayerType.Left));
-            Assert.Equal(20, GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);
+            Assert.Equal(0.5, GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);
             Assert.Equal(1,GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
-            Assert.Equal(50, GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
+            Assert.Equal(5, GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
             Assert.Equal(-9, GameStateSingleton.Instance.LeftPlayerState.Turret.Position.X);
             Assert.Equal(0, GameStateSingleton.Instance.LeftPlayerState.Turret.Position.Y);
         }
@@ -111,9 +111,9 @@ namespace tower_battle_tests.ServicesTests
             Assert.True(_turretService.Upgrade("damage", PlayerType.Right));
             Assert.True(_turretService.Upgrade("range", PlayerType.Right));
             Assert.True(_turretService.Upgrade("speed", PlayerType.Right));
-            Assert.Equal(30, GameStateSingleton.Instance.RightPlayerState.Turret.Damage);
+            Assert.Equal(10.5, GameStateSingleton.Instance.RightPlayerState.Turret.Damage);
             Assert.Equal(11, GameStateSingleton.Instance.RightPlayerState.Turret.Speed);
-            Assert.Equal(60, GameStateSingleton.Instance.RightPlayerState.Turret.Range);
+            Assert.Equal(15, GameStateSingleton.Instance.RightPlayerState.Turret.Range);
 
 
             GameStateSingleton.Instance.LeftPlayerState.Turret = null;
@@ -121,9 +121,9 @@ namespace tower_battle_tests.ServicesTests
             _turretService.Create(PlayerType.Left);
             GameStateSingleton.Instance.LeftPlayerState.Money = 600;
             Assert.True(_turretService.Upgrade("damage", PlayerType.Left));
-            Assert.Equal(30, GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);
+            Assert.Equal(10.5, GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);
             Assert.Equal(1, GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
-            Assert.Equal(50, GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
+            Assert.Equal(5, GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
         }
         [Fact]
         public void BuyTurretUpgradeWithNotExistingTypeTest()
