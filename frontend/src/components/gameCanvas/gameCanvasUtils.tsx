@@ -19,12 +19,7 @@ export const drawTurret = (
     ctx.fillStyle = isRightPlayer ? "red" : "blue";
     const turretPosition = worldToScreenCoordinates(turret.position);
     const turretScale: Vector2 = { x: 50, y: 50 };
-    ctx.fillRect(
-      turretPosition.x,
-      210,
-      turretScale.x,
-      turretScale.y
-    );
+    ctx.fillRect(turretPosition.x, 210, turretScale.x, turretScale.y);
   }
 };
 
@@ -46,7 +41,7 @@ export const drawUnit = (
     position.x - scale.x / 2,
     unit.type === "fast" ? position.y - 23 : position.y,
     scale.x,
-    scale.y,
+    scale.y
   );
 
   drawHealthBar(ctx, unit);
@@ -55,42 +50,41 @@ export const drawUnit = (
 const getImageSource = (unitType: string, isRightPlayer: boolean): string => {
   if (!isRightPlayer) {
     switch (unitType) {
-      case "slow":
+      case "StoneAgeTank":
         return "images/Level1Units/SlowUnit.svg";
-      case "normal":
+      case "StoneAgeSoldier":
         return "images/Level1Units/NormalUnit.svg";
-      case "fast":
+      case "StoneAgeScout":
         return "images/Level1Units/FastUnit.svg";
-      case "slow2":
+      case "BronzeAgeTank":
         return "images/Level2Units/SlowUnit.svg";
-      case "normal2":
+      case "BronzeAgeSoldier":
         return "images/Level2Units/NormalUnit.svg";
-      case "fast2":
+      case "BronzeAgeScout":
         return "images/Level2Units/FastUnit.svg";
       case "LevelUpUnit":
         return "images/LevelUpUnit.svg";
     }
-  }
-  else {
+  } else {
     switch (unitType) {
-      case "slow":
+      case "StoneAgeTank":
         return "images/Level1Units/SlowUnit2.svg";
-      case "normal":
+      case "StoneAgeSoldier":
         return "images/Level1Units/NormalUnit2.svg";
-      case "fast":
+      case "StoneAgeScout":
         return "images/Level1Units/FastUnit2.svg";
-      case "slow2":
+      case "BronzeAgeTank":
         return "images/Level2Units/SlowUnit.svg";
-      case "normal2":
+      case "BronzeAgeSoldier":
         return "images/Level2Units/NormalUnit.svg";
-      case "fast2":
+      case "BronzeAgeScout":
         return "images/Level2Units/FastUnit.svg";
       case "LevelUpUnit":
         return "images/LevelUpUnit.svg";
     }
   }
   return "";
-}
+};
 
 const drawHealthBar = (ctx: CanvasRenderingContext2D, unit: Unit) => {
   ctx.beginPath();

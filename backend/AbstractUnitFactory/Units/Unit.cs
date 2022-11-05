@@ -5,7 +5,7 @@ namespace tower_battle.AbstractUnitFactory.Units;
 
 public abstract class Unit : Observer.Observer
 {
-    public string Type { get; set; }
+    public abstract string Type { get; }
     public Vector2 Position { get; set; }
     public UnitType UnitType { get; set; }
     protected abstract float DamageMultiplier { get; }
@@ -22,6 +22,8 @@ public abstract class Unit : Observer.Observer
         get => UnitType.Health;
         private set => UnitType.Health = value;
     }
+
+    public float InitialHealth => UnitType.InitialHealth;
 
     public void DealDamage(Unit unit)
     {
