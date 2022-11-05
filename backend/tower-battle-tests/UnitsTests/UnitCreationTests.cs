@@ -26,7 +26,7 @@ namespace tower_battle_tests.UnitsTests
         {
             unit = _stoneAgeFactory.CreateSoldier();
 
-            Assert.Equal(2, unit.Damage);
+            Assert.Equal(2.2, unit.Damage);
             Assert.Equal(100, unit.Health);
             Assert.Equal(50, unit.KillReward);
             Assert.Equal(100, unit.Cost);
@@ -36,7 +36,7 @@ namespace tower_battle_tests.UnitsTests
         {
             unit = _stoneAgeFactory.CreateTank();
 
-            Assert.Equal(2, unit.Damage);
+            Assert.Equal(2.2, unit.Damage);
             Assert.Equal(150, unit.Health);
             Assert.Equal(75, unit.KillReward);
             Assert.Equal(150, unit.Cost);

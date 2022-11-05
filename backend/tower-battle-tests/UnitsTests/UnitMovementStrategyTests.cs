@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using tower_battle.AbstractUnitFactory.Builder;
+﻿using tower_battle.AbstractUnitFactory.Builder;
 using tower_battle.AbstractUnitFactory.Units;
-using tower_battle.AbstractUnitFactory.Units.Level1;
 using tower_battle.AbstractUnitFactory.Units.MovementStrategies;
+using tower_battle.AbstractUnitFactory.Units.Types;
 
 namespace tower_battle_tests.UnitsTests
 {
@@ -16,29 +11,32 @@ namespace tower_battle_tests.UnitsTests
         [Fact]
         public void TestSlowMovement()
         {
-            Unit unit = new Level1TankUnit();
-            IUnitTypeBuilder unitTypeBuilder = new TankUnitTypeBuilder(unit);
-            unit = unitTypeBuilder.AddMovement(new SlowMovementStrategy()).AddDamage(2).AddHealth(100).AddKillReward(50).AddCost(100).Build();
+            IUnitTypeBuilder unitTypeBuilder = new TankUnitTypeBuilder(new TankType());
+            var unitType = unitTypeBuilder.SetMovement(new SlowMovementStrategy()).SetDamage(2).SetHealth(100).SetKillReward(50).SetCost(100).Build();
+            
+            Unit unit = new StoneAgeUnit{ UnitType = unitType };
 
-            Assert.Equal(1.5f, unit.Speed);
+            Assert.Equal(1.5f, unit.UnitType.MovementStrategy.Speed);
         }
         [Fact]
         public void TestNormalMovement()
         {
-            Unit unit = new Level1NormalSoldierType();
-            IUnitTypeBuilder unitTypeBuilder = new SoldierUnitTypeBuilder(unit);
-            unit = unitTypeBuilder.AddMovement(new NormalMovementStrategy()).AddDamage(2).AddHealth(100).AddKillReward(50).AddCost(100).Build();
+            IUnitTypeBuilder unitTypeBuilder = new SoldierUnitTypeBuilder(new SoldierType());
+            var unitType = unitTypeBuilder.SetMovement(new NormalMovementStrategy()).SetDamage(2).SetHealth(100).SetKillReward(50).SetCost(100).Build();
 
-            Assert.Equal(3f, unit.Speed);
+            Unit unit = new StoneAgeUnit{ UnitType = unitType };
+            
+            Assert.Equal(3f, unit.UnitType.MovementStrategy.Speed);
         }
         [Fact]
         public void TestFastMovement()
         {
-            Unit unit = new Level1ScoutType();
-            IUnitTypeBuilder unitTypeBuilder = new FastMeleeUnitTypeBuilder(unit);
-            unit = unitTypeBuilder.AddMovement(new FastMovementStrategy()).AddDamage(2).AddHealth(100).AddKillReward(50).AddCost(100).Build();
+            IUnitTypeBuilder unitTypeBuilder = new ScoutUnitTypeBuilder(new ScoutType());
+            var unitType = unitTypeBuilder.SetMovement(new FastMovementStrategy()).SetDamage(2).SetHealth(100).SetKillReward(50).SetCost(100).Build();
 
-            Assert.Equal(6f, unit.Speed);
+            Unit unit = new StoneAgeUnit{ UnitType = unitType };
+            
+            Assert.Equal(3f, unit.UnitType.MovementStrategy.Speed);
         }
 
     }
