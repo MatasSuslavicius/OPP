@@ -20,7 +20,7 @@ public abstract class Unit : Observer.Observer
     public float Health
     {
         get => UnitType.Health;
-        private set => UnitType.Health = value;
+        set => UnitType.Health = value;
     }
 
     public float InitialHealth => UnitType.InitialHealth;

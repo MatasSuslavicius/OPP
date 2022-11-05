@@ -52,11 +52,13 @@ namespace tower_battle.Services
         {
             foreach(Unit leftPlayerUnit in state.LeftPlayerState.Units)
             {
-                if(unit != leftPlayerUnit && 
-                    PositionRangesOverlap(
-                        unit.Position.X + (unit.Scale.X / 2),
-                        leftPlayerUnit.Position.X - (leftPlayerUnit.Scale.X / 2),
-                        leftPlayerUnit.Position.X + (leftPlayerUnit.Scale.X / 2)))
+                if(unit != leftPlayerUnit && leftPlayerUnit.Type != "Turret" &&
+                   PositionRangesOverlap(
+                       unit.Position.X - (unit.Scale.X / 2),
+                       unit.Position.X + (unit.Scale.X / 2),
+                       leftPlayerUnit.Position.X - (leftPlayerUnit.Scale.X / 2),
+                       leftPlayerUnit.Position.X + (leftPlayerUnit.Scale.X / 2),
+                       unit.Type == "Turret"))
                 {
                     return (CollidingWith.LeftPlayerUnit, leftPlayerUnit);
                 }
@@ -64,11 +66,13 @@ namespace tower_battle.Services
 
             foreach (Unit rightPlayerUnit in state.RightPlayerState.Units)
             {
-                if (unit != rightPlayerUnit &&
+                if (unit != rightPlayerUnit && rightPlayerUnit.Type != "Turret" &&
                     PositionRangesOverlap(
+                        unit.Position.X + (unit.Scale.X / 2),
                         unit.Position.X - (unit.Scale.X / 2),
                         rightPlayerUnit.Position.X - (rightPlayerUnit.Scale.X / 2),
-                        rightPlayerUnit.Position.X + (rightPlayerUnit.Scale.X / 2)))
+                        rightPlayerUnit.Position.X + (rightPlayerUnit.Scale.X / 2),
+                        unit.Type == "Turret"))
                 {
                     return (CollidingWith.RightPlayerUnit, rightPlayerUnit);
                 }
@@ -77,8 +81,12 @@ namespace tower_battle.Services
             return (CollidingWith.NoOne, null);
         }
 
-        private static bool PositionRangesOverlap(float aEnd, float bStart, float bEnd)
+        private static bool PositionRangesOverlap(float aStart, float aEnd, float bStart, float bEnd, bool isTurret = false)
         {
+            if (isTurret)
+            {
+                return aStart > bStart && aStart < bEnd;
+            }
             return aEnd > bStart && aEnd < bEnd;
         }
     }

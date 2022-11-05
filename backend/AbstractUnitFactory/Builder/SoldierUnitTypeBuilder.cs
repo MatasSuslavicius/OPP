@@ -1,6 +1,7 @@
 ﻿using tower_battle.AbstractUnitFactory.Units;
 using tower_battle.AbstractUnitFactory.Units.MovementStrategies;
 using tower_battle.AbstractUnitFactory.Units.Types;
+using tower_battle.Models;
 
 namespace tower_battle.AbstractUnitFactory.Builder
 {
@@ -14,7 +15,14 @@ namespace tower_battle.AbstractUnitFactory.Builder
             return this;
         }
 
-        public override IUnitTypeBuilder SetDamage(int damage)
+        public override IUnitTypeBuilder SetScale(Vector2 scale)
+        {
+            unitType.Scale.X = scale.X;
+            unitType.Scale.Y = scale.Y;
+            return this;
+        }
+
+        public override IUnitTypeBuilder SetDamage(float damage)
         {
             unitType.Damage = damage;
             return this;

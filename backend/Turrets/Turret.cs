@@ -14,9 +14,9 @@ namespace tower_battle.Turrets
         }
         public Turret CreateAction()
         {            
-            this.Damage = 20;
+            this.Damage = 0.5f;
             this.Speed = 1;
-            this.Range = 50;
+            this.Range = 5;
             return this;
         }
 

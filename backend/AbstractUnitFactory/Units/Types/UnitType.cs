@@ -6,7 +6,7 @@ namespace tower_battle.AbstractUnitFactory.Units.Types;
 public abstract class UnitType
 {
     public abstract string Name { get; }
-    public abstract Vector2 Scale { get; }
+    public Vector2 Scale { get; set; }
     public MovementStrategy MovementStrategy { get; set; }
     public int Cost { get; set; }
     public float InitialHealth { get; set; }
