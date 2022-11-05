@@ -9,9 +9,9 @@ namespace tower_battle.AbstractUnitFactory.Factories
             switch (level)
             {
                 case 1:
-                    return new Level1UnitFactory(playerType);
+                    return new StoneAgeUnitFactory(playerType);
                 case 2:
-                    return new Level2UnitFactory(playerType);
+                    return new BronzeAgeUnitFactory(playerType);
                 default:
                     throw new Exception("Invalid level");
             }

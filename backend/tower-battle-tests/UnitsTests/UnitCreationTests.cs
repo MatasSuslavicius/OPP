@@ -14,8 +14,8 @@ namespace tower_battle_tests.UnitsTests
     {
         
         private static ICreator factoryCreator = new UnitFactory();
-        private static Level1UnitFactory level1Factory = new Level1UnitFactory(PlayerType.Left);
-        private static Level2UnitFactory level2Factory = new Level2UnitFactory(PlayerType.Left);
+        private static StoneAgeUnitFactory _stoneAgeFactory = new StoneAgeUnitFactory(PlayerType.Left);
+        private static BronzeAgeUnitFactory _bronzeAgeFactory = new BronzeAgeUnitFactory(PlayerType.Left);
         private static Unit unit;
 
         //builder.AddMovement(strategy).AddDamage(2).AddHealth(100).AddKillReward(50).AddCost(100).Build();
@@ -24,7 +24,7 @@ namespace tower_battle_tests.UnitsTests
         [Fact]
         public void CreateLevel1NormalMeleeUnitTest()
         {
-            unit = level1Factory.CreateNormalMelee();
+            unit = _stoneAgeFactory.CreateSoldier();
 
             Assert.Equal(2, unit.Damage);
             Assert.Equal(100, unit.Health);
@@ -34,7 +34,7 @@ namespace tower_battle_tests.UnitsTests
         [Fact]
         public void CreateLevel1SlowMeleeUnitTest()
         {
-            unit = level1Factory.CreateSlowMelee();
+            unit = _stoneAgeFactory.CreateTank();
 
             Assert.Equal(2, unit.Damage);
             Assert.Equal(150, unit.Health);
@@ -44,7 +44,7 @@ namespace tower_battle_tests.UnitsTests
         [Fact]
         public void CreateLevel1FastMeleeUnitTest()
         {
-            unit = level1Factory.CreateFastMelee();
+            unit = _stoneAgeFactory.CreateScout();
 
             Assert.Equal(2, unit.Damage);
             Assert.Equal(75, unit.Health);
@@ -54,7 +54,7 @@ namespace tower_battle_tests.UnitsTests
         [Fact]
         public void CreateLevel2NormalMeleeUnitTest()
         {
-            unit = level2Factory.CreateNormalMelee();
+            unit = _bronzeAgeFactory.CreateSoldier();
 
             Assert.Equal(4, unit.Damage);
             Assert.Equal(200, unit.Health);
@@ -64,7 +64,7 @@ namespace tower_battle_tests.UnitsTests
         [Fact]
         public void CreateLevel2SlowMeleeUnitTest()
         {
-            unit = level2Factory.CreateSlowMelee();
+            unit = _bronzeAgeFactory.CreateTank();
 
             Assert.Equal(4, unit.Damage);
             Assert.Equal(300, unit.Health);
@@ -74,7 +74,7 @@ namespace tower_battle_tests.UnitsTests
         [Fact]
         public void CreateLevel2FastMeleeUnitTest()
         {
-            unit = level2Factory.CreateFastMelee();
+            unit = _bronzeAgeFactory.CreateScout();
 
             Assert.Equal(4, unit.Damage);
             Assert.Equal(150, unit.Health);

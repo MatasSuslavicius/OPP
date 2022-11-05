@@ -1,4 +1,5 @@
 ﻿using tower_battle.AbstractUnitFactory.Units;
+using tower_battle.AbstractUnitFactory.Units.MovementStrategies;
 using tower_battle.Models;
 
 namespace tower_battle.Services
@@ -17,7 +18,7 @@ namespace tower_battle.Services
                 var (collidingWith, collidingUnit) = UnitColliding(leftPlayerUnit, state);
                 if(collidingWith == CollidingWith.NoOne)
                 {
-                    leftPlayerUnit.Position.X += leftPlayerUnit.Speed * GameManager.UPDATE_TIME;
+                    leftPlayerUnit.UnitType.MovementStrategy.Move(Direction.Right, leftPlayerUnit);
                 }
                 else if (collidingWith == CollidingWith.RightPlayerUnit)
                 {
@@ -34,7 +35,7 @@ namespace tower_battle.Services
                 var (collidingWith, collidingUnit) = UnitColliding(rightPlayerUnit, state);
                 if (collidingWith == CollidingWith.NoOne)
                 {
-                    rightPlayerUnit.Position.X -= rightPlayerUnit.Speed * GameManager.UPDATE_TIME;
+                    rightPlayerUnit.UnitType.MovementStrategy.Move(Direction.Left, rightPlayerUnit);
                 }
                 else if (collidingWith == CollidingWith.LeftPlayerUnit)
                 {

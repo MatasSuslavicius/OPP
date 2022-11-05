@@ -26,14 +26,14 @@ namespace tower_battle.Services
             Unit unit;
             switch (unitType)
             {
-                case "normal":
-                    unit = levelFactory.CreateNormalMelee();
+                case "Soldier":
+                    unit = levelFactory.CreateSoldier();
                     break;
-                case "fast":
-                    unit = levelFactory.CreateFastMelee();
+                case "Scout":
+                    unit = levelFactory.CreateScout();
                     break;
-                case "slow":
-                    unit = levelFactory.CreateSlowMelee();
+                case "Tank":
+                    unit = levelFactory.CreateTank();
                     break;
                 default:
                     throw new Exception("Invalid unit type");

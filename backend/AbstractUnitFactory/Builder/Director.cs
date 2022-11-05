@@ -1,17 +1,17 @@
-﻿using tower_battle.AbstractUnitFactory.Units;
-using tower_battle.AbstractUnitFactory.Units.MovementStrategy;
+﻿using tower_battle.AbstractUnitFactory.Units.MovementStrategies;
+using tower_battle.AbstractUnitFactory.Units.Types;
 
 namespace tower_battle.AbstractUnitFactory.Builder
 {
     public class Director
     {
-        public Unit ConstructLevel1(IBuilder builder, MoveStrategy strategy)
+        public UnitType ConstructStoneAgeUnitType(IUnitTypeBuilder unitTypeBuilder, MovementStrategy strategy)
         {
-            return builder.AddMovement(strategy).AddDamage(2).AddHealth(100).AddKillReward(150).AddCost(100).Build();
+            return unitTypeBuilder.SetMovement(strategy).SetDamage(2).SetHealth(100).SetKillReward(150).SetCost(100).Build();
         }
-        public Unit ConstructLevel2(IBuilder builder, MoveStrategy strategy)
+        public UnitType ConstructBronzeAgeUnitType(IUnitTypeBuilder unitTypeBuilder, MovementStrategy strategy)
         {
-            return builder.AddMovement(strategy).AddDamage(4).AddHealth(200).AddKillReward(400).AddCost(300).Build();
+            return unitTypeBuilder.SetMovement(strategy).SetDamage(4).SetHealth(200).SetKillReward(400).SetCost(300).Build();
         }
     }
 }

@@ -20,8 +20,8 @@ namespace tower_battle.AbstractUnitFactory
         }
         
         protected Director Director = new ();
-        public abstract Unit CreateNormalMelee();
-        public abstract Unit CreateFastMelee();
-        public abstract Unit CreateSlowMelee();
+        public abstract Unit CreateSoldier();
+        public abstract Unit CreateScout();
+        public abstract Unit CreateTank();
     }
 }

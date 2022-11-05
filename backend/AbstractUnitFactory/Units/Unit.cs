@@ -1,41 +1,30 @@
 ﻿using tower_battle.Models;
-using tower_battle.AbstractUnitFactory.Units.MovementStrategy;
+using tower_battle.AbstractUnitFactory.Units.Types;
 
-namespace tower_battle.AbstractUnitFactory.Units
+namespace tower_battle.AbstractUnitFactory.Units;
+
+public abstract class Unit : Observer.Observer
 {
-    public abstract class Unit : Observer.Observer
+    public string Type { get; set; }
+    public Vector2 Position { get; set; }
+    public UnitType UnitType { get; set; }
+    protected abstract float DamageMultiplier { get; }
+    protected abstract float KillRewardMultiplier { get; }
+    protected abstract float CostMultiplier { get; }
+
+    public float KillReward => KillRewardMultiplier * UnitType.KillReward;
+    public float Damage => DamageMultiplier * UnitType.Damage;
+    public Vector2 Scale => UnitType.Scale;
+    public int Cost => (int)(CostMultiplier * UnitType.Cost);
+
+    public float Health
     {
-        public float Speed { get; set; }
-        public Vector2 Position { get; set; }
-        public abstract Vector2 Scale { get; set; }
-        public double Cost { get; set; }
-        public double InitialHealth { get; set; }
+        get => UnitType.Health;
+        private set => UnitType.Health = value;
+    }
 
-        public double Health { get; set; }
-
-        public double KillReward { get; set; } //TODO: Change type to GoldReward/XPReward ?
-        public double Damage { get; set; }
-
-        public string Type { get; set; }
-
-        public MoveStrategy MoveStrategy;
-        public MoveStrategy GetMoveStrategy ()
-        {
-            return MoveStrategy;
-        }
-        public void SetMoveStrategy (MoveStrategy moveStrategy, Unit unit)
-        {
-            this.MoveStrategy = moveStrategy;
-            this.MoveStrategy.MoveDifferently(unit);
-        }
-        public override void UpdateUnits()
-        {
-            this.Type = "LevelUpUnit";
-        }
-        
-        public void DealDamage(Unit unit)
-        {
-            unit.Health -= this.Damage;
-        }
+    public void DealDamage(Unit unit)
+    {
+        unit.Health -= Damage;
     }
 }

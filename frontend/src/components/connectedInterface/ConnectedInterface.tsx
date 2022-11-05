@@ -1,28 +1,32 @@
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { GameState, INITIAL_GAME_STATE, PlayerType } from "../../contracts/contracts";
+import {
+  GameState,
+  INITIAL_GAME_STATE,
+  PlayerType,
+} from "../../contracts/contracts";
 import { UrlManager } from "../../Utils/UrlManager";
 import Interface from "../interface/Interface";
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
 
 const ConnectedInterface = () => {
   const cookies = new Cookies();
   const [connection, setConnection] = useState<HubConnection>();
   const [gameState, setGameState] = useState<GameState>(INITIAL_GAME_STATE);
-  const [userId, setUserId] = useState<String>(cookies.get('UserId'));
+  const [userId, setUserId] = useState<String>(cookies.get("UserId"));
   const [playerType, setPlayerType] = useState<PlayerType>(PlayerType.Default);
 
   const getUserId = (): String => {
     if (!userId || userId.length === 0) {
       let tempId = crypto.randomUUID();
       setUserId(tempId);
-      cookies.set('UserId', tempId, { path: '/' });
+      cookies.set("UserId", tempId, { path: "/" });
       return tempId;
     }
 
     return userId;
-  }
+  };
 
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
@@ -41,7 +45,9 @@ const ConnectedInterface = () => {
   useEffect(() => {
     const joinGame = async () => {
       if (connection?.connectionId) {
-        const response = await axios.get<PlayerType>(UrlManager.getPlayerTypeEndpoint(userId));
+        const response = await axios.get<PlayerType>(
+          UrlManager.getPlayerTypeEndpoint(userId)
+        );
         setPlayerType(response.data);
       }
     };
@@ -61,7 +67,6 @@ const ConnectedInterface = () => {
   const handleSellTurretClick = async () => {
     connection?.invoke("SellTurret");
   };
-
 
   return (
     <Interface
