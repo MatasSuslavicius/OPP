@@ -26,7 +26,7 @@ const Interface = ({
     axios({
       method: "post",
       url: UrlManager.getLevelUpEndpoint(),
-      data: {
+      params: {
         isRightPlayer: playerType === PlayerType.Right,
       },
     });

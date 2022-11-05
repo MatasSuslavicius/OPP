@@ -74,11 +74,11 @@ const getImageSource = (unitType: string, isRightPlayer: boolean): string => {
       case "StoneAgeScout":
         return "images/Level1Units/FastUnit2.svg";
       case "BronzeAgeTank":
-        return "images/Level2Units/SlowUnit.svg";
+        return "images/Level2Units/SlowUnit2.svg";
       case "BronzeAgeSoldier":
-        return "images/Level2Units/NormalUnit.svg";
+        return "images/Level2Units/NormalUnit2.svg";
       case "BronzeAgeScout":
-        return "images/Level2Units/FastUnit.svg";
+        return "images/Level2Units/FastUnit2.svg";
       case "LevelUpUnit":
         return "images/LevelUpUnit.svg";
     }

@@ -16,7 +16,7 @@ namespace tower_battle.Controllers
         
 
         [HttpPost("LevelUp")]
-        public async Task<IActionResult> LevelUp(bool isRightPlayer)
+        public async Task<IActionResult> LevelUp([FromQuery]bool isRightPlayer)
         {
             return Ok(m_unitService.LevelUp(isRightPlayer));
         }
