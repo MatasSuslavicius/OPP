@@ -1,6 +1,4 @@
-﻿using tower_battle.Models;
-
-namespace tower_battle.AbstractUnitFactory.Units
+﻿namespace tower_battle.AbstractUnitFactory.Units
 {
     public class UnitHealth
     {

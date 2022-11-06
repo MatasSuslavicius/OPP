@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using tower_battle.AbstractUnitFactory;
+﻿using tower_battle.AbstractUnitFactory;
 using tower_battle.AbstractUnitFactory.Factories;
 using tower_battle.AbstractUnitFactory.Units;
 using tower_battle.Models;
@@ -12,7 +7,6 @@ namespace tower_battle_tests.UnitsTests
 {
     public class UnitCreationTests
     {
-        
         private static ICreator factoryCreator = new UnitFactory();
         private static StoneAgeUnitFactory _stoneAgeFactory = new StoneAgeUnitFactory(PlayerType.Left);
         private static BronzeAgeUnitFactory _bronzeAgeFactory = new BronzeAgeUnitFactory(PlayerType.Left);
@@ -31,6 +25,7 @@ namespace tower_battle_tests.UnitsTests
             Assert.Equal(195, unit.KillReward, 5);
             Assert.Equal(130, unit.Cost);
         }
+
         [Fact]
         public void CreateLevel1SlowMeleeUnitTest()
         {
@@ -41,6 +36,7 @@ namespace tower_battle_tests.UnitsTests
             Assert.Equal(292.5, unit.KillReward, 5);
             Assert.Equal(195, unit.Cost);
         }
+
         [Fact]
         public void CreateLevel1FastMeleeUnitTest()
         {
@@ -51,6 +47,7 @@ namespace tower_battle_tests.UnitsTests
             Assert.Equal(195, unit.KillReward, 5);
             Assert.Equal(260, unit.Cost);
         }
+
         [Fact]
         public void CreateLevel2NormalMeleeUnitTest()
         {
@@ -61,6 +58,7 @@ namespace tower_battle_tests.UnitsTests
             Assert.Equal(600, unit.KillReward, 5);
             Assert.Equal(420, unit.Cost);
         }
+
         [Fact]
         public void CreateLevel2SlowMeleeUnitTest()
         {
@@ -71,6 +69,7 @@ namespace tower_battle_tests.UnitsTests
             Assert.Equal(900, unit.KillReward, 5);
             Assert.Equal(630, unit.Cost);
         }
+
         [Fact]
         public void CreateLevel2FastMeleeUnitTest()
         {
@@ -80,6 +79,31 @@ namespace tower_battle_tests.UnitsTests
             Assert.Equal(150, unit.Health, 5);
             Assert.Equal(600, unit.KillReward, 5);
             Assert.Equal(840, unit.Cost);
+        }
+
+        [Fact]
+        public void CopyCreatedUnitTest()
+        {
+            var firstUnit = _stoneAgeFactory.CreateScout();
+            var intitialHealth = firstUnit.Health;
+            var secondUnit = _stoneAgeFactory.CreateTank();
+            var unitCopy = firstUnit.CopyShallow();
+
+            secondUnit.DealDamage(firstUnit);
+
+            Assert.Equal(firstUnit.Health, unitCopy.Health);
+            Assert.NotEqual(firstUnit.Health, intitialHealth);
+        }
+
+        [Fact]
+        public void CreatedDeepCopyUnitTest()
+        {
+            var firstUnit = _stoneAgeFactory.CreateScout();
+
+            firstUnit.Health = 200;
+
+            Assert.Equal(200, firstUnit.Health);
+            Assert.Equal(firstUnit.Health, firstUnit.CopyDeep().Health);
         }
     }
 }
