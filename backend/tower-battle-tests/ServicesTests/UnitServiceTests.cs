@@ -14,12 +14,14 @@ namespace tower_battle_tests.ServicesTests
         private readonly UnitService _unitService = new UnitService();
 
         [Fact]
-        public void BuyUnitAndTimeNowPassedTest()
+        public void BuyUnitAndTimeNotPassedTest()
         {
+            //GameStateSingleton.Instance.LeftPlayerState.LastBuy = System.DateTime.Today;
             GameStateSingleton.Instance.LeftPlayerState.Money = 500;
 
             Assert.False(_unitService.Create("Soldier", PlayerType.Left));
 
+            //GameStateSingleton.Instance.RightPlayerState.LastBuy = System.DateTime.Today;
             GameStateSingleton.Instance.RightPlayerState.Money = 500;
 
             Assert.False(_unitService.Create("Soldier", PlayerType.Right));
@@ -41,6 +43,7 @@ namespace tower_battle_tests.ServicesTests
         public void BuyUnitAndEnoughMoneyTest()
         {
             _unitService.ResetLevel();
+            _unitService.ClearUnits();
             GameStateSingleton.Instance.LeftPlayerState.Money = 500;
             GameStateSingleton.Instance.LeftPlayerState.LastBuy = System.DateTime.Today;
             Assert.False(GameStateSingleton.Instance.LeftPlayerState.Units.Count > 0);
@@ -99,6 +102,10 @@ namespace tower_battle_tests.ServicesTests
             Assert.Equal(1, GameStateSingleton.Instance.RightPlayerState.Level);
             _unitService.LevelUp(true);
             Assert.Equal(2, GameStateSingleton.Instance.RightPlayerState.Level);
+
+            Assert.Equal(1, GameStateSingleton.Instance.LeftPlayerState.Level);
+            _unitService.LevelUp(false);
+            Assert.Equal(2, GameStateSingleton.Instance.LeftPlayerState.Level);
         }
         [Fact]
         public void LevelUpIfAlreadyLevel2Test()
@@ -107,6 +114,11 @@ namespace tower_battle_tests.ServicesTests
             Assert.Equal(2, GameStateSingleton.Instance.RightPlayerState.Level);
             Assert.False(_unitService.LevelUp(true));
             Assert.Equal(2, GameStateSingleton.Instance.RightPlayerState.Level);
+
+            _unitService.LevelUp(false);
+            Assert.Equal(2, GameStateSingleton.Instance.LeftPlayerState.Level);
+            Assert.False(_unitService.LevelUp(false));
+            Assert.Equal(2, GameStateSingleton.Instance.LeftPlayerState.Level);
         }
         [Fact]
         public void ResetLevelTest()

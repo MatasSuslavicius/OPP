@@ -78,14 +78,12 @@ namespace tower_battle_tests.ServicesTests
         {
             GameStateSingleton.Instance.RightPlayerState.Money = 500;
             _turretService.Create(PlayerType.Right);
-            GameStateSingleton.Instance.RightPlayerState.Money = 100;
-
+            GameStateSingleton.Instance.RightPlayerState.Money = 0;
             Assert.False(_turretService.Upgrade("damage", PlayerType.Right));
 
             GameStateSingleton.Instance.LeftPlayerState.Money = 500;
             _turretService.Create(PlayerType.Left);
-            GameStateSingleton.Instance.LeftPlayerState.Money = 100;
-
+            GameStateSingleton.Instance.LeftPlayerState.Money = 0;
             Assert.False(_turretService.Upgrade("damage", PlayerType.Left));
         }
         [Fact]
