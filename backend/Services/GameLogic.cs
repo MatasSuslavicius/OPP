@@ -1,6 +1,8 @@
 ﻿using tower_battle.AbstractUnitFactory.Units;
 using tower_battle.AbstractUnitFactory.Units.MovementStrategies;
 using tower_battle.Models;
+using tower_battle.Turrets;
+using tower_battle.Turrets.Decorator;
 
 namespace tower_battle.Services
 {
@@ -88,6 +90,26 @@ namespace tower_battle.Services
                 return aStart > bStart && aStart < bEnd;
             }
             return aEnd > bStart && aEnd < bEnd;
+        }
+
+        public static void OnTurretUpgrade(PlayerState playerState)
+        {
+            var turretUnit = playerState.Units.FirstOrDefault(u => u.Type == "Turret") as TurretToUnitAdapter;
+            
+            if (turretUnit != null)
+            {
+                turretUnit.UpdateTurretValues();
+            }
+        }
+
+        public static void OnTurretSell(PlayerState playerState)
+        {
+            var turretUnit = playerState.Units.FirstOrDefault(u => u.Type == "Turret") as TurretToUnitAdapter;
+            
+            if (turretUnit != null)
+            {
+                playerState.Units.Remove(turretUnit);
+            }
         }
     }
 }

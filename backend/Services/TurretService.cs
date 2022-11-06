@@ -64,6 +64,7 @@ namespace tower_battle.Services
                 turretInvoker.UndoBuy();
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turretInvoker.turret;
                 GameStateSingleton.Instance.LeftPlayerState.Money += turretPrice*0.9;
+                GameLogic.OnTurretSell(GameStateSingleton.Instance.LeftPlayerState);
             }
             else if (playerType == PlayerType.Right)
             {
@@ -71,6 +72,7 @@ namespace tower_battle.Services
                 turretInvoker.UndoBuy();
                 GameStateSingleton.Instance.RightPlayerState.Turret = turretInvoker.turret;
                 GameStateSingleton.Instance.RightPlayerState.Money += turretPrice*0.9;
+                GameLogic.OnTurretSell(GameStateSingleton.Instance.RightPlayerState);
             }
             return true;
            
@@ -122,9 +124,7 @@ namespace tower_battle.Services
                 }
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turret;
                 GameStateSingleton.Instance.LeftPlayerState.Money -= upgradePrice;
-                System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);   //PACHECKINIMUI UPGRADES
-                System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
-                System.Diagnostics.Debug.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
+                GameLogic.OnTurretUpgrade(GameStateSingleton.Instance.LeftPlayerState);
             }
             else if (playerType == PlayerType.Right)
             {
@@ -134,6 +134,7 @@ namespace tower_battle.Services
                 }
                 GameStateSingleton.Instance.RightPlayerState.Turret = turret;
                 GameStateSingleton.Instance.RightPlayerState.Money -= upgradePrice;
+                GameLogic.OnTurretUpgrade(GameStateSingleton.Instance.RightPlayerState);
             }
 
             return true;
