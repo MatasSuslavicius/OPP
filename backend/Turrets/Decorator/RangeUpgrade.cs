@@ -7,7 +7,7 @@
         }
         public override void UpgradeTurret()
         {
-            turret.Range += 10;
+            turret.Range += 5;
         }
         public ITurret Get()
         {

@@ -11,7 +11,7 @@ namespace tower_battle.Services
     public class TurretService
     {
         private int turretPrice = 500;
-        private int upgradePrice = 200;
+        private int upgradePrice = 20;
         public bool Create(PlayerType playerType)
         {
             if ((playerType == PlayerType.Left && GameStateSingleton.Instance.LeftPlayerState.Turret != null) ||

@@ -7,7 +7,7 @@
         }
         public override void UpgradeTurret()
         {
-            turret.Damage += 10;
+            turret.Damage += 0.5f;
         }
         public ITurret Get()
         {
