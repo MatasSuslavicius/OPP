@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="tower-battle-integration-tests\**" />
     <Compile Remove="tower-battle-tests\**" />
+    <Content Remove="tower-battle-integration-tests\**" />
     <Content Remove="tower-battle-tests\**" />
+    <EmbeddedResource Remove="tower-battle-integration-tests\**" />
     <EmbeddedResource Remove="tower-battle-tests\**" />
+    <None Remove="tower-battle-integration-tests\**" />
     <None Remove="tower-battle-tests\**" />
   </ItemGroup>
 
