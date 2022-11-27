@@ -24,7 +24,7 @@ namespace tower_battle.Models
 
     public class PlayerState
     {
-        public ICollection<Unit> Units { get; set; } = new List<Unit>();
+        public UnitCollection Units { get; set; } = new ();
         public ITurret Turret { get; set; }
         public double Money { get; set; } = 700;
         public double Experience { get; set; } = 0;
