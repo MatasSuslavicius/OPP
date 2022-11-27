@@ -127,9 +127,9 @@ export const worldToScreenScale = (worldScale: Vector2) => {
 export const worldToScreenCoordinates = (worldPosition: Vector2) => {
   /* World coordinates are from -10 to 10, where 0 is the center of the screen,
    -10 is the left spawm point and 10 is the right spawn point.
-   The y position in world coordinates is always 0. Assuming Canvas is always 1024 by 575 */
+    Assuming Canvas is always 1024 by 575 */
   return {
     x: ((worldPosition.x + 10) * (1024 - 150)) / 20 + 75,
-    y: 490,
+    y: 490 + worldPosition.y * 0.1,
   };
 };
