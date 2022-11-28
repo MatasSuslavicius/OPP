@@ -29,16 +29,4 @@ public abstract class Unit : Observer.Observer
     {
         unit.Health -= Damage;
     }
-
-    public Unit CopyShallow()
-    {
-        return (Unit) this.MemberwiseClone();
-    }
-
-    public Unit CopyDeep()
-    {
-        Unit copy = CopyShallow();
-        copy.Health = this.Health;
-        return copy;
-    }
 }
