@@ -10,21 +10,30 @@ export enum Level {
   BronzeAge = 2,
 }
 
+export interface ArmyUnit {
+  unitCount: number;
+  children: ArmyUnit[];
+}
+
+export const INITIAL_PLAYER_STATE: PlayerState = {
+  units: [],
+  money: 500,
+  experience: 0,
+  turret: null,
+  level: 1,
+  army: {
+    unitCount: 0,
+    children: [
+      { unitCount: 0, children: [] },
+      { unitCount: 0, children: [] },
+      { unitCount: 0, children: [] },
+    ],
+  },
+};
+
 export const INITIAL_GAME_STATE: GameState = {
-  rightPlayerState: {
-    units: [],
-    money: 500,
-    experience: 0,
-    turret: null,
-    level: 1,
-  },
-  leftPlayerState: {
-    units: [],
-    money: 500,
-    experience: 0,
-    turret: null,
-    level: 1,
-  },
+  rightPlayerState: INITIAL_PLAYER_STATE,
+  leftPlayerState: INITIAL_PLAYER_STATE,
   isLeveledUp: false,
 };
 
@@ -40,6 +49,7 @@ export interface PlayerState {
   experience: number;
   turret: Turret | null;
   level: number;
+  army: ArmyUnit;
 }
 
 export interface Turret {

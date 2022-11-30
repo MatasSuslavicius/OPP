@@ -49,6 +49,11 @@ const Interface = ({
                 }
                 onBuyUnitClick={onBuyUnitClick}
                 onLevelUpClick={handleLevelUpClick}
+                army={
+                  playerType === PlayerType.Right
+                    ? gameState.rightPlayerState.army
+                    : gameState.leftPlayerState.army
+                }
               />
             )}
           </div>

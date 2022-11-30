@@ -9,7 +9,13 @@ namespace tower_battle.Models
     public class Legion : IArmyUnit
     {
         public string Name { get; set; }
-        public int UnitCount { get; }
+        public int UnitCount 
+        {
+            get
+            {
+                return Children.Sum(c => c.UnitCount);
+            }
+        }
         private List<IArmyUnit> Children = new();
 
         public void AddChild(IArmyUnit armyUnit)

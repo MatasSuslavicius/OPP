@@ -16,8 +16,13 @@ public enum LegionType
 [JsonObject]
 public class Army : IArmyUnit, IEnumerable<Unit>
 {
-    public float TotalDamage { get; }
-    public int UnitCount { get; }
+    public int UnitCount 
+    {
+        get
+        {
+            return Children.Sum(c => c.UnitCount);
+        }
+    }
 
     public List<IArmyUnit> Children = new()
     {

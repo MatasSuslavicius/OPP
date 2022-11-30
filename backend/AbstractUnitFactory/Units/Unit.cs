@@ -29,6 +29,8 @@ public abstract class Unit : Observer.Observer, IArmyUnit
 
     public float InitialHealth => UnitType.InitialHealth;
 
+    public int UnitCount => 1;
+
     public void DealDamage(Unit unit)
     {
         unit.Health -= Damage;
