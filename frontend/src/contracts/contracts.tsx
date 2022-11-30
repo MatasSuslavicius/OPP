@@ -5,6 +5,11 @@ export enum PlayerType {
   Spectator = 3,
 }
 
+export enum Level {
+  StoneAge = 1,
+  BronzeAge = 2,
+}
+
 export const INITIAL_GAME_STATE: GameState = {
   rightPlayerState: {
     units: [],

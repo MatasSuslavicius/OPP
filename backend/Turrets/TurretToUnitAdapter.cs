@@ -19,10 +19,11 @@ public class TurretToUnitAdapter : Unit
     {
     }
 
-    public override string Type => "Turret";
     protected override float DamageMultiplier => 1f;
     protected override float KillRewardMultiplier => 1f;
     protected override float CostMultiplier => 1f;
+
+    public override string Type => "Turret";
 
     public void UpdateTurretValues()
     {

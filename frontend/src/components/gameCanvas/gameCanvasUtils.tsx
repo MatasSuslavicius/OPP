@@ -34,56 +34,34 @@ export const drawUnit = (
   const scale = worldToScreenScale(unit.scale);
 
   const image = new Image();
-  image.src = getImageSource(unit.type, isRightPlayer);
+  image.src = getImageSource(unit.type);
 
-  ctx.drawImage(
-    image,
-    position.x - scale.x / 2,
-    unit.type === "fast" ? position.y - 23 : position.y,
-    scale.x,
-    scale.y
-  );
+  if (isRightPlayer) {
+    ctx.save();
+    ctx.scale(-1, 1);
+    ctx.drawImage(
+      image,
+      -position.x + scale.x / 2,
+      position.y,
+      -scale.x,
+      scale.y
+    );
+    ctx.restore();
+  } else {
+    ctx.drawImage(
+      image,
+      position.x - scale.x / 2,
+      position.y,
+      scale.x,
+      scale.y
+    );
+  }
 
   drawHealthBar(ctx, unit);
 };
 
-const getImageSource = (unitType: string, isRightPlayer: boolean): string => {
-  if (!isRightPlayer) {
-    switch (unitType) {
-      case "StoneAgeTank":
-        return "images/Level1Units/SlowUnit.svg";
-      case "StoneAgeSoldier":
-        return "images/Level1Units/NormalUnit.svg";
-      case "StoneAgeScout":
-        return "images/Level1Units/FastUnit.svg";
-      case "BronzeAgeTank":
-        return "images/Level2Units/SlowUnit.svg";
-      case "BronzeAgeSoldier":
-        return "images/Level2Units/NormalUnit.svg";
-      case "BronzeAgeScout":
-        return "images/Level2Units/FastUnit.svg";
-      case "LevelUpUnit":
-        return "images/LevelUpUnit.svg";
-    }
-  } else {
-    switch (unitType) {
-      case "StoneAgeTank":
-        return "images/Level1Units/SlowUnit2.svg";
-      case "StoneAgeSoldier":
-        return "images/Level1Units/NormalUnit2.svg";
-      case "StoneAgeScout":
-        return "images/Level1Units/FastUnit2.svg";
-      case "BronzeAgeTank":
-        return "images/Level2Units/SlowUnit2.svg";
-      case "BronzeAgeSoldier":
-        return "images/Level2Units/NormalUnit2.svg";
-      case "BronzeAgeScout":
-        return "images/Level2Units/FastUnit2.svg";
-      case "LevelUpUnit":
-        return "images/LevelUpUnit.svg";
-    }
-  }
-  return "";
+const getImageSource = (unitType: string): string => {
+  return `images/${unitType}.svg`;
 };
 
 const drawHealthBar = (ctx: CanvasRenderingContext2D, unit: Unit) => {
@@ -96,13 +74,13 @@ const drawHealthBar = (ctx: CanvasRenderingContext2D, unit: Unit) => {
   };
   const healthBarScale = { x: unitScale.x, y: 10 };
 
-  // ctx.fillStyle = "red";
-  // ctx.fillRect(
-  //   healtBarPosition.x - unitScale.x / 2,
-  //   healtBarPosition.y,
-  //   healthBarScale.x,
-  //   healthBarScale.y
-  // );
+  ctx.fillStyle = "red";
+  ctx.fillRect(
+    healtBarPosition.x - unitScale.x / 2,
+    healtBarPosition.y,
+    healthBarScale.x,
+    healthBarScale.y
+  );
 
   ctx.fillStyle = "green";
   ctx.fillRect(

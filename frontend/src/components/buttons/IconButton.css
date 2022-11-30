@@ -1,0 +1,26 @@
+.icon-button-container {
+    display: inline-flex;
+    min-width: 112px;
+    flex-direction: column;
+    gap: 5px;
+    border: 2px solid #000;
+    padding: 3px;
+    background-color: rgba(255, 255, 255, .3)
+}
+
+.icon-button-container:hover {
+    background-color: rgba(255, 255, 255, .6)
+}
+
+.icon-button-container:active {
+    background-color: rgba(255, 255, 255, 1)
+}
+
+.icon-button-image {
+    height: 48px;
+    object-fit: contain;
+}
+
+.icon-button-label {
+    text-align: center;
+}

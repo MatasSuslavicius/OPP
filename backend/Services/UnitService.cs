@@ -46,7 +46,7 @@ namespace tower_battle.Services
                 {
                     return false;
                 }
-                GameStateSingleton.Instance.LeftPlayerState.Units.Add(unit);
+                GameStateSingleton.Instance.LeftPlayerState.Army.Children[(int)unit.UnitType.Legion].AddChild(unit);
                 GameStateSingleton.Instance.LeftPlayerState.Money -= unit.Cost;
                 GameStateSingleton.Instance.LeftPlayerState.LastBuy = System.DateTime.Now;
             }
@@ -56,7 +56,7 @@ namespace tower_battle.Services
                 {
                     return false;
                 }
-                GameStateSingleton.Instance.RightPlayerState.Units.Add(unit);
+                GameStateSingleton.Instance.RightPlayerState.Army.Children[(int)unit.UnitType.Legion].AddChild(unit);
                 GameStateSingleton.Instance.RightPlayerState.Money -= unit.Cost;
                 GameStateSingleton.Instance.RightPlayerState.LastBuy = System.DateTime.Now;
             }
@@ -89,12 +89,6 @@ namespace tower_battle.Services
 
                 return false;
             }
-        }
-
-        public void ClearUnits()
-        {
-            GameStateSingleton.Instance.RightPlayerState.Units.Clear();
-            GameStateSingleton.Instance.LeftPlayerState.Units.Clear();
         }
 
         public void ResetLevel()

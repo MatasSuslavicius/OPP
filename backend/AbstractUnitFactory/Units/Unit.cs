@@ -1,9 +1,13 @@
 ﻿using tower_battle.Models;
 using tower_battle.AbstractUnitFactory.Units.Types;
+using System.Collections;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace tower_battle.AbstractUnitFactory.Units;
 
-public abstract class Unit : Observer.Observer
+[JsonObject]
+public abstract class Unit : Observer.Observer, IArmyUnit
 {
     public abstract string Type { get; }
     public Vector2 Position { get; set; }
@@ -28,5 +32,25 @@ public abstract class Unit : Observer.Observer
     public void DealDamage(Unit unit)
     {
         unit.Health -= Damage;
+    }
+
+    public void AddChild(IArmyUnit armyUnit)
+    {
+        throw new NotImplementedException("Cannot add child army units to a unit");
+    }
+
+    public IEnumerator<IArmyUnit> GetEnumerator()
+    {
+        yield return this;
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
+    public void RemoveChild(IArmyUnit armyUnit)
+    {
+        throw new NotImplementedException("Cannot remove child army units to a unit");
     }
 }

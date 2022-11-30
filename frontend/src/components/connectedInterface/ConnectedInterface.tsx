@@ -37,6 +37,7 @@ const ConnectedInterface = () => {
 
     newConnection.on("GameUpdated", (newGameState: GameState) => {
       setGameState(newGameState);
+      console.log(newGameState);
     });
 
     setConnection(newConnection);

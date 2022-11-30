@@ -1,4 +1,6 @@
-﻿namespace tower_battle.AbstractUnitFactory.Units;
+﻿using tower_battle.Models;
+
+namespace tower_battle.AbstractUnitFactory.Units;
 
 public class BronzeAgeUnit : Unit
 {
@@ -8,8 +10,6 @@ public class BronzeAgeUnit : Unit
 
     private bool leveledUp = false;
     public override string Type => leveledUp ? "LevelUpUnit" : $"BronzeAge{UnitType.Name}";
-
-    
 
     public override void UpdateUnits()
     {

@@ -21,13 +21,6 @@ namespace tower_battle.Controllers
             return Ok(m_unitService.LevelUp(isRightPlayer));
         }
 
-        [HttpPost("ClearUnits")]
-        public async Task<IActionResult> ClearUnits()
-        {
-            m_unitService.ClearUnits();
-            return Ok();
-        }
-
         [HttpPost("ResetLevel")]
         public async Task<IActionResult> ResetLevel()
         {

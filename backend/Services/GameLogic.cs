@@ -15,7 +15,7 @@ namespace tower_battle.Services
 
         private static void UpdateUnitPositions(GameStateSingleton state)
         {
-            foreach (var leftPlayerUnit in state.LeftPlayerState.Units)
+            foreach (var leftPlayerUnit in (IEnumerable<Unit>)state.LeftPlayerState.Army)
             {
                 var (collidingWith, collidingUnit) = UnitColliding(leftPlayerUnit, state);
                 if(collidingWith == CollidingWith.NoOne)
@@ -32,7 +32,7 @@ namespace tower_battle.Services
                 }
             }
 
-            foreach (var rightPlayerUnit in state.RightPlayerState.Units)
+            foreach (var rightPlayerUnit in (IEnumerable<Unit>)state.RightPlayerState.Army)
             {
                 var (collidingWith, collidingUnit) = UnitColliding(rightPlayerUnit, state);
                 if (collidingWith == CollidingWith.NoOne)
@@ -52,7 +52,7 @@ namespace tower_battle.Services
 
         private static (CollidingWith, Unit?) UnitColliding(Unit unit, GameStateSingleton state)
         {
-            foreach(Unit leftPlayerUnit in state.LeftPlayerState.Units)
+            foreach(Unit leftPlayerUnit in state.LeftPlayerState.Army)
             {
                 if(unit != leftPlayerUnit && leftPlayerUnit.Type != "Turret" &&
                    PositionRangesOverlap(
@@ -66,7 +66,7 @@ namespace tower_battle.Services
                 }
             }
 
-            foreach (Unit rightPlayerUnit in state.RightPlayerState.Units)
+            foreach (Unit rightPlayerUnit in state.RightPlayerState.Army)
             {
                 if (unit != rightPlayerUnit && rightPlayerUnit.Type != "Turret" &&
                     PositionRangesOverlap(
@@ -94,7 +94,7 @@ namespace tower_battle.Services
 
         public static void OnTurretUpgrade(PlayerState playerState)
         {
-            var turretUnit = playerState.Units.FirstOrDefault(u => u.Type == "Turret") as TurretToUnitAdapter;
+            var turretUnit = playerState.Army.FirstOrDefault<Unit>(u => u.UnitType.Legion == LegionType.Turret) as TurretToUnitAdapter;
             
             if (turretUnit != null)
             {
@@ -104,11 +104,11 @@ namespace tower_battle.Services
 
         public static void OnTurretSell(PlayerState playerState)
         {
-            var turretUnit = playerState.Units.FirstOrDefault(u => u.Type == "Turret") as TurretToUnitAdapter;
+            var turretUnit = playerState.Army.FirstOrDefault<Unit>(u => u.Type == "Turret") as TurretToUnitAdapter;
             
             if (turretUnit != null)
             {
-                playerState.Units.Remove(turretUnit);
+                playerState.Army.RemoveChild(turretUnit);
             }
         }
     }

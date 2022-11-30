@@ -8,11 +8,6 @@ html, body, #root {
     padding-top: 40px;
 }
 
-.control-container {
-    padding: 20px 0px;
-    display: flex;
-}
-
 .interface-container {
     height: 100%;
 }
@@ -27,4 +22,16 @@ html, body, #root {
 
 .player-type-3 {
     background-color: lightgrey;
+}
+
+.game-views-conatainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.turret-control-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

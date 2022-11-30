@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { GameState } from "../../contracts/contracts";
 import "./GameCanvas.css";
 import { clearCanvas, drawTurret, drawUnits } from "./gameCanvasUtils";
@@ -16,18 +16,21 @@ const GameCanvas = (gameState: GameState) => {
   }
 
   return (
-    <div>{gameState.leftPlayerState.level === 1 && gameState.rightPlayerState.level === 1
-      ? <img
-        src="images/bokstai.jpg"
-        className="background"
-        alt="Backgound with trees"
-      />
-      : <img
-        src="images/bokstai2.png"
-        className="background"
-        alt="Backgound with trees"
-      />
-    }
+    <div>
+      {gameState.leftPlayerState.level === 1 &&
+      gameState.rightPlayerState.level === 1 ? (
+        <img
+          src="images/bokstai.jpg"
+          className="background"
+          alt="Backgound with trees"
+        />
+      ) : (
+        <img
+          src="images/bokstai2.png"
+          className="background"
+          alt="Backgound with trees"
+        />
+      )}
       <canvas ref={canvasRef} width={1024} height={575} className="canvas" />
     </div>
   );

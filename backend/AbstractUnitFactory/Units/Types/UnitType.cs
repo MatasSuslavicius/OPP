@@ -13,4 +13,5 @@ public abstract class UnitType
     public float Health { get; set; }
     public int KillReward { get; set; }
     public float Damage { get; set; }
+    public abstract LegionType Legion { get; }
 }

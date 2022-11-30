@@ -33,7 +33,7 @@ namespace tower_battle.Services
                 turretInvoker.turret.Position = new Vector2 { X = -9, Y = 0 };
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turretInvoker.turret;
                 GameStateSingleton.Instance.LeftPlayerState.Money -= turretPrice; 
-                GameStateSingleton.Instance.LeftPlayerState.Units.Add(new TurretToUnitAdapter(turretInvoker.turret));
+                GameStateSingleton.Instance.LeftPlayerState.Army.AddChild(new TurretToUnitAdapter(turretInvoker.turret));
             }
             else if (playerType == PlayerType.Right)
             {
@@ -44,7 +44,7 @@ namespace tower_battle.Services
                 turretInvoker.turret.Position = new Vector2 { X = 8, Y = 0 };
                 GameStateSingleton.Instance.RightPlayerState.Turret = turretInvoker.turret;
                 GameStateSingleton.Instance.RightPlayerState.Money -= turretPrice;
-                GameStateSingleton.Instance.RightPlayerState.Units.Add(new TurretToUnitAdapter(turretInvoker.turret));
+                GameStateSingleton.Instance.RightPlayerState.Army.AddChild(new TurretToUnitAdapter(turretInvoker.turret));
             }
 
             return true;

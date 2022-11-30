@@ -6,5 +6,7 @@ namespace tower_battle.AbstractUnitFactory.Units.Types
     public class ScoutType : UnitType
     {
         public override string Name => "Scout";
+
+        public override LegionType Legion => LegionType.Scout;
     }
 }

@@ -1,0 +1,11 @@
+.army-view-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.army-view-container-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}

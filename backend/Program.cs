@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using tower_battle.Hubs;
 using tower_battle.Services;
 
@@ -10,7 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSignalR();
+builder.Services.AddSignalR()
+    .AddNewtonsoftJsonProtocol();
 
 builder.Services.AddHostedService<GameManager>();
 
@@ -48,9 +50,11 @@ app.MapControllers();
 app.UseCors("AllowLocalHost");
 
 app.MapHub<GameHub>("/game");
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();
 

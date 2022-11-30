@@ -46,10 +46,10 @@ namespace tower_battle_tests.ServicesTests
             _unitService.ClearUnits();
             GameStateSingleton.Instance.LeftPlayerState.Money = 500;
             GameStateSingleton.Instance.LeftPlayerState.LastBuy = System.DateTime.Today;
-            Assert.False(GameStateSingleton.Instance.LeftPlayerState.Units.Count > 0);
+            Assert.False(GameStateSingleton.Instance.LeftPlayerState.Army.Count > 0);
             Assert.True(_unitService.Create("Soldier", PlayerType.Left));
-            Assert.True(GameStateSingleton.Instance.LeftPlayerState.Units.Count > 0);
-            Assert.Equal(100, GameStateSingleton.Instance.LeftPlayerState.Units.First().Health);
+            Assert.True(GameStateSingleton.Instance.LeftPlayerState.Army.Count > 0);
+            Assert.Equal(100, GameStateSingleton.Instance.LeftPlayerState.Army.First().Health);
         }
         [Fact]
         public void BuySlowUnitAndEnoughMoneyForRightPlayerTest()
@@ -58,10 +58,10 @@ namespace tower_battle_tests.ServicesTests
             _unitService.ResetLevel();
             GameStateSingleton.Instance.RightPlayerState.Money = 500;
             GameStateSingleton.Instance.RightPlayerState.LastBuy = System.DateTime.Today;
-            Assert.False(GameStateSingleton.Instance.RightPlayerState.Units.Count > 0);
+            Assert.False(GameStateSingleton.Instance.RightPlayerState.Army.Count > 0);
             Assert.True(_unitService.Create("Tank", PlayerType.Right));
-            Assert.True(GameStateSingleton.Instance.RightPlayerState.Units.Count > 0);
-            Assert.Equal(150, GameStateSingleton.Instance.RightPlayerState.Units.First().Health);
+            Assert.True(GameStateSingleton.Instance.RightPlayerState.Army.Count > 0);
+            Assert.Equal(150, GameStateSingleton.Instance.RightPlayerState.Army.First().Health);
         }
         [Fact]
         public void BuyFastUnitAndEnoughMoneyForRightPlayerTest()
@@ -70,10 +70,10 @@ namespace tower_battle_tests.ServicesTests
             _unitService.ResetLevel();
             GameStateSingleton.Instance.RightPlayerState.Money = 500;
             GameStateSingleton.Instance.RightPlayerState.LastBuy = System.DateTime.Today;
-            Assert.False(GameStateSingleton.Instance.RightPlayerState.Units.Count > 0);
+            Assert.False(GameStateSingleton.Instance.RightPlayerState.Army.Count > 0);
             Assert.True(_unitService.Create("Scout", PlayerType.Right));
-            Assert.True(GameStateSingleton.Instance.RightPlayerState.Units.Count > 0);
-            Assert.Equal(75, GameStateSingleton.Instance.RightPlayerState.Units.First().Health);
+            Assert.True(GameStateSingleton.Instance.RightPlayerState.Army.Count > 0);
+            Assert.Equal(75, GameStateSingleton.Instance.RightPlayerState.Army.First().Health);
         }
         [Fact]
         public void BuyNotExistingTypeUnitTest()
@@ -82,18 +82,18 @@ namespace tower_battle_tests.ServicesTests
             _unitService.ResetLevel();
             GameStateSingleton.Instance.RightPlayerState.Money = 500;
             GameStateSingleton.Instance.RightPlayerState.LastBuy = System.DateTime.Today;
-            Assert.False(GameStateSingleton.Instance.RightPlayerState.Units.Count > 0);
+            Assert.False(GameStateSingleton.Instance.RightPlayerState.Army.Count > 0);
             Action act = () => _unitService.Create("notExisting", PlayerType.Right);
             Exception exception = Assert.Throws<Exception>(act);
             Assert.Equal("Invalid unit type", exception.Message);
-            Assert.False(GameStateSingleton.Instance.RightPlayerState.Units.Count > 0);
+            Assert.False(GameStateSingleton.Instance.RightPlayerState.Army.Count > 0);
         }
         [Fact]
         public void ClearUnitsTest()
         {
             _unitService.ClearUnits();
-            Assert.Equal(0, GameStateSingleton.Instance.LeftPlayerState.Units.Count);
-            Assert.Equal(0, GameStateSingleton.Instance.RightPlayerState.Units.Count);
+            Assert.Equal(0, GameStateSingleton.Instance.LeftPlayerState.Army.Count);
+            Assert.Equal(0, GameStateSingleton.Instance.RightPlayerState.Army.Count);
         }
         [Fact]
         public void LevelUpTest()

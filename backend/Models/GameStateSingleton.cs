@@ -2,6 +2,8 @@
 using tower_battle.Observer;
 using tower_battle.Turrets;
 using tower_battle.Turrets.Decorator;
+using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace tower_battle.Models
 {
@@ -24,7 +26,8 @@ namespace tower_battle.Models
 
     public class PlayerState
     {
-        public UnitCollection Units { get; set; } = new ();
+        public Army Army { get; set; } = new Army();
+        public List<Unit> Units => Army.GetUnitArray();
         public ITurret Turret { get; set; }
         public double Money { get; set; } = 700;
         public double Experience { get; set; } = 0;
@@ -33,7 +36,7 @@ namespace tower_battle.Models
 
         public void KillUnit(Unit unit)
         {
-            Units.Remove(unit);
+            Army.Children[(int)unit.UnitType.Legion].RemoveChild(unit);
             Money += unit.KillReward;
             Experience += unit.KillReward;
         }
