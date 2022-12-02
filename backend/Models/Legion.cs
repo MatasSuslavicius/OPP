@@ -1,14 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System.Collections;
-using System.Text.Json.Serialization;
 using tower_battle.AbstractUnitFactory.Units;
+using tower_battle.Models.Flyweight;
 
 namespace tower_battle.Models
 {
     [JsonObject]
     public class Legion : IArmyUnit
     {
-        public string Name { get; set; }
+        public LegionTypeDef Type { get; set; }
         public int UnitCount 
         {
             get
@@ -17,6 +17,11 @@ namespace tower_battle.Models
             }
         }
         private List<IArmyUnit> Children = new();
+
+        public Legion(LegionTypeDef baseLegion)
+        {
+            this.Type = baseLegion;
+        }
 
         public void AddChild(IArmyUnit armyUnit)
         {

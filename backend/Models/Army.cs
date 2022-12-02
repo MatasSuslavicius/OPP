@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections;
-using System.Text.Json.Serialization;
 using tower_battle.AbstractUnitFactory.Units;
+using tower_battle.Models.Flyweight;
 
 namespace tower_battle.Models;
 
@@ -24,22 +24,7 @@ public class Army : IArmyUnit, IEnumerable<Unit>
         }
     }
 
-    public List<IArmyUnit> Children = new()
-    {
-        new Legion
-        {
-            Name = "Soldier Legion"
-        },
-        new Legion
-        {
-            Name = "Scout Legion"
-        },
-        new Legion
-        {
-            Name = "Tank Legion"
-        }
-    };
-
+    public List<IArmyUnit> Children = FlyweightFactory.GenerateBaseLegions();
 
     public void AddChild(IArmyUnit armyUnit)
     {
