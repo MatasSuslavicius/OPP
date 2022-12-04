@@ -3,6 +3,7 @@ using tower_battle.AbstractUnitFactory.Factories;
 using tower_battle.AbstractUnitFactory.Units;
 using tower_battle.Models;
 using tower_battle.Turrets;
+using tower_battle.Turrets.Chain;
 using tower_battle.Turrets.Command;
 using tower_battle.Turrets.Decorator;
 
@@ -11,7 +12,12 @@ namespace tower_battle.Services
     public class TurretService
     {
         private int turretPrice = 500;
-        private int upgradePrice = 20;
+        private int upgradePrice = 1;
+        Handler handler1 = new DamageHandler();
+        Handler handler2 = new RangeHandler();
+        Handler handler3 = new SpeedHandler();
+        Handler handler4 = new NotExistingHandler();
+
         public bool Create(PlayerType playerType)
         {
             if ((playerType == PlayerType.Left && GameStateSingleton.Instance.LeftPlayerState.Turret != null) ||
@@ -85,7 +91,11 @@ namespace tower_battle.Services
             {
                 return false;
             }
-            
+            handler1.SetNext(handler2);
+            handler2.SetNext(handler3);
+            handler3.SetNext(handler4);
+
+
             ITurret turret = null;
             if (playerType == PlayerType.Left)
             {
@@ -95,27 +105,9 @@ namespace tower_battle.Services
             {
                 turret = GameStateSingleton.Instance.RightPlayerState.Turret;
             }
-            switch (upgradeType)
-            {
-                case "damage":
-                    DamageUpgrade damageUpgrade = new DamageUpgrade(turret);
-                    damageUpgrade.UpgradeTurret();
-                    turret = damageUpgrade.Get();
-                    
-                    break;
-                case "range":
-                    RangeUpgrade rangeUpgrade = new RangeUpgrade(turret);
-                    rangeUpgrade.UpgradeTurret();
-                    turret = rangeUpgrade.Get();
-                    break;
-                case "speed":
-                    SpeedUpgrade speedUpgrade = new SpeedUpgrade(turret);
-                    speedUpgrade.UpgradeTurret();
-                    turret = speedUpgrade.Get();
-                    break;
-                default:
-                    throw new Exception("Invalid upgrade type");
-            }
+            handler1.HandleRequest(upgradeType, turret);
+
+
             if (playerType == PlayerType.Left)
             {
                 if (GameStateSingleton.Instance.LeftPlayerState.Money < upgradePrice)
@@ -125,6 +117,8 @@ namespace tower_battle.Services
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turret;
                 GameStateSingleton.Instance.LeftPlayerState.Money -= upgradePrice;
                 GameLogic.OnTurretUpgrade(GameStateSingleton.Instance.LeftPlayerState);
+                //Console.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);
+                //Console.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
             }
             else if (playerType == PlayerType.Right)
             {
