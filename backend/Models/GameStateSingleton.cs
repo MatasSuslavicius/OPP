@@ -4,6 +4,7 @@ using tower_battle.Turrets;
 using tower_battle.Turrets.Decorator;
 using System.Linq;
 using System.Text.Json.Serialization;
+using tower_battle.State;
 
 namespace tower_battle.Models
 {
@@ -18,6 +19,7 @@ namespace tower_battle.Models
             get { return instance; }
         }
 
+        public GameStateContext GameStateContext { get; set; } = new GameStateContext();
         public Dictionary<string, PlayerType> Connections { get; } = new ();
         public PlayerState RightPlayerState { get; } = new PlayerState();
         public PlayerState LeftPlayerState { get; } = new PlayerState();

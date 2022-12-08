@@ -1,4 +1,5 @@
 ﻿using tower_battle.Models;
+using tower_battle.State;
 
 namespace tower_battle.Services;
 
@@ -41,5 +42,19 @@ public class GameService
         }
 
         return conn[connectionId];
+    }
+
+    public bool Pause(bool isPaused)
+    {
+        if (isPaused)
+        {
+            GameStateSingleton.Instance.GameStateContext.SetState(new PausedGameState());
+        }
+        else
+        {
+            GameStateSingleton.Instance.GameStateContext.SetState(new RunningGameState());
+        }
+
+        return isPaused;
     }
 }

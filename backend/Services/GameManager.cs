@@ -17,7 +17,7 @@ namespace tower_battle.Services
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                GameStateSingleton.Instance.Loop();
+                GameStateSingleton.Instance.GameStateContext.Loop();
 
                 await _hubContext.Clients.All.SendAsync("GameUpdated", GameStateSingleton.Instance);
                 await _hubContext.Clients.All.SendAsync("LobbyUpdated", LobbyInfo.Instance);

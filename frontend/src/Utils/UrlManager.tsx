@@ -22,6 +22,10 @@ export abstract class UrlManager {
         return `${UrlManager._GameController}PlayerType?userId=${ userId }&type=${ playerType }`;
     }
 
+    public static getPauseEndpoint(isPaused: Boolean) {
+        return `${UrlManager._GameController}Pause?paused=${ isPaused }`;
+    }
+
     /** Unit controller endpoints. */
     private static _UnitController: string = `${ UrlManager._serverUrl }/api/Unit/`;
 

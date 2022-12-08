@@ -34,4 +34,10 @@ public class GameController : ControllerBase
         var role = _gameService.JoinGame(userId);
         return Ok(role);
     }
+
+    [HttpPost("Pause")]
+    public async Task<IActionResult> Pause([FromQuery] bool paused)
+    { 
+        return Ok(_gameService.Pause(paused));
+    }
 }

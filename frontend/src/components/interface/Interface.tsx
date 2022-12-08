@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 import { GameState, PlayerType } from "../../contracts/contracts";
 import { UrlManager } from "../../Utils/UrlManager";
 import ArmyView from "../armyView/ArmyView";
@@ -23,6 +24,7 @@ const Interface = ({
   onBuyTurretUpgradeClick,
   onSellTurretClick,
 }: InterfaceProps) => {
+  const [isGamePaused, setIsGamePaused] = useState<boolean>(false);
   const handleLevelUpClick = () => {
     axios({
       method: "post",
@@ -86,6 +88,14 @@ const Interface = ({
               image=""
               label="Upg. Turret Speed"
               onClick={() => onBuyTurretUpgradeClick("speed")}
+            />
+            <IconButton
+              image=""
+              label={isGamePaused ? `Unpause` : `Pause`}
+              onClick={() => {
+                axios.post(UrlManager.getPauseEndpoint(!isGamePaused));
+                setIsGamePaused(!isGamePaused);
+              }}
             />
           </div>
         </div>
