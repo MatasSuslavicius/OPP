@@ -14,6 +14,7 @@ interface InterfaceProps {
   onBuyTurretClick: () => void;
   onBuyTurretUpgradeClick: (turretType: string) => void;
   onSellTurretClick: () => void;
+  onBuyArmyUpgradeClick: (unitUpgradeType: string) => void;
 }
 
 const Interface = ({
@@ -23,6 +24,7 @@ const Interface = ({
   onBuyTurretClick,
   onBuyTurretUpgradeClick,
   onSellTurretClick,
+  onBuyArmyUpgradeClick,
 }: InterfaceProps) => {
   const handleLevelUpClick = () => {
     axios({
@@ -87,6 +89,18 @@ const Interface = ({
               image=""
               label="Upg. Turret Speed"
               onClick={() => onBuyTurretUpgradeClick("speed")}
+            />
+          </div>
+          <div className="turret-control-container">
+            <IconButton
+              image=""
+              label="Upg. Army Damage"
+              onClick={() => onBuyArmyUpgradeClick("armyDamage")}
+            />
+            <IconButton
+              image=""
+              label="Upg. Army Health"
+              onClick={() => onBuyArmyUpgradeClick("armyHealth")}
             />
           </div>
         </div>

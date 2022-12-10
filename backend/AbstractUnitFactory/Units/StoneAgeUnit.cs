@@ -1,15 +1,21 @@
-﻿namespace tower_battle.AbstractUnitFactory.Units;
+﻿using tower_battle.Observer;
+
+namespace tower_battle.AbstractUnitFactory.Units;
 
 public class StoneAgeUnit : Unit
 {
-    protected override float DamageMultiplier => 1.1f;
+    public override float DamageMultiplier
+    {
+        get => 1.1f;
+        set { }
+    }
     protected override float KillRewardMultiplier => 1.3f;
     protected override float CostMultiplier => 1.3f;
-    private bool leveledUp = false;
+    
     public override string Type => leveledUp ? "LevelUpUnit" : $"StoneAge{UnitType.Name}";
 
-        public override void UpdateUnits()
+    public override void Accept(IVisitor visitor)
     {
-        leveledUp = true;
+        visitor.Visit(this);
     }
 }

@@ -3,6 +3,7 @@ using tower_battle.AbstractUnitFactory.Units;
 using tower_battle.AbstractUnitFactory.Units.MovementStrategies;
 using tower_battle.AbstractUnitFactory.Units.Types;
 using tower_battle.Models;
+using tower_battle.Observer;
 using tower_battle.Turrets.Decorator;
 
 namespace tower_battle.Turrets;
@@ -15,11 +16,15 @@ public class TurretToUnitAdapter : Unit
         this.turret = turret;
         UpdateTurretValues();
     }
-    public override void UpdateUnits()
+    public override void Accept(IVisitor visitor)
     {
     }
 
-    protected override float DamageMultiplier => 1f;
+    public override float DamageMultiplier
+    {
+        get => 1f;
+        set { }
+    }
     protected override float KillRewardMultiplier => 1f;
     protected override float CostMultiplier => 1f;
 

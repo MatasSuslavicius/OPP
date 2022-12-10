@@ -23,7 +23,7 @@ namespace tower_battle.Models
         public Dictionary<string, PlayerType> Connections { get; } = new ();
         public PlayerState RightPlayerState { get; } = new PlayerState();
         public PlayerState LeftPlayerState { get; } = new PlayerState();
-        public UnitManager UnitManager { get; } = new UnitManager ();
+        public UnitStructure UnitStructure { get; } = new UnitStructure();
     }
 
     public class PlayerState

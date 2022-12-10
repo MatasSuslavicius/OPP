@@ -3,16 +3,17 @@ using tower_battle.AbstractUnitFactory.Units.Types;
 using System.Collections;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
+using tower_battle.Observer;
 
 namespace tower_battle.AbstractUnitFactory.Units;
 
 [JsonObject]
-public abstract class Unit : Observer.Observer, IArmyUnit
+public abstract class Unit : UnitElement, IArmyUnit
 {
     public abstract string Type { get; }
     public Vector2 Position { get; set; }
     public UnitType UnitType { get; set; }
-    protected abstract float DamageMultiplier { get; }
+    //protected abstract float DamageMultiplier { get; }
     protected abstract float KillRewardMultiplier { get; }
     protected abstract float CostMultiplier { get; }
 
@@ -21,7 +22,7 @@ public abstract class Unit : Observer.Observer, IArmyUnit
     public Vector2 Scale => UnitType.Scale;
     public int Cost => (int) (CostMultiplier * UnitType.Cost);
 
-    public float Health
+    public override float Health
     {
         get => UnitType.Health;
         set => UnitType.Health = value;

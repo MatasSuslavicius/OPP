@@ -12,7 +12,7 @@ namespace tower_battle.Services
     public class TurretService
     {
         private int turretPrice = 500;
-        private int upgradePrice = 1;
+        private int upgradePrice = 100;
         Handler handler1 = new DamageHandler();
         Handler handler2 = new RangeHandler();
         Handler handler3 = new SpeedHandler();
