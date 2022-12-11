@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using tower_battle.Turrets.Decorator;
+using tower_battle.Turrets.Memento;
 
 namespace tower_battle.Turrets.Command
 {
     public class TurretInvoker
     {
         public Turret turret;
+        public TurretCaretaker caretaker;
         public TurretInvoker()
         {
             this.turret = new Turret();
@@ -23,6 +25,7 @@ namespace tower_battle.Turrets.Command
         {
             ICommand command = new BuyCommand(turret);
             turret = command.UndoTurret();
+            //caretaker.RestoreMemento();
         }
 
     }

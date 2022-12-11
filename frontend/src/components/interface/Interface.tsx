@@ -1,4 +1,4 @@
-import axios from "axios";
+ import axios from "axios";
 import { useState } from "react";
 import { GameState, PlayerType } from "../../contracts/contracts";
 import { UrlManager } from "../../Utils/UrlManager";
@@ -13,6 +13,7 @@ interface InterfaceProps {
   onBuyUnitClick: (unitType: string) => void;
   onBuyTurretClick: () => void;
   onBuyTurretUpgradeClick: (turretType: string) => void;
+  onUndoTurretUpgradeClick: () => void;
   onSellTurretClick: () => void;
 }
 
@@ -22,6 +23,7 @@ const Interface = ({
   onBuyUnitClick,
   onBuyTurretClick,
   onBuyTurretUpgradeClick,
+  onUndoTurretUpgradeClick,
   onSellTurretClick,
 }: InterfaceProps) => {
   const [isGamePaused, setIsGamePaused] = useState<boolean>(false);
@@ -88,6 +90,11 @@ const Interface = ({
               image=""
               label="Upg. Turret Speed"
               onClick={() => onBuyTurretUpgradeClick("speed")}
+            />
+            <IconButton
+              image=""
+              label="Undo Upgrade"
+              onClick={() => onUndoTurretUpgradeClick()}
             />
             <IconButton
               image=""

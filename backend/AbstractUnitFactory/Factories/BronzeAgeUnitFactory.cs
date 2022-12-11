@@ -34,7 +34,6 @@ namespace tower_battle.AbstractUnitFactory.Factories
             var unitType = Director.ConstructBronzeAgeUnitType(unitTypeBuilder, new SlowMovementStrategy());
             
             Unit unit = new BronzeAgeUnit { Position = SpawnPosition, UnitType = unitType };
-
             return unit;
         }
     }

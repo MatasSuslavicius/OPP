@@ -31,5 +31,9 @@ namespace tower_battle.Hubs
         {
             _turretService.Sell(playerType);
         }
+        public void UndoTurretUpgrade(PlayerType playerType)
+        {
+            _turretService.UndoUpgrade( playerType);
+        }
     }
 }

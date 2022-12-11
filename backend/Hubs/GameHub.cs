@@ -28,5 +28,9 @@ namespace tower_battle.Hubs
         {
             hubFacade.SellTurret(GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
         }
+        public async Task UndoTurretUpgrade()
+        {
+            hubFacade.UndoTurretUpgrade(GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
+        }
     }
 }

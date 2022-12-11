@@ -5,6 +5,7 @@ using tower_battle.Turrets.Decorator;
 using System.Linq;
 using System.Text.Json.Serialization;
 using tower_battle.State;
+using tower_battle.Turrets.Memento;
 
 namespace tower_battle.Models
 {
@@ -24,6 +25,7 @@ namespace tower_battle.Models
         public PlayerState RightPlayerState { get; } = new PlayerState();
         public PlayerState LeftPlayerState { get; } = new PlayerState();
         public UnitManager UnitManager { get; } = new UnitManager ();
+        public TurretCaretaker[] turretCaretakers { get; set; } = new TurretCaretaker[2];
     }
 
     public class PlayerState
