@@ -10,7 +10,7 @@ namespace tower_battle.Turrets.Command
 {
     public class TurretInvoker
     {
-        public Turret turret;
+        public ITurret turret;
         public TurretCaretaker caretaker;
         public TurretInvoker()
         {
@@ -18,12 +18,13 @@ namespace tower_battle.Turrets.Command
         }
         public void Buy()
         {
-            ICommand command = new BuyCommand(turret);
+            ICommand command = new BuyCommand((Turret)turret);
             turret = command.BuyTurret();
+            // command.BuyTurret();
         }
         public void UndoBuy()
         {
-            ICommand command = new BuyCommand(turret);
+            ICommand command = new BuyCommand((Turret)turret);
             turret = command.UndoTurret();
             //caretaker.RestoreMemento();
         }

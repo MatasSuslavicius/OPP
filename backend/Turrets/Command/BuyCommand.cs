@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using tower_battle.Turrets.Decorator;
+using tower_battle.Turrets.Proxy;
 
 namespace tower_battle.Turrets.Command
 {
@@ -16,10 +17,10 @@ namespace tower_battle.Turrets.Command
             this.turret = turret;
         }
 
-        public Turret BuyTurret()
+        public ITurret BuyTurret()
         {
-            turret.CreateAction();
-            return turret;
+            TurretProxy proxy = new TurretProxy();
+            return proxy.CreateAction();
         }
         public Turret UndoTurret()
         {

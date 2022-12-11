@@ -1,4 +1,4 @@
-﻿namespace tower_battle.Turrets.Decorator
+﻿/*namespace tower_battle.Turrets.Decorator
 {
     public class RangeUpgrade : Decorator
     {
@@ -14,4 +14,4 @@
             return turret;
         }
     }
-}
+}*/

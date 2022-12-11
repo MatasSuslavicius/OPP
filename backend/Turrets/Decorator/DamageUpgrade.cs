@@ -1,4 +1,4 @@
-﻿namespace tower_battle.Turrets.Decorator
+﻿/*namespace tower_battle.Turrets.Decorator
 {
     public class DamageUpgrade : Decorator
     {
@@ -15,3 +15,4 @@
         }
     }
 }
+*/

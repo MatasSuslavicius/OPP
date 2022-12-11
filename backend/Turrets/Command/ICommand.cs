@@ -9,7 +9,8 @@ namespace tower_battle.Turrets.Command
 {
     public interface ICommand
     {
-        public Turret BuyTurret();
+        //public Turret BuyTurret();
+        public ITurret BuyTurret();
         public Turret UndoTurret();
 
 

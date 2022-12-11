@@ -90,7 +90,6 @@ namespace tower_battle.Services
       
         public bool Upgrade(string upgradeType, PlayerType playerType)
         {
-            Console.WriteLine(GameStateSingleton.Instance.turretCaretakers[0]);
             if ((playerType == PlayerType.Left && GameStateSingleton.Instance.LeftPlayerState.Turret == null) ||
                 (playerType == PlayerType.Right && GameStateSingleton.Instance.RightPlayerState.Turret == null))
             {
@@ -131,9 +130,8 @@ namespace tower_battle.Services
                 GameStateSingleton.Instance.LeftPlayerState.Turret = turret;
                 GameStateSingleton.Instance.LeftPlayerState.Money -= upgradePrice;
                 GameLogic.OnTurretUpgrade(GameStateSingleton.Instance.LeftPlayerState);
-                Console.WriteLine("upgrade 1:");
-                Console.WriteLine(turret.Damage);
-                Console.WriteLine(turret.Range);
+                Console.WriteLine("Upgrade Left:");
+                Console.WriteLine("{0} - {1}  - {2} ", turret.Damage, turret.Range, turret.Speed);
             }
             else if (playerType == PlayerType.Right)
             {
@@ -145,9 +143,8 @@ namespace tower_battle.Services
                 GameStateSingleton.Instance.RightPlayerState.Turret = turret;
                 GameStateSingleton.Instance.RightPlayerState.Money -= upgradePrice;
                 GameLogic.OnTurretUpgrade(GameStateSingleton.Instance.RightPlayerState);
-                Console.WriteLine("upgrade 2:");
-                Console.WriteLine( turret.Damage);
-                Console.WriteLine( turret.Range);
+                Console.WriteLine("Upgrade Right:");
+                Console.WriteLine("{0} - {1}  - {2} ", turret.Damage, turret.Range, turret.Speed);
             }
 
             return true;
@@ -170,10 +167,8 @@ namespace tower_battle.Services
                 ITurret turret = GameStateSingleton.Instance.LeftPlayerState.Turret;
                 GameStateSingleton.Instance.turretCaretakers[0].RestoreMemento();
                 GameStateSingleton.Instance.LeftPlayerState.Money += upgradePrice * 0.5 ;
-                Console.WriteLine("undo 1:");
-                Console.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Damage);
-                Console.WriteLine(GameStateSingleton.Instance.LeftPlayerState.Turret.Range);
-
+                Console.WriteLine("Undo Left:");
+                Console.WriteLine("{0} - {1}  - {2} ", GameStateSingleton.Instance.LeftPlayerState.Turret.Damage, GameStateSingleton.Instance.LeftPlayerState.Turret.Range, GameStateSingleton.Instance.LeftPlayerState.Turret.Speed);
             }
             else if (playerType == PlayerType.Right)
             {
@@ -184,9 +179,8 @@ namespace tower_battle.Services
                 ITurret turret = GameStateSingleton.Instance.LeftPlayerState.Turret;
                 GameStateSingleton.Instance.turretCaretakers[1].RestoreMemento();
                 GameStateSingleton.Instance.RightPlayerState.Money += upgradePrice * 0.5;
-                Console.WriteLine("undo 2:");
-                Console.WriteLine(GameStateSingleton.Instance.RightPlayerState.Turret.Damage);
-                Console.WriteLine(GameStateSingleton.Instance.RightPlayerState.Turret.Range);
+                Console.WriteLine("Undo Right:");
+                Console.WriteLine("{0} - {1}  - {2} ", GameStateSingleton.Instance.RightPlayerState.Turret.Damage, GameStateSingleton.Instance.RightPlayerState.Turret.Range, GameStateSingleton.Instance.RightPlayerState.Turret.Speed);
             }
             return true;
         }
