@@ -32,5 +32,9 @@ namespace tower_battle.Hubs
         {
             hubFacade.UndoTurretUpgrade(GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
         }
+        public async Task BuyArmyUpgrade(string upgradeType)
+        {
+            hubFacade.BuyUnitUpgrade(upgradeType, GameStateSingleton.Instance.Connections[Context.GetHttpContext().Request.Query["UserId"]]);
+        }
     }
 }

@@ -15,6 +15,7 @@ interface InterfaceProps {
   onBuyTurretUpgradeClick: (turretType: string) => void;
   onUndoTurretUpgradeClick: () => void;
   onSellTurretClick: () => void;
+  onBuyArmyUpgradeClick: (unitUpgradeType: string) => void;
 }
 
 const Interface = ({
@@ -25,8 +26,8 @@ const Interface = ({
   onBuyTurretUpgradeClick,
   onUndoTurretUpgradeClick,
   onSellTurretClick,
+  onBuyArmyUpgradeClick,
 }: InterfaceProps) => {
-  const [isGamePaused, setIsGamePaused] = useState<boolean>(false);
   const handleLevelUpClick = () => {
     axios({
       method: "post",
@@ -91,6 +92,8 @@ const Interface = ({
               label="Upg. Turret Speed"
               onClick={() => onBuyTurretUpgradeClick("speed")}
             />
+          </div>
+          <div className="turret-control-container">
             <IconButton
               image=""
               label="Undo Upgrade"
@@ -98,11 +101,13 @@ const Interface = ({
             />
             <IconButton
               image=""
-              label={isGamePaused ? `Unpause` : `Pause`}
-              onClick={() => {
-                axios.post(UrlManager.getPauseEndpoint(!isGamePaused));
-                setIsGamePaused(!isGamePaused);
-              }}
+              label="Upg. Army Damage"
+              onClick={() => onBuyArmyUpgradeClick("armyDamage")}
+            />
+            <IconButton
+              image=""
+              label="Upg. Army Health"
+              onClick={() => onBuyArmyUpgradeClick("armyHealth")}
             />
           </div>
         </div>

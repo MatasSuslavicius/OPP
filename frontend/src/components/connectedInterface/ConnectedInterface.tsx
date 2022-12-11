@@ -71,6 +71,9 @@ const ConnectedInterface = () => {
     connection?.invoke("UndoTurretUpgrade");
   };
 
+  const handleBuyUnitUpgradeClick = async (unitUpgradeType: string) => {
+    connection?.invoke("BuyArmyUpgrade", unitUpgradeType);
+  };
 
   return (
     <Interface
@@ -81,6 +84,7 @@ const ConnectedInterface = () => {
       onBuyTurretUpgradeClick={handleBuyTurretUpgradeClick}
       onSellTurretClick={handleSellTurretClick}
       onUndoTurretUpgradeClick={handleUndoTurretUpgradeClick}
+      onBuyArmyUpgradeClick={handleBuyUnitUpgradeClick}
     />
   );
 };

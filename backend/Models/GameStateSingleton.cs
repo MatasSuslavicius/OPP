@@ -26,6 +26,7 @@ namespace tower_battle.Models
         public PlayerState LeftPlayerState { get; } = new PlayerState();
         public UnitManager UnitManager { get; } = new UnitManager ();
         public TurretCaretaker[] turretCaretakers { get; set; } = new TurretCaretaker[2];
+        public UnitStructure UnitStructure { get; } = new UnitStructure();
     }
 
     public class PlayerState
