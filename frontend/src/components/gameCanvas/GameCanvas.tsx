@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useRef, useState } from "react";
+import React, { cloneElement, useRef, useState } from "react";
 import { GameState } from "../../contracts/contracts";
 import { UrlManager } from "../../Utils/UrlManager";
 import "./GameCanvas.css";
@@ -21,21 +21,26 @@ const GameCanvas = (gameState: GameState) => {
   const onPauseButtonClick = () => {
     axios.post(UrlManager.getPauseEndpoint(!isGamePaused));
     setIsGamePaused(!isGamePaused);
-  }
+  };
 
   return (
     <>
       <div>
-        <button className="playButton" onClick={onPauseButtonClick}><img src={isGamePaused ? `images/play.svg` : `images/pause.svg`} alt="PauseButton" /></button>
+        <button className="playButton" onClick={onPauseButtonClick}>
+          <img
+            src={isGamePaused ? `images/play.svg` : `images/pause.svg`}
+            alt="PauseButton"
+          />
+        </button>
       </div>
       <div className="container">
-        {isGamePaused &&
+        {isGamePaused && (
           <div id="overlay">
             <div id="text">Game is paused</div>
           </div>
-        }
+        )}
         {gameState.leftPlayerState.level === 1 &&
-          gameState.rightPlayerState.level === 1 ? (
+        gameState.rightPlayerState.level === 1 ? (
           <img
             src="images/bokstai.jpg"
             className="background"

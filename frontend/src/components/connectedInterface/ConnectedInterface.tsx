@@ -9,6 +9,10 @@ import {
 import { UrlManager } from "../../Utils/UrlManager";
 import Interface from "../interface/Interface";
 import Cookies from "universal-cookie";
+import { SlowUnitExpression } from "../../interpreter/SlowUnitExpression";
+import { NormalUnitExpression } from "../../interpreter/NormalUnitExpression";
+import { FastUnitExpression } from "../../interpreter/FastUnitExpression";
+import { GameContext } from "../../interpreter/GameContext";
 
 const ConnectedInterface = () => {
   const cookies = new Cookies();
@@ -16,6 +20,9 @@ const ConnectedInterface = () => {
   const [gameState, setGameState] = useState<GameState>(INITIAL_GAME_STATE);
   const [userId, setUserId] = useState<String>(cookies.get("UserId"));
   const [playerType, setPlayerType] = useState<PlayerType>(PlayerType.Default);
+  const SlowUnit = new SlowUnitExpression();
+  const NormalUnit = new NormalUnitExpression();
+  const FastUnit = new FastUnitExpression();
 
   const getUserId = (): String => {
     if (!userId || userId.length === 0) {
@@ -74,6 +81,29 @@ const ConnectedInterface = () => {
   const handleBuyUnitUpgradeClick = async (unitUpgradeType: string) => {
     connection?.invoke("BuyArmyUpgrade", unitUpgradeType);
   };
+
+  useEffect(() => {
+    const keyDownHandler = (event: KeyboardEvent) => {
+      const gameCtx = new GameContext(connection);
+      switch (event.key) {
+        case "s":
+          SlowUnit.Interpret(gameCtx);
+          break;
+        case "n":
+          NormalUnit.Interpret(gameCtx);
+          break;
+        case "f":
+          FastUnit.Interpret(gameCtx);
+          break;
+      }
+    };
+
+    document.addEventListener("keydown", keyDownHandler);
+
+    return () => {
+      document.removeEventListener("keydown", keyDownHandler);
+    };
+  }, []);
 
   return (
     <Interface
