@@ -1,21 +1,24 @@
-import React from "react";
-import { ArmyUnit, Level } from "../../contracts/contracts";
+import { Level, PlayerType } from "../../contracts/contracts";
 import IconButton from "../buttons/IconButton";
+import { InterfaceMediatorProps } from "../interface/Interface";
 import "./ArmyView.css";
 
 interface ArmyViewProps {
-  level: Level;
-  onBuyUnitClick: (unitType: string) => void;
+  interfaceMediator: InterfaceMediatorProps;
   onLevelUpClick: () => void;
-  army: ArmyUnit;
 }
 
-const ArmyView = ({
-  level,
-  onBuyUnitClick,
-  onLevelUpClick,
-  army,
-}: ArmyViewProps) => {
+const ArmyView = ({ interfaceMediator, onLevelUpClick }: ArmyViewProps) => {
+  const level =
+    interfaceMediator.playerType === PlayerType.Right
+      ? interfaceMediator.gameState.rightPlayerState.level
+      : interfaceMediator.gameState.leftPlayerState.level;
+
+  const army =
+    interfaceMediator.playerType === PlayerType.Right
+      ? interfaceMediator.gameState.rightPlayerState.army
+      : interfaceMediator.gameState.leftPlayerState.army;
+
   return (
     <div className="army-view-container">
       <div className="army-view-container-row">
@@ -29,21 +32,21 @@ const ArmyView = ({
       </div>
       <div className="army-view-container-row">
         <IconButton
-          onClick={() => onBuyUnitClick("Soldier")}
+          onClick={() => interfaceMediator.onBuyUnitClick("Soldier")}
           image={`images/${Level[level]}Soldier.svg`}
           label="Soldier Legion"
         >
           Units: {army.children[0].unitCount}
         </IconButton>
         <IconButton
-          onClick={() => onBuyUnitClick("Scout")}
+          onClick={() => interfaceMediator.onBuyUnitClick("Scout")}
           image={`images/${Level[level]}Scout.svg`}
           label="Scout Legion"
         >
           Units: {army.children[1].unitCount}
         </IconButton>
         <IconButton
-          onClick={() => onBuyUnitClick("Tank")}
+          onClick={() => interfaceMediator.onBuyUnitClick("Tank")}
           image={`images/${Level[level]}Tank.svg`}
           label="Tank Legion"
         >

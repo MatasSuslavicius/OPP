@@ -7,7 +7,7 @@ import {
   PlayerType,
 } from "../../contracts/contracts";
 import { UrlManager } from "../../Utils/UrlManager";
-import Interface from "../interface/Interface";
+import InterfaceMediator from "../interface/Interface";
 import Cookies from "universal-cookie";
 import { SlowUnitExpression } from "../../interpreter/SlowUnitExpression";
 import { NormalUnitExpression } from "../../interpreter/NormalUnitExpression";
@@ -106,7 +106,7 @@ const ConnectedInterface = () => {
   }, []);
 
   return (
-    <Interface
+    <InterfaceMediator
       gameState={gameState}
       playerType={playerType}
       onBuyUnitClick={handleBuyUnitClick}
